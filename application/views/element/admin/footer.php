@@ -1,4 +1,4 @@
-<div class="row-fluid">
-  <div class="span12">
-  </div>
-</div>
+<hr>
+<footer>
+  <p>&copy; Company 2013</p>
+</footer>

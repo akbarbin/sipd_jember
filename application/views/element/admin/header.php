@@ -1,5 +1,7 @@
 <div class="row-fluid">
   <div class="span12">
-    <img alt="140x140" src="http://lorempixel.com/140/140/" />
+    <div class="header">
+      <img class="logo" src="<?php echo base_url() ."webroot/img/logo.png"; ?>"/>
+    </div>
   </div>
 </div>

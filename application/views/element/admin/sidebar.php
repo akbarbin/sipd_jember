@@ -1,28 +1,30 @@
 <ul class="nav nav-list">
   <li class="nav-header">
-    List header
-  </li>
-  <li class="active">
-    <a href="#">Home</a>
+    Quick Link
   </li>
   <li>
-    <a href="#">Library</a>
+    <a href="#">Dashboard</a>
   </li>
   <li>
-    <a href="#">Applications</a>
+    <a href="#">Histories</a>
   </li>
   <li class="nav-header">
-    Another list header
+    Kelompok Data
   </li>
   <li>
-    <a href="#">Profile</a>
+    <a href="#">Data Umum</a>
+    <ul>
+      <li><a href="">Geografi</a></li>
+      <li><a href="">Budaya</a></li>
+      <li><a href="">Pendidikan</a></li>
+    </ul>
   </li>
   <li>
-    <a href="#">Settings</a>
+    <a href="#">Data profile</a>
   </li>
   <li class="divider">
   </li>
   <li>
-    <a href="#">Help</a>
+    <a href="#">Keluar</a>
   </li>
 </ul>

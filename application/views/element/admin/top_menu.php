@@ -1,77 +1,57 @@
-<div class="row-fluid">
-  <div class="span12">
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">Title</a>
-          <div class="nav-collapse collapse navbar-responsive-collapse">
-            <ul class="nav">
-              <li class="active">
-                <a href="#">Home</a>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="brand">SIPD Jember</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li>
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Nilai Profil <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Data Tabular</a></li>
+              <li><a href="#">Data Tabular Kecamatan</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#contact">Data User</a>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Data Master <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Data Satuan</a></li>
+              <li><a href="#">Data Kecamatan</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li class="divider-vertical">
+          </li>
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Administrator <strong class="caret"></strong></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Edit Kontak</a>
               </li>
               <li>
-                <a href="#">Link</a>
+                <a href="#">Ganti Password</a>
+              </li>
+              <li class="divider">
               </li>
               <li>
-                <a href="#">Link</a>
-              </li>
-              <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">Action</a>
-                  </li>
-                  <li>
-                    <a href="#">Another action</a>
-                  </li>
-                  <li>
-                    <a href="#">Something else here</a>
-                  </li>
-                  <li class="divider">
-                  </li>
-                  <li class="nav-header">
-                    Nav header
-                  </li>
-                  <li>
-                    <a href="#">Separated link</a>
-                  </li>
-                  <li>
-                    <a href="#">One more separated link</a>
-                  </li>
-                </ul>
+                <a href="#">Keluar</a>
               </li>
             </ul>
-            <ul class="nav pull-right">
-              <li>
-                <a href="#">Link</a>
-              </li>
-              <li class="divider-vertical">
-              </li>
-              <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="#">Action</a>
-                  </li>
-                  <li>
-                    <a href="#">Another action</a>
-                  </li>
-                  <li>
-                    <a href="#">Something else here</a>
-                  </li>
-                  <li class="divider">
-                  </li>
-                  <li>
-                    <a href="#">Separated link</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+          </li>
+        </ul>
 
-        </div>
       </div>
-
     </div>
   </div>
 </div>

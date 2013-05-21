@@ -8,11 +8,12 @@
     <meta name="author" content="">
 
     <?php
-      echo css(array(
-          'bootstrap.min',
-          'bootstrap-responsive.min',
-          'style'
-      ));
+    echo css(array(
+        'bootstrap.min',
+        'bootstrap-responsive.min',
+        'style',
+        'admin'
+    ));
     ?>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -37,22 +38,22 @@
   </head>
 
   <body>
+    <?php // $this->load->view('element/admin/header'); ?>
+
+    <?php $this->load->view('element/admin/top_menu'); ?>
+
     <div class="container-fluid">
-      <?php $this->load->view('element/admin/header'); ?>
-
-      <?php $this->load->view('element/admin/top_menu'); ?>
-
       <div class="row-fluid">
-        <div class="span2 well">
+        <div class="span3 well">
           <?php $this->load->view('element/admin/sidebar'); ?>
         </div>
-        <div class="span10 well">
+        <div class="span9">
           <?php $this->load->view(isset($content) ? $content : $this->router->class . '/' . $this->router->method); ?>
         </div>
       </div>
 
       <?php $this->load->view('element/admin/footer'); ?>
-
     </div>
+
   </body>
 </html>

@@ -1,8 +1,3 @@
-<div class="page-header">
-  <h1>
-    Example page header <small>Subtext for header</small>
-  </h1>
-</div>
 <ul class="breadcrumb">
   <li>
     <a href="#">Home</a> <span class="divider">/</span>
@@ -14,10 +9,30 @@
     Data
   </li>
 </ul>
-<form class="form-search">
-  <input class="input-medium search-query" type="text" /> <button type="submit" class="btn">Search</button>
-</form>
-<table class="table">
+<div class="page-header">
+  <h1>
+    Example page header <small>Subtext for header</small>
+  </h1>
+</div>
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">Email</label>
+    <div class="controls">
+      <input type="text" id="inputEmail" placeholder="Email">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Password</label>
+    <div class="controls">
+      <input type="password" id="inputPassword" placeholder="Password">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">Cari</button>
+    </div>
+  </div>
+</form><table class="table">
   <thead>
     <tr>
       <th>
