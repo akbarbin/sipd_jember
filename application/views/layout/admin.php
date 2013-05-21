@@ -47,7 +47,7 @@
           <?php $this->load->view('element/admin/sidebar'); ?>
         </div>
         <div class="span10 well">
-          <?php $this->load->view($content); ?>
+          <?php $this->load->view(isset($content) ? $content : $this->router->class . '/' . $this->router->method); ?>
         </div>
       </div>
 
