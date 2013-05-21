@@ -384,6 +384,47 @@ if (!function_exists('nbs')) {
 
 }
 
+// ------------------------------------------------------------------------
+
+/**
+ * Generates css link
+ *
+ * @access	public
+ * @param	array
+ * @return	string
+ */
+if (!function_exists('css')) {
+
+  function css($links = array()) {
+    $return = NULL;
+    foreach ($links as $link) {
+      $return .= '<link rel="stylesheet" href="' . base_url() . 'webroot/css/' . $link . '.css" />';
+    }
+    return $return;
+  }
+
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Generates js link
+ *
+ * @access	public
+ * @param	array
+ * @return	string
+ */
+if (!function_exists('js')) {
+
+  function js($links = array()) {
+    $return = NULL;
+    foreach ($links as $link) {
+      $return .= '<script type="text/javascript" src="' . base_url() . 'webroot/js/' . $link . '.js"></script>';
+    }
+    return $return;
+  }
+
+}
 
 /* End of file html_helper.php */
 /* Location: ./system/helpers/html_helper.php */
