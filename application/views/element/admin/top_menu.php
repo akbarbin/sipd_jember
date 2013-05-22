@@ -10,23 +10,23 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li>
-            <a href="#">Dashboard</a>
+             <?php echo anchor('/', 'Dashboard'); ?>
           </li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Nilai Profil <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Data Tabular</a></li>
-              <li><a href="#">Data Tabular Kecamatan</a></li>
+             <?php echo anchor('tabular', 'Data Tabular'); ?>
+             <?php echo anchor('sub_district_tabular', 'Data Tabular Kecamatan'); ?>
             </ul>
           </li>
           <li>
-            <a href="#contact">Data User</a>
+             <?php echo anchor('user', 'Data User'); ?>
           </li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Data Master <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Data Satuan</a></li>
-              <li><a href="#">Data Kecamatan</a></li>
+             <?php echo anchor('unit', 'Data Satuan'); ?>
+             <?php echo anchor('sub_district', 'Data Kecamatan'); ?>
             </ul>
           </li>
         </ul>
@@ -37,15 +37,15 @@
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Administrator <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="#">Edit Kontak</a>
+                <?php echo anchor('user/edit_account', 'Edit Kontak'); ?>
               </li>
               <li>
-                <a href="#">Ganti Password</a>
+                <?php echo anchor('user/change_password', 'Ganti Password'); ?>
               </li>
               <li class="divider">
               </li>
               <li>
-                <a href="#">Keluar</a>
+                <?php echo anchor('user/logout', 'Keluar'); ?>
               </li>
             </ul>
           </li>
