@@ -29,7 +29,6 @@ class User extends CI_Controller {
       }
     } else {
       $data['title'] = 'Login Pelanggan';
-      $data['content'] = $this->router->class . '/' . $this->router->method;
       $this->load->view('layout/login', $data);
     }
   }

@@ -3,10 +3,11 @@
     Quick Link
   </li>
   <li>
+    <?php echo anchor('', 'Dashboard'); ?>
     <a href="#">Dashboard</a>
   </li>
   <li>
-    <a href="#">Histories</a>
+    <?php echo anchor('history', 'Histories'); ?>
   </li>
   <li class="nav-header">
     Kelompok Data
@@ -20,11 +21,11 @@
     </ul>
   </li>
   <li>
-    <a href="#">Data profile</a>
+    <?php echo anchor('user/account', 'Data Profile'); ?>
   </li>
   <li class="divider">
   </li>
   <li>
-    <a href="#">Keluar</a>
+    <?php echo anchor('user/logout', 'Keluar'); ?>
   </li>
 </ul>
