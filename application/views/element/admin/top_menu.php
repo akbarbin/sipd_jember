@@ -6,27 +6,27 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="#" class="brand">SIPD Jember</a>
+      <?php echo anchor('', 'SIPD Jember', array('class' => 'brand')); ?>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li>
-             <?php echo anchor('/', 'Dashboard'); ?>
+            <?php echo anchor('/', 'Dashboard'); ?>
           </li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Nilai Profil <b class="caret"></b></a>
             <ul class="dropdown-menu">
-             <?php echo anchor('tabular', 'Data Tabular'); ?>
-             <?php echo anchor('sub_district_tabular', 'Data Tabular Kecamatan'); ?>
+              <?php echo anchor('tabular', 'Data Tabular'); ?>
+              <?php echo anchor('sub_district_tabular', 'Data Tabular Kecamatan'); ?>
             </ul>
           </li>
           <li>
-             <?php echo anchor('user', 'Data User'); ?>
+            <?php echo anchor('user', 'Data User'); ?>
           </li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Data Master <b class="caret"></b></a>
             <ul class="dropdown-menu">
-             <?php echo anchor('unit', 'Data Satuan'); ?>
-             <?php echo anchor('sub_district', 'Data Kecamatan'); ?>
+              <?php echo anchor('unit', 'Data Satuan'); ?>
+              <?php echo anchor('sub_district', 'Data Kecamatan'); ?>
             </ul>
           </li>
         </ul>
