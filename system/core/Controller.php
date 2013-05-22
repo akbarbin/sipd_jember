@@ -32,6 +32,7 @@ if (!defined('BASEPATH'))
 class CI_Controller {
 
   private static $instance;
+  public static $sessionLogin;
 
   /**
    * Constructor
@@ -51,6 +52,8 @@ class CI_Controller {
     $this->load->initialize();
 
     log_message('debug', "Controller Class Initialized");
+    
+    self::$sessionLogin = $this->session->all_userdata();
   }
 
   public static function &get_instance() {

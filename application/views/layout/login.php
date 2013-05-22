@@ -34,16 +34,18 @@
   </head>
 
   <body>
+    <?php echo $this->session->flashdata('message'); ?>
+    
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" action="user/login" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" placeholder="Email address" class="input-block-level">
-        <input type="password" placeholder="Password" class="input-block-level">
+        <input name="username" type="text" placeholder="Username" class="input-block-level">
+        <input name="password" type="password" placeholder="Password" class="input-block-level">
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-        <button type="submit" class="btn btn-large btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-large btn-primary">Login</button>
       </form>
 
     </div>

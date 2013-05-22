@@ -34,6 +34,8 @@
   </head>
 
   <body>
+    <?php echo $this->session->flashdata('message'); ?>
+    
     <?php // $this->load->view('element/admin/header'); ?>
 
     <?php $this->load->view('element/admin/top_menu'); ?>
@@ -43,7 +45,7 @@
         <div class="span3 well">
           <?php $this->load->view('element/admin/sidebar'); ?>
         </div>
-        <div class="span9">
+        <div class="span9 well">
           <?php $this->load->view(isset($content) ? $content : $this->router->class . '/' . $this->router->method); ?>
         </div>
       </div>
