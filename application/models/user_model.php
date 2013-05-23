@@ -41,7 +41,8 @@ class User_model extends App_Model {
    */
   function register($data = array()) {
     $data['is_remove'] = 0;
-    $return = $this->db->insert($this->table, $data);
+    $insert = $this->setInsertData($data);
+    $return = $this->db->insert($this->table, $insert);
     return $return;
   }
 

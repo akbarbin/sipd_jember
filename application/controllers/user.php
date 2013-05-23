@@ -39,7 +39,7 @@ class User extends Public_Controller {
       }
     } else {
       $data['title'] = 'Login User SIPD Jember';
-      $this->load->view('layout/login', $data);
+      $this->load->view('layout/blank', $data);
     }
   }
   

@@ -12,6 +12,45 @@ class App_model extends CI_Model {
   function __construct() {
     parent::__construct();
   }
+  
+  private function __getDateInsertData(){
+    return array(
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s')
+    );
+  }
+  
+  private function __getDateUpdateData(){
+    return array(
+        'updated_at' => date('Y-m-d H:i:s')
+    );
+  }
+  
+  protected function setInsertData($insertData = array()){
+    $return = array();
+    foreach ($insertData as $key => $val){
+      if(is_array($val)){
+        $return[] = array_merge($val, $this->__getDateInsertData());
+      }else{
+        $return = array_merge($insertData, $this->__getDateInsertData());
+        break;
+      }
+    }
+    return $return;
+  }
+  
+  protected function setUpdateData($updateDate = array()){
+    $return = array();
+    foreach ($updateDate as $key => $val){
+      if(is_array($val)){
+        $return[] = array_merge($val, $this->__getDateUpdateData());
+      }else{
+        $return = array_merge($insertData, $this->__getDateUpdateData());
+        break;
+      }
+    }
+    return $return;
+  }
 
 }
 
