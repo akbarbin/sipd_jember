@@ -34,7 +34,7 @@
   </head>
 
   <body>
-    <?php echo $this->session->flashdata('message'); ?>
+    <?php $this->load->view('element/content/session_flash_right'); ?>
     
     <?php // $this->load->view('element/admin/header'); ?>
 

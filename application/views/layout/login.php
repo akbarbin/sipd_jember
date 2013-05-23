@@ -34,7 +34,7 @@
   </head>
 
   <body>
-    <?php echo $this->session->flashdata('message'); ?>
+    <?php $this->load->view('element/content/session_flash_center'); ?>
     
     <div class="container">
 

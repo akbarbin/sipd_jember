@@ -25,7 +25,7 @@ class User extends CI_Controller {
         redirect('dashboard/');
       } else {
         $this->session->set_flashdata('message', 'Maaf, Username atau Password Anda salah');
-        redirect('user/login');
+        redirect('login');
       }
     } else {
       $data['title'] = 'Login User SIPD Jember';
