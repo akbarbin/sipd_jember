@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
 
-class User_model extends MY_App_model {
+class User_model extends App_Model {
 
   var $table = 'users';
 

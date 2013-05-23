@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
   exit('No direct script access allowed');
 
-class User extends MY_Guest {
+class User extends Public_Controller {
   
   function __construct() {
     parent::__construct();
@@ -22,7 +22,7 @@ class User extends MY_Guest {
       if (!empty($user)) {
         $data = $this->__setSessionDataLogin($user[0]);
         $this->session->set_userdata($data);
-        redirect('dashboard/');
+        redirect('admin/dashboard');
       } else {
         $this->session->set_flashdata('message', 'Maaf, Username atau Password Anda salah');
         redirect('login');

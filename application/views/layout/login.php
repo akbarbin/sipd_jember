@@ -18,11 +18,11 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <?php echo js(array('html5shiv')) ?>
+    <?php echo js(array('html5shiv')) ?>
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <?php echo link_tag(base_url().'webroot/img/favicon.png', 'shortcut icon', 'image/ico'); ?>
+    <?php echo link_tag(base_url() . 'webroot/img/favicon.png', 'shortcut icon', 'image/ico'); ?>
 
     <?php
     echo js(array(
@@ -35,18 +35,19 @@
 
   <body>
     <?php $this->load->view('element/content/session_flash_center'); ?>
-    
+
     <div class="container">
 
-      <form class="form-signin" action="user/login" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input name="username" type="text" placeholder="Username" class="input-block-level">
-        <input name="password" type="password" placeholder="Password" class="input-block-level">
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button type="submit" class="btn btn-large btn-primary">Login</button>
-      </form>
+      <?php echo form_open('user/login', array('class' => 'form-signin')) ?>
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <?php echo form_input('username', NULL, 'placeholder="Username" class="input-block-level"'); ?>
+      <?php echo form_password('password', NULL, 'placeholder="Password" class="input-block-level"'); ?>
+      <label class="checkbox">
+        <?php echo form_checkbox('remember_me', 'remember-me', FALSE); ?>
+        Remember me
+      </label>
+      <?php echo form_button('login', 'Login', 'class="btn btn-large btn-primary"'); ?>
+      <?php echo form_close(); ?>
 
     </div>
   </body>

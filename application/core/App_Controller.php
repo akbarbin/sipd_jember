@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * MY_App_controller use to add all function used by any user
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class MY_App_controller extends CI_Controller { 
+class App_Controller extends CI_Controller { 
   
   public static $sessionLogin;
   
@@ -16,7 +16,7 @@ class MY_App_controller extends CI_Controller {
     
     self::$sessionLogin = $this->session->all_userdata();
   }
-  
+    
 }
 
 ?>

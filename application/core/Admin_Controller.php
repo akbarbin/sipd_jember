@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * MY_Admin use to add all function admin used by user
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class MY_Admin extends MY_App_controller { 
+class Admin_Controller extends App_Controller { 
   
   public function __construct() {
     parent::__construct();

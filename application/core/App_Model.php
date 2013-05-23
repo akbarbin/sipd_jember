@@ -1,15 +1,15 @@
 <?php
-
 if (!defined('BASEPATH'))
   exit('No direct script access allowed');
 
 /**
- * MY_Guest use to add all function used by guest user
+ * App_model use to add all behavior model
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class MY_Guest extends MY_App_controller { 
-  
-  public function __construct() {
+
+class App_model extends CI_Model {
+
+  function __construct() {
     parent::__construct();
   }
 
