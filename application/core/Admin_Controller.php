@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
   exit('No direct script access allowed');
 
 /**
- * MY_Admin use to add all function admin used by user
+ * Admin Controller use to add all function admin used by user
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
 class Admin_Controller extends App_Controller { 
@@ -13,6 +13,9 @@ class Admin_Controller extends App_Controller {
     parent::__construct();
     
     /**
+     * @author Mahendri Winata <mahen.0112@gmail.com>
+     * 
+     * Description :
      * Check User login status
      */
     if(!self::$sessionLogin['login']){

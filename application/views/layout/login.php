@@ -46,7 +46,7 @@
         <?php echo form_checkbox('remember_me', 'remember-me', FALSE); ?>
         Remember me
       </label>
-      <?php echo form_button('login', 'Login', 'class="btn btn-large btn-primary"'); ?>
+      <?php echo form_submit('login', 'Login', 'class="btn btn-large btn-primary"'); ?>
       <?php echo form_close(); ?>
 
     </div>
