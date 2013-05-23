@@ -6,27 +6,35 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <?php echo anchor('', 'SIPD Jember', array('class' => 'brand')); ?>
+      <?php echo anchor('admin/dashboard', 'SIPD Jember', array('class' => 'brand')); ?>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li>
-            <?php echo anchor('/', 'Dashboard'); ?>
+            <?php echo anchor('admin/dashboard', 'Dashboard'); ?>
           </li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Nilai Profil <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <?php echo anchor('tabular', 'Data Tabular'); ?>
-              <?php echo anchor('sub_district_tabular', 'Data Tabular Kecamatan'); ?>
+              <li>
+                <?php echo anchor('admin/tabular', 'Data Tabular'); ?>
+              </li>
+              <li>
+                <?php echo anchor('admin/sub_district_tabular', 'Data Tabular Kecamatan'); ?>
+              </li>
             </ul>
           </li>
           <li>
-            <?php echo anchor('user', 'Data User'); ?>
+            <?php echo anchor('admin/user', 'Data User'); ?>
           </li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Data Master <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <?php echo anchor('unit', 'Data Satuan'); ?>
-              <?php echo anchor('sub_district', 'Data Kecamatan'); ?>
+              <li>
+                <?php echo anchor('admin/unit', 'Data Satuan'); ?>
+              </li>
+              <li>
+                <?php echo anchor('admin/sub_district', 'Data Kecamatan'); ?>
+              </li>
             </ul>
           </li>
         </ul>
@@ -37,10 +45,10 @@
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Administrator <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
-                <?php echo anchor('user/edit_account', 'Edit Kontak'); ?>
+                <?php echo anchor('admin/user/edit_account', 'Edit Kontak'); ?>
               </li>
               <li>
-                <?php echo anchor('user/change_password', 'Ganti Password'); ?>
+                <?php echo anchor('admin/user/change_password', 'Ganti Password'); ?>
               </li>
               <li class="divider">
               </li>

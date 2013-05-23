@@ -3,10 +3,10 @@
     Quick Link
   </li>
   <li>
-    <?php echo anchor('', '<i class="icon-home"></i> Dashboard'); ?>
+    <?php echo anchor('admin/dashboard', '<i class="icon-home"></i> Dashboard'); ?>
   </li>
   <li>
-    <?php echo anchor('history', '<i class="icon-list"></i> Histories'); ?>
+    <?php echo anchor('admin/history', '<i class="icon-list"></i> Histories'); ?>
   </li>
   <li class="nav-header">
     Kelompok Data
@@ -20,7 +20,7 @@
     </ul>
   </li>
   <li>
-    <?php echo anchor('user/account', 'Data Profile'); ?>
+    <?php echo anchor('admin/user/account', 'Data Profile'); ?>
   </li>
   <li class="divider">
   </li>
