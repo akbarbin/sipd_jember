@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
   exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends MY_Guest {
   
   function __construct() {
     parent::__construct();
@@ -51,12 +51,5 @@ class User extends CI_Controller {
     redirect('user/login');
   }
   
-  public function edit_account(){
-    $user = $this->db->get_where('users', array('username' => self::$sessionLogin['username']))->result();
-    $data['user'] = $user[0];
-    $data['title'] = 'Edit User Account';
-    $this->load->view('layout/admin', $data);
-  }
-
 }
 ?>
