@@ -8,35 +8,37 @@
     <meta name="author" content="">
 
     <?php
-    echo css(array(
+    $this->minify->css_file = 'application.min.css';
+    $this->minify->assets_dir = 'webroot';
+    $this->minify->css(array(
         'bootstrap.min',
         'bootstrap-responsive.min',
         'style',
-        'admin'
-    ));
+        'admin'));
+    echo $this->minify->deploy_css(false);
     ?>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <?php echo js(array('html5shiv')) ?>
+    <?php echo js(array('html5shiv')) ?>
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <?php echo link_tag(base_url().'webroot/img/favicon.png', 'shortcut icon', 'image/ico'); ?>
+    <?php echo link_tag(base_url() . 'webroot/img/favicon.png', 'shortcut icon', 'image/ico'); ?>
 
     <?php
-    echo js(array(
+    $this->minify->js_file = 'application.min.css';
+    $this->minify->assets_dir = 'webroot';
+    $this->minify->js(array(
         'jquery.min',
         'bootstrap.min',
-        'scripts'
-    ));
+        'scripts'));
+    echo $this->minify->deploy_js(false);
     ?>
   </head>
 
   <body>
     <?php $this->load->view('element/content/session_flash_right'); ?>
-    
-    <?php // $this->load->view('element/admin/header'); ?>
 
     <?php $this->load->view('element/admin/top_menu'); ?>
 
@@ -46,7 +48,7 @@
           <?php $this->load->view('element/admin/sidebar'); ?>
         </div>
         <div class="span9 well">
-          <?php $this->load->view(isset($content) ? $content : $this->router->directory.'/'.$this->router->class . '/' . $this->router->method); ?>
+          <?php $this->load->view(isset($content) ? $content : $this->router->directory . '/' . $this->router->class . '/' . $this->router->method); ?>
         </div>
       </div>
 
