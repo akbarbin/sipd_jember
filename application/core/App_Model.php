@@ -51,6 +51,17 @@ class App_model extends CI_Model {
     }
     return $return;
   }
+    
+  protected function getOldDataArrayFormat($table = NULL, $id = NULL, $primary_key = 'id'){
+    $data = $this->db->get_where($this->table, array($primary_key => $id))->result();
+    return (array) $data[0];
+  }
+    
+  protected function setHistoryAfterUpdate($oldData = array(), $table = NULL, $id = NULL, $primary_key = 'id'){
+    $newData = $this->db->get_where($this->table, array($primary_key => $id))->result();
+    
+  }
+
 
 }
 
