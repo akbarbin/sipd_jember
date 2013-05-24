@@ -45,6 +45,19 @@ class User_model extends App_Model {
     $return = $this->db->insert($this->table, $insert);
     return $return;
   }
+  
+  /**
+   * @author Mahendri Winata <mahen.0112@gmail.com>
+   * 
+   * @param array $data
+   * @param integer $id
+   * @param string $primaryKey
+   * @return object
+   */
+  function update($data = array(), $id = NULL, $primaryKey = 'id'){    
+    $this->db->where($primaryKey, $id);
+    return $this->db->update($this->table, $data); 
+  }
 
 }
 
