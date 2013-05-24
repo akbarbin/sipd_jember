@@ -13,7 +13,7 @@ class History_model extends App_Model {
   function __construct() {
     parent::__construct();
   }
-
+  
 }
 
 ?>
