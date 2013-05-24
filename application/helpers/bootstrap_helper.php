@@ -34,7 +34,8 @@ function bootstrap_controls() {
 function bootstrap_control_label($name = NULL, $option = array()) {
   $output = '';
   if (isset($option['label']) && $option['label'] != FALSE) {
-    $output = '<label class="control-label" for="' . $name . '">' . !empty($option['label']) ? $option['label'] : ucwords($name) . '</label>';
+    $label = !empty($option['label']) ? $option['label'] : ucwords($name);
+    $output = '<label class="control-label" for="' . $name . '">' . $label . '</label>';
   }
   return $output;
 }
@@ -82,7 +83,7 @@ function bootstrap_before($name = NULL, $option = array()) {
   $output = bootstrap_control_group();
   $output .= bootstrap_control_label($name, $option);
   $output .= bootstrap_controls();
-  return $option;
+  return $output;
 }
 
 /**
@@ -105,7 +106,7 @@ function bootstrap_after() {
  */
 function bootstrap_build($type = NULL, $name = NULL, $value = NULL, $option = array()) {
   $form_helper_output = '';
-  
+
   /**
    * 
    */
@@ -114,7 +115,7 @@ function bootstrap_build($type = NULL, $name = NULL, $value = NULL, $option = ar
     $checked = TRUE;
     unset($option['checked']);
   }
-  
+
   /**
    * 
    */
