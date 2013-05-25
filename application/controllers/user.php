@@ -35,7 +35,8 @@ class User extends Public_Controller {
         redirect('admin/dashboard');
       } else {
         $this->session->set_flashdata('message', array('alert' => 'error', 'message' => 'Maaf, Username atau Password Anda salah'));
-        redirect('user/login');
+        $data['title'] = 'Login User SIPD Jember';
+        $this->load->view('layout/blank', $data);
       }
     } else {
       $data['title'] = 'Login User SIPD Jember';
@@ -54,13 +55,9 @@ class User extends Public_Controller {
    */
   private function __setSessionDataLogin($data = array()) {
     $data = array(
-        'id' => $data->id,
-        'name' => $data->name,
-        'email' => $data->email,
-        'username' => $data->username,
-        'photo' => $data->photo,
-        'sub_district_id' => $data->sub_district_id,
-        'login' => TRUE
+        md5('id') => $data->id,
+        md5('name') => $data->name,
+        md5('login') => md5(TRUE)
     );
     return $data;
   }

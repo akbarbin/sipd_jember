@@ -18,7 +18,7 @@ class Admin_Controller extends App_Controller {
      * Description :
      * Check User login status
      */
-    if(!self::$sessionLogin['login']){
+    if(self::$sessionLogin[md5('login')] != md5(TRUE)){
       redirect('user/login');
     }
     
