@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 class Content_model extends App_Model {
 
-  var $table = 'contents';
+  public $table = 'contents';
 
   function __construct() {
     parent::__construct();

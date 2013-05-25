@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 class Data_source_model extends App_Model {
 
-  var $table = 'data_sources';
+  public $table = 'data_sources';
 
   function __construct() {
     parent::__construct();

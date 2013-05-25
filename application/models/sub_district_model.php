@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 class Sub_district_model extends App_Model {
 
-  var $table = 'sub_districts';
+  public $table = 'sub_districts';
 
   function __construct() {
     parent::__construct();

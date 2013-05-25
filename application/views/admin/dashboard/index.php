@@ -1,14 +1,5 @@
-<ul class="breadcrumb">
-  <li>
-    <a href="#">Home</a> <span class="divider">/</span>
-  </li>
-  <li>
-    <a href="#">Library</a> <span class="divider">/</span>
-  </li>
-  <li class="active">
-    Data
-  </li>
-</ul>
+<?php echo bootstrap_breadcrumb($controller, $action); ?>
+
 <div class="page-header">
   <h1>
     Example page header <small>Subtext for header</small>

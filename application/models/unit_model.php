@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 class Unit_model extends App_Model {
 
-  var $table = 'units';
+  public $table = 'units';
 
   function __construct() {
     parent::__construct();

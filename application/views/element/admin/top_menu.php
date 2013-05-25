@@ -42,7 +42,7 @@
           <li class="divider-vertical">
           </li>
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Administrator <strong class="caret"></strong></a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $user_full_name;?> <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
                 <?php echo anchor('admin/user/edit_account', 'Edit Kontak'); ?>

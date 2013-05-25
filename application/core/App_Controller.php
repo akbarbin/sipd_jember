@@ -10,11 +10,14 @@ if (!defined('BASEPATH'))
 class App_Controller extends CI_Controller {
 
   public static $sessionLogin;
+  public $data = array();
 
   public function __construct() {
     parent::__construct();
 
     self::$sessionLogin = $this->session->all_userdata();
+    $this->data['controller'] = $this->router->class;
+    $this->data['action'] = $this->router->method;
   }
 
   /**
@@ -41,11 +44,25 @@ class App_Controller extends CI_Controller {
         TRUE => 'success',
         FALSE => 'error'
     );
-    
-    $message = (empty($message)) ? $actions[$action][$callback_action] : $message;
-    
-    $this->session->set_flashdata('message', array('alert' => $alert[$callback_action], 'message' => $message));
 
+    $message = (empty($message)) ? $actions[$action][$callback_action] : $message;
+
+    $this->session->set_flashdata('message', array('alert' => $alert[$callback_action], 'message' => $message));
+  }
+
+  protected function get_login_status() {
+    if (self::$sessionLogin[md5('login')] != md5(TRUE)) {
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  protected function get_login_active_id() {
+    return self::$sessionLogin[md5('id')];
+  }
+
+  protected function get_login_active_name() {
+    return self::$sessionLogin[md5('name')];
   }
 
 }

@@ -15,7 +15,6 @@ class Dashboard extends Admin_Controller {
    * This function load admin dashboard index page.
    */
   public function index() {
-    $data = array();
-    $this->load->view('layout/admin', $data);
+    $this->load->view('layout/admin', $this->data);
   }  
 }

@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 class Master_tabular_model extends App_Model {
 
-  var $table = 'master_tabulars';
+  public $table = 'master_tabulars';
 
   function __construct() {
     parent::__construct();

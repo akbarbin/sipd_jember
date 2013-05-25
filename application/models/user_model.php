@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
 
 class User_model extends App_Model {
 
-  var $table = 'users';
+  public $table = 'users';
 
   function __construct() {
     parent::__construct();
@@ -57,6 +57,26 @@ class User_model extends App_Model {
   function update($data = array(), $id = NULL, $primaryKey = 'id'){    
     $this->db->where($primaryKey, $id);
     return $this->db->update($this->table, $data); 
+  }
+  
+  function get_by_under_role_level($id = NULL, $count = FALSE, $limit = NULL, $offset = NULL){
+    $this->load->model('Role_model', '', TRUE);
+    $user_role = $this->Role_model->get_role_by_user_id($id);
+    
+    $this->db->select('users.*')
+            ->from($this->table)
+            ->join('roles', 'roles.id = users.role_id', 'left')
+            ->where(array('users.id !=' => $id, 'roles.level >' => $user_role[0]->level));
+    
+    if(!empty($limit) || !empty($offset)){
+      $this->db->limit($offset, $limit);
+    }
+    if($count){
+      $users = $this->db->count_all_results();
+    }  else {
+      $users = $this->db->get()->result();
+    }
+    return $users;
   }
 
 }

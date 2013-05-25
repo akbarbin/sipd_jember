@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 class Tabular_model extends App_Model {
 
-  var $table = 'tabulars';
+  public $table = 'tabulars';
 
   function __construct() {
     parent::__construct();

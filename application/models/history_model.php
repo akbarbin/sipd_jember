@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 class History_model extends App_Model {
 
-  var $table = 'histories';
+  public $table = 'histories';
 
   function __construct() {
     parent::__construct();

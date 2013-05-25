@@ -17,7 +17,22 @@ class User extends Admin_Controller {
    * @author Mahendri Winata <mahen.0112@gmail.com>
    */
   public function index() {
+    $this->data['title'] = 'User SIPD Jember';
+    $this->data['users'] = $this->User_model->get_by_under_role_level(
+            $this->get_login_active_id(), 
+            FALSE, 
+            self::$limit, 
+            $this->get_offset_from_segment());
     
+    $count = $this->User_model->get_by_under_role_level(
+            $this->get_login_active_id(), 
+            TRUE);
+    
+    $config = $this->set_before_pagination($count);
+    $this->pagination->initialize($config);
+    $this->data['pagination'] = $this->set_after_pagination();
+
+    $this->load->view('layout/admin', $this->data);
   }
 
   /**
@@ -39,8 +54,8 @@ class User extends Admin_Controller {
       $this->error_message('insert', $register);
       redirect('admin/user');
     } else {
-      $data['title'] = 'Tambah User';
-      $this->load->view('layout/admin', $data);
+      $this->data['title'] = 'Tambah User';
+      $this->load->view('layout/admin', $this->data);
     }
   }
 
@@ -57,9 +72,9 @@ class User extends Admin_Controller {
       redirect('admin/user');
     } else {
       $user = $this->db->get_where('users', array('username' => $this->uri->segment(4)))->result();
-      $data['user'] = $user[0];
-      $data['title'] = 'Edit User Account ' . $user[0]->name;
-      $this->load->view('layout/admin', $data);
+      $this->data['user'] = $user[0];
+      $this->data['title'] = 'Edit User Account ' . $user[0]->name;
+      $this->load->view('layout/admin', $this->data);
     }
   }
 
@@ -83,10 +98,10 @@ class User extends Admin_Controller {
       $this->error_message('update', $update);
       redirect('admin/user');
     } else {
-      $user = $this->db->get_where('users', array('username' => self::$sessionLogin['username']))->result();
-      $data['user'] = $user[0];
-      $data['title'] = 'Edit User Account ' . $user[0]->name;
-      $this->load->view('layout/admin', $data);
+      $user = $this->db->get_where('users', array('id' => $this->get_login_active_id()))->result();
+      $this->data['user'] = $user[0];
+      $this->data['title'] = 'Edit User Account ' . $user[0]->name;
+      $this->load->view('layout/admin', $this->data);
     }
   }
 

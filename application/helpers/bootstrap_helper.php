@@ -41,6 +41,13 @@ function bootstrap_tag_close($tag_close = NULL) {
   return '</' . $tag_close . '>';
 }
 
+function bootstrap_tag($tag = NULL, $value = NULL, $attribute = array()) {
+  $output = bootstrap_tag_open($tag, $attribute);
+  $output .= $value;
+  $output .= bootstrap_tag_close($tag);
+  return $output;
+}
+
 /* ================================================================================================ */
 
 /**
@@ -158,7 +165,7 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
    * before value
    */
   $before = '';
-  if(isset($option['before'])){
+  if (isset($option['before'])) {
     $after = $option['before'];
     unset($option['before']);
   }
@@ -168,11 +175,11 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
    * after value
    */
   $after = '';
-  if(isset($option['after'])){
+  if (isset($option['after'])) {
     $after = $option['after'];
     unset($option['after']);
   }
-  
+
   /**
    * @todo Make standarization
    * label
@@ -181,7 +188,7 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
   if (isset($attribute['label'])) {
     unset($attribute['label']);
   }
-  
+
   switch ($type) {
     case 'input':
       $form_helper_output = form_input($name, set_value($name, $value), bootstrap_attribute($attribute));
@@ -428,4 +435,20 @@ function bootstrap_alert($message = array(), $position = 'center', $alert_messag
   return $output;
 }
 
+/* ================================================================================================ */
+
+/**
+ * @author Mahendri Winata <mahen.0112@gmail.com>
+ * 
+ * Herper to create breadcrumb
+ */
+function bootstrap_breadcrumb($controller = NULL, $action = NULL) {
+  $output = bootstrap_tag_open('ul', array('class' => 'breadcrumb'));
+  $output .= bootstrap_tag('li', bootstrap_tag('a', str_replace('_', ' ', $controller) . ' ' . bootstrap_tag('span', array('class' => 'devider')), array('href' => $controller . '/index')));
+  if ($action != 'index') {
+    $output .= bootstrap_tag('li', bootstrap_tag('a', str_replace('_', ' ', $action) . ' ' . bootstrap_tag('span', array('class' => 'devider')), array('href' => $controller . '/' . $action)));
+  }
+  $output .= bootstrap_tag_close('ul');
+  return $output;
+}
 ?>
