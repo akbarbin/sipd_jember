@@ -31,11 +31,11 @@ class User extends Public_Controller {
       if (!empty($user)) {
         $data = $this->__setSessionDataLogin($user[0]);
         $this->session->set_userdata($data);
-        $this->session->set_flashdata('message', array('alert' => 'success', 'message' => 'Welcome SIPD Jember'));
+        $this->session->set_flashdata('message', array('alert' => 'success', 'message' => 'Anda berhasil login di SIPD Jember'));
         redirect('admin/dashboard');
       } else {
         $this->session->set_flashdata('message', array('alert' => 'error', 'message' => 'Maaf, Username atau Password Anda salah'));
-        redirect('login');
+        redirect('user/login');
       }
     } else {
       $data['title'] = 'Login User SIPD Jember';
@@ -72,8 +72,8 @@ class User extends Public_Controller {
    * This function used by user to logout
    */
   public function logout() {
-    $this->session->set_flashdata('message', 'Maaf, Username atau Password Anda salah');
     $this->session->sess_destroy();
+    $this->session->set_flashdata('message', array('alert' => 'success', 'message' => 'Anda berhasil logout dari SIPD Jember.'));
     redirect('user/login');
   }
   
