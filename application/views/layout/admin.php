@@ -12,7 +12,8 @@
         'bootstrap.min',
         'bootstrap-responsive.min',
         'style',
-        'admin'
+        'admin',
+        'docs'
     ));
     ?>
 

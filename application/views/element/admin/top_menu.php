@@ -10,50 +10,48 @@
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li>
-            <?php echo anchor('admin/dashboard', 'Dashboard'); ?>
+            <?php echo anchor('admin/dashboard', '<i class="icon-home icon-white"></i> Dashboard'); ?>
           </li>
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Nilai Profil <b class="caret"></b></a>
+            <?php echo anchor('#', '<i class="icon-th-list icon-white"></i> Nilai Profil <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
             <ul class="dropdown-menu">
               <li>
-                <?php echo anchor('admin/tabular', 'Data Tabular'); ?>
+                <?php echo anchor('admin/tabular', '<i class="icon-hdd"></i> Data Tabular'); ?> 
               </li>
               <li>
-                <?php echo anchor('admin/sub_district_tabular', 'Data Tabular Kecamatan'); ?>
+                <?php echo anchor('admin/sub_district_tabular', '<i class="icon-list-alt"></i> Data Tabular Kecamatan'); ?>
               </li>
             </ul>
           </li>
           <li>
-            <?php echo anchor('admin/user', 'Data User'); ?>
+            <?php echo anchor('admin/user', '<i class="icon-user icon-white"></i> Data User'); ?>
           </li>
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Data Master <b class="caret"></b></a>
+            <?php echo anchor('#', '<i class="icon-tasks icon-white"></i> Data Master <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
             <ul class="dropdown-menu">
               <li>
-                <?php echo anchor('admin/unit', 'Data Satuan'); ?>
+                <?php echo anchor('admin/unit', '<i class="icon-tag"></i> Data Satuan'); ?>
               </li>
               <li>
-                <?php echo anchor('admin/sub_district', 'Data Kecamatan'); ?>
+                <?php echo anchor('admin/sub_district', '<i class="icon-align-justify"></i> Data Kecamatan'); ?>
               </li>
             </ul>
           </li>
         </ul>
         <ul class="nav pull-right">
-          <li class="divider-vertical">
-          </li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $user_full_name;?> <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
-                <?php echo anchor('admin/user/edit_account', 'Edit Kontak'); ?>
+                <?php echo anchor('admin/user/edit_account', '<i class="icon-edit"></i> Edit Kontak'); ?>
               </li>
               <li>
-                <?php echo anchor('admin/user/change_password', 'Ganti Password'); ?>
+                <?php echo anchor('admin/user/change_password', '<i class="icon-random"></i> Ganti Password'); ?>
               </li>
               <li class="divider">
               </li>
               <li>
-                <?php echo anchor('user/logout', 'Keluar'); ?>
+                <?php echo anchor('user/logout', '<i class="icon-off"></i> Keluar'); ?>
               </li>
             </ul>
           </li>
