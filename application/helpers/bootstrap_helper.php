@@ -134,7 +134,8 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
   $form_helper_output = '';
 
   /**
-   * 
+   * @todo Make standarization
+   * checked
    */
   $checked = FALSE;
   if (isset($option['checked']) && $option['checked']) {
@@ -143,7 +144,8 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
   }
 
   /**
-   * 
+   * @todo Make standarization
+   * option list
    */
   $list = array();
   if (isset($option['list']) && !empty($option['list'])) {
@@ -151,11 +153,35 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
     unset($option['list']);
   }
 
+  /**
+   * @todo Make standarization
+   * before value
+   */
+  $before = '';
+  if(isset($option['before'])){
+    $after = $option['before'];
+    unset($option['before']);
+  }
+
+  /**
+   * @todo Make standarization
+   * after value
+   */
+  $after = '';
+  if(isset($option['after'])){
+    $after = $option['after'];
+    unset($option['after']);
+  }
+  
+  /**
+   * @todo Make standarization
+   * label
+   */
   $attribute = $option;
   if (isset($attribute['label'])) {
     unset($attribute['label']);
   }
-
+  
   switch ($type) {
     case 'input':
       $form_helper_output = form_input($name, set_value($name, $value), bootstrap_attribute($attribute));
@@ -195,7 +221,9 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
       break;
   }
   $output = bootstrap_form_before($name, $option);
+  $output .= $before;
   $output .= $form_helper_output;
+  $output .= $after;
   $output .= bootstrap_form_after();
   return $output;
 }
