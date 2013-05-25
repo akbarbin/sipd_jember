@@ -106,9 +106,9 @@ function bootstrap_form_error($name = NULL) {
  * @return string
  */
 function bootstrap_form_before($name = NULL, $option = array()) {
-  $output = bootstrap_control_group();
-  $output .= bootstrap_control_label($name, $option);
-  $output .= bootstrap_controls();
+  $output = bootstrap_form_control_group();
+  $output .= bootstrap_form_control_label($name, $option);
+  $output .= bootstrap_form_controls();
   return $output;
 }
 
