@@ -7,7 +7,6 @@ echo bootstrap_form_input('phone', $user->phone, array('class' => 'span6', 'plac
 echo bootstrap_form_input('fax', $user->fax, array('class' => 'span6', 'placeholder' => 'Faximile', 'label' => 'Faximile'));
 echo bootstrap_form_input('email', $user->email, array('class' => 'span6', 'placeholder' => 'Email', 'label' => 'Email'));
 echo bootstrap_form_input('website', $user->website, array('class' => 'span6', 'placeholder' => 'Website', 'label' => 'Website'));
-echo bootstrap_form_submit('save', 'Simpan', array('class' => 'btn btn-primary'));
-echo anchor('admin/user', 'Kembali', 'class="btn btn-danger"');
+echo bootstrap_form_submit('save', 'Simpan', array('class' => 'btn btn-primary', 'after' => anchor('admin/user', 'Kembali', 'class="btn btn-danger btn-link-bootstrap"')));
 echo form_close();
 ?>

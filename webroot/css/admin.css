@@ -18,3 +18,9 @@ body {
     padding-right: 5px;
   }
 }
+
+.btn-link-bootstrap{
+  padding-bottom: 2px; 
+  padding-top: 2px; 
+  margin-left: 10px;
+}

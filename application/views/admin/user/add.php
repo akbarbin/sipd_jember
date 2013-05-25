@@ -10,7 +10,6 @@ echo bootstrap_form_input('email', NULL, array('class' => 'span6', 'placeholder'
 echo bootstrap_form_input('website', NULL, array('class' => 'span6', 'placeholder' => 'Website', 'label' => 'Website'));
 echo bootstrap_form_password('password', NULL, array('class' => 'span6', 'placeholder' => 'Password', 'label' => 'Nama'));
 echo bootstrap_form_password('conf_password', NULL, array('class' => 'span6', 'placeholder' => 'Konfirmasi Password', 'label' => 'Nama'));
-echo bootstrap_form_submit('save', 'Simpan', array('class' => 'btn btn-primary'));
-echo anchor('admin/user', 'Kembali', 'class="btn btn-danger"');
+echo bootstrap_form_submit('save', 'Simpan', array('class' => 'btn btn-primary', 'after' => anchor('admin/user', 'Kembali', 'class="btn btn-danger btn-link-bootstrap"')));
 echo form_close();
 ?>
