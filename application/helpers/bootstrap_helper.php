@@ -442,13 +442,16 @@ function bootstrap_alert($message = array(), $position = 'center', $alert_messag
  * 
  * Herper to create breadcrumb
  */
+function bootstrap_breadcrumb_name($subject = NULL, $search = '_', $replace = ' ') {
+  return ucwords(str_replace($search, $replace, $subject));
+}
+
 function bootstrap_breadcrumb($controller = NULL, $action = NULL) {
   $output = bootstrap_tag_open('ul', array('class' => 'breadcrumb'));
-  $output .= bootstrap_tag('li', bootstrap_tag('a', str_replace('_', ' ', $controller) . ' ' . bootstrap_tag('span', array('class' => 'devider')), array('href' => $controller . '/index')));
-  if ($action != 'index') {
-    $output .= bootstrap_tag('li', bootstrap_tag('a', str_replace('_', ' ', $action) . ' ' . bootstrap_tag('span', array('class' => 'devider')), array('href' => $controller . '/' . $action)));
-  }
+  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_breadcrumb_name($controller), array('href' => base_url() . 'admin/' . $controller . '/index')) . ' ' . bootstrap_tag('span', '/', array('class' => 'divider')));
+  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_breadcrumb_name($action), array('href' => base_url() . 'admin/' . $controller . '/' . $action)));
   $output .= bootstrap_tag_close('ul');
   return $output;
 }
+
 ?>
