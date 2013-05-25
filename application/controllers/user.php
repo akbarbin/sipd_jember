@@ -31,10 +31,10 @@ class User extends Public_Controller {
       if (!empty($user)) {
         $data = $this->__setSessionDataLogin($user[0]);
         $this->session->set_userdata($data);
-        $this->session->set_flashdata('message', 'Welcome SIPD Jember');
+        $this->session->set_flashdata('message', array('alert' => 'success', 'message' => 'Welcome SIPD Jember'));
         redirect('admin/dashboard');
       } else {
-        $this->session->set_flashdata('message', 'Maaf, Username atau Password Anda salah');
+        $this->session->set_flashdata('message', array('alert' => 'error', 'message' => 'Maaf, Username atau Password Anda salah'));
         redirect('login');
       }
     } else {

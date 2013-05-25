@@ -8,14 +8,12 @@
     <meta name="author" content="">
 
     <?php
-    $this->minify->css_file = 'application.min.css';
-    $this->minify->assets_dir = 'webroot';
-    $this->minify->css(array(
+    echo css(array(
         'bootstrap.min',
         'bootstrap-responsive.min',
         'style',
-        'admin'));
-    echo $this->minify->deploy_css(false);
+        'admin'
+    ));
     ?>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -27,18 +25,16 @@
     <?php echo link_tag(base_url() . 'webroot/img/favicon.png', 'shortcut icon', 'image/ico'); ?>
 
     <?php
-    $this->minify->js_file = 'application.min.css';
-    $this->minify->assets_dir = 'webroot';
-    $this->minify->js(array(
+    echo js(array(
         'jquery.min',
         'bootstrap.min',
-        'scripts'));
-    echo $this->minify->deploy_js(false);
+        'scripts'
+    ));
     ?>
   </head>
 
   <body>
-    <?php $this->load->view('element/content/session_flash_right'); ?>
+    <?php echo bootstrap_alert($this->session->flashdata('message'), 'right'); ?>
 
     <?php $this->load->view('element/admin/top_menu'); ?>
 

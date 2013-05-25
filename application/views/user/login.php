@@ -1,4 +1,4 @@
-<?php $this->load->view('element/content/session_flash_center'); ?>
+<?php echo bootstrap_alert($this->session->flashdata('message'), 'center'); ?>
 
 <div class="container">
 

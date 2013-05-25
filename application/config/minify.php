@@ -16,7 +16,7 @@ if (!defined('BASEPATH'))
  * Description:
  *
  */
-$config['assets_dir'] = base_url() . '/webroot';
+$config['assets_dir'] = base_url() . 'webroot';
 $config['css_dir'] = 'css';
 $config['js_dir'] = 'js';
 
