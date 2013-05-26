@@ -85,6 +85,15 @@ class User_model extends App_Model {
     
     return $users;
   }
+  
+  function get_user_by_id($id = NULL){
+    $this->db->select('users.*, roles.name AS role_name, sub_districts.name AS sub_district_name')
+            ->from($this->table)
+            ->join('roles', 'roles.id = users.role_id', 'left')
+            ->join('sub_districts', 'sub_districts.id = users.sub_district_id', 'left')
+            ->where('users.id', $id);
+    return $this->db->get()->result();
+  }
 
 }
 

@@ -11,6 +11,7 @@ class Admin_Controller extends App_Controller {
 
   public static $segment_pagination = 4;
   public static $limit = 10;
+  protected static $id;
 
   public function __construct() {
     parent::__construct();
@@ -27,6 +28,7 @@ class Admin_Controller extends App_Controller {
 
     $this->data['user_full_name'] = $this->get_login_active_name();
     $this->data['sidebar_menus'] = $this->__get_sidebar_menu();
+    self::$id = $this->uri->segment(4);
   }
 
   protected function set_before_pagination($count = NULL, $suffix = NULL, $limit = NULL, $segment_pagination = NULL, $site_url = NULL) {

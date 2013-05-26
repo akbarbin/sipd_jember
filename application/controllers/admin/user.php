@@ -17,7 +17,7 @@ class User extends Admin_Controller {
    * @author Mahendri Winata <mahen.0112@gmail.com>
    */
   public function index() {
-    $this->data['title'] = 'User SIPD Jember';
+    $this->data['title'] = 'Data User';
     $this->data['users'] = $this->User_model->get_by_under_role_level(
             $this->get_login_active_id(),
             $this->get_search_params(array('users.name')),
@@ -40,11 +40,13 @@ class User extends Admin_Controller {
 
   /**
    * @author Mahendri Winata <mahen.0112@gmail.com>
-   * 
-   * @param integer $id
    */
-  public function view($id = NULL){
+  public function view(){
+    $user = $this->User_model->get_user_by_id(self::$id);
+    $this->data['user'] = $user[0];
+    $this->data['title'] = 'Detail User '.$user[0]->name;
     
+    $this->load->view('layout/admin', $this->data);
   }
 
   /**

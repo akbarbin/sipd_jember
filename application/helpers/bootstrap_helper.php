@@ -484,6 +484,15 @@ function bootstrap_table_body($data = array()) {
   return $output;
 }
 
+function bootstrap_table_view($data){
+  $output = bootstrap_tag_open('table', array('class' => 'table bg-white'));
+  foreach ($data as $row) {
+    $output .= bootstrap_tag('tr', bootstrap_tag('th',$row[0], array('width' => '20%')).bootstrap_tag('td',': '.$row[1]));
+  }
+  $output .= bootstrap_tag_close('table');
+  return $output;
+}
+
 function bootstrap_table_nav($title = NULL, $link = array(), $controller = NULL, $action = NULL, $export = FALSE) {
   $output = bootstrap_tag_open('div', array('class' => 'navbar navbar-inverse'));
   $output .= bootstrap_tag_open('div', array('class' => 'navbar-inner'));
@@ -530,6 +539,24 @@ function bootstrap_table_action($controller = NULL, $id = NULL) {
   $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-trash')) . ' Hapus', array('href' => base_url().'admin/' . $controller . '/delete/'.$id)));
   $output .= bootstrap_tag_close('ul');
   $output .= bootstrap_tag_close('div');
+  return $output;
+}
+
+function bootstrap_table_title($title = NULL){
+  $output = bootstrap_tag_open('div', array('class' => 'navbar navbar-inverse'));
+  $output .= bootstrap_tag_open('div', array('class' => 'navbar-inner'));
+  $output .= bootstrap_tag_open('div', array('class' => 'container'));
+  $output .= bootstrap_tag('a', $title, array('class' => 'brand'));
+  $output .= bootstrap_tag_close('div');
+  $output .= bootstrap_tag_close('div');
+  $output .= bootstrap_tag_close('div');
+  return $output;
+}
+
+function bootstrap_control_group($name = NULL, $value = NULL, $option = NULL, $before = NULL, $after = NULL){
+  $output = bootstrap_form_before($name, $option);
+  $output .= $before.$value.$after;
+  $output .= bootstrap_form_after();
   return $output;
 }
 

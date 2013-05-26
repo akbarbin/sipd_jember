@@ -1,5 +1,3 @@
-<?php echo bootstrap_breadcrumb($controller, $action); ?>
-
 <div class="page-header">
   <h1>
     Example page header <small>Subtext for header</small>

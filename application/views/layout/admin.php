@@ -45,6 +45,7 @@
           <?php $this->load->view('element/admin/sidebar'); ?>
         </div>
         <div class="span9 well">
+          <?php echo bootstrap_breadcrumb($controller, $action);?>
           <?php $this->load->view(isset($content) ? $content : $this->router->directory . '/' . $this->router->class . '/' . $this->router->method); ?>
         </div>
       </div>

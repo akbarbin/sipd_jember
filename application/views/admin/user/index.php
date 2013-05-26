@@ -1,10 +1,7 @@
 <?php
+echo bootstrap_table_nav($title, array('name' => 'Tambah User', 'destination' => $controller . '/add'), $controller, $action, TRUE);
 
-echo bootstrap_breadcrumb($controller, $action);
-
-echo bootstrap_table_nav('Data User', array('name' => 'Tambah User', 'destination' => $controller . '/add'), $controller, $action, TRUE);
-
-echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped bg-white'));
+echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
 echo bootstrap_table_head(array('No.', 'Nama', 'Telepon', 'Email', 'Kecamatan', 'Role','Aksi'));
 echo bootstrap_tag_open('tbody');
 $offset = (empty($offset)) ? 0 : $offset;
