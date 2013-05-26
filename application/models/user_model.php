@@ -59,7 +59,7 @@ class User_model extends App_Model {
     return $this->db->update($this->table, $data); 
   }
   
-  function get_by_under_role_level($id = NULL, $count = FALSE, $limit = NULL, $offset = NULL){
+  function get_by_under_role_level($id = NULL, $conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL){
     $this->load->model('Role_model', '', TRUE);
     $user_role = $this->Role_model->get_role_by_user_id($id);
     
@@ -69,14 +69,20 @@ class User_model extends App_Model {
             ->join('sub_districts', 'sub_districts.id = users.sub_district_id', 'left')
             ->where(array('users.id !=' => $id, 'roles.level >' => $user_role[0]->level));
     
+    if(!empty($conditions)){
+      $this->db->like($conditions);
+    }
+    
     if(!empty($limit) || !empty($offset)){
       $this->db->limit($limit, $offset);
     }
+    
     if($count){
       $users = $this->db->count_all_results();
     }  else {
       $users = $this->db->get()->result();
     }
+    
     return $users;
   }
 
