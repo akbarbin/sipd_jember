@@ -63,13 +63,14 @@ class User_model extends App_Model {
     $this->load->model('Role_model', '', TRUE);
     $user_role = $this->Role_model->get_role_by_user_id($id);
     
-    $this->db->select('users.*')
+    $this->db->select('users.*, roles.name AS role_name, sub_districts.name AS sub_district_name')
             ->from($this->table)
             ->join('roles', 'roles.id = users.role_id', 'left')
+            ->join('sub_districts', 'sub_districts.id = users.sub_district_id', 'left')
             ->where(array('users.id !=' => $id, 'roles.level >' => $user_role[0]->level));
     
     if(!empty($limit) || !empty($offset)){
-      $this->db->limit($offset, $limit);
+      $this->db->limit($limit, $offset);
     }
     if($count){
       $users = $this->db->count_all_results();

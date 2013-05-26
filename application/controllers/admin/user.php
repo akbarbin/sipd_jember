@@ -31,7 +31,8 @@ class User extends Admin_Controller {
     $config = $this->set_before_pagination($count);
     $this->pagination->initialize($config);
     $this->data['pagination'] = $this->set_after_pagination();
-
+    $this->data['offset'] = $this->get_offset_from_segment();
+    
     $this->load->view('layout/admin', $this->data);
   }
 

@@ -448,10 +448,64 @@ function bootstrap_breadcrumb_name($subject = NULL, $search = '_', $replace = ' 
 
 function bootstrap_breadcrumb($controller = NULL, $action = NULL) {
   $output = bootstrap_tag_open('ul', array('class' => 'breadcrumb'));
-  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_breadcrumb_name($controller), array('href' => base_url() . 'admin/' . $controller . '/index')) . ' ' . bootstrap_tag('span', '/', array('class' => 'divider')));
-  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_breadcrumb_name($action), array('href' => base_url() . 'admin/' . $controller . '/' . $action)));
+  $output .= bootstrap_tag('li', bootstrap_tag('a', '<i class="icon-home"></i> SIPD Jember', array('href' => base_url() . 'admin/dashboard/index')) . ' ' . bootstrap_tag('span', '/', array('class' => 'divider')));
+  if ($action != 'index') {
+    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_breadcrumb_name($controller), array('href' => base_url() . 'admin/' . $controller . '/index')) . ' ' . bootstrap_tag('span', '/', array('class' => 'divider')));
+    $output .= bootstrap_tag('li', bootstrap_breadcrumb_name($action), array('class' => 'active'));
+  } else {
+    $output .= bootstrap_tag('li', bootstrap_breadcrumb_name($controller), array('class' => 'active'));
+  }
   $output .= bootstrap_tag_close('ul');
   return $output;
+}
+
+function bootstrap_table_tr($data = array(), $option = NULL) {
+  $output = bootstrap_tag_open('tr');
+  foreach ($data as $key => $value) {
+    $output .= bootstrap_tag($option, $value);
+  }
+  $output .= bootstrap_tag_close('tr');
+  return $output;
+}
+
+function bootstrap_table_head($data = array()) {
+  $output = bootstrap_tag_open('thead');
+  $output .= bootstrap_table_tr($data, 'th');
+  $output .= bootstrap_tag_close('thead');
+  return $output;
+}
+
+function bootstrap_table_body($data = array()) {
+  $output = bootstrap_tag_open('tbody');
+  foreach ($data as $key => $value) {
+    $output .= bootstrap_table_tr($value, 'td');
+  }
+  $output .= bootstrap_tag_close('tbody');
+  return $output;
+}
+
+function bootstrap_table_nav($title = NULL, $link = array(), $action = NULL) {
+  $ouput = bootstrap_tag_open('div', array('class' => 'navbar navbar-inverse'));
+  $ouput .= bootstrap_tag_open('div', array('class' => 'navbar-inner'));
+  $ouput .= bootstrap_tag_open('div', array('class' => 'container'));
+  $ouput .= bootstrap_tag('a', $title, array('class' => 'brand'));
+  $ouput .= bootstrap_tag_open('div', array('class' => 'nav-collapse'));
+  $ouput .= bootstrap_tag_open('ul', array('class' => 'nav'));
+  $ouput .= bootstrap_tag_open('li');
+  $ouput .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-plus-sign icon-white')) . ' ' . $link['name'], array('class' => 'small-box', 'href' => base_url().'admin/'.$link['destination']));
+  $ouput .= bootstrap_tag_close('li');
+  $ouput .= bootstrap_tag_close('ul');
+  if (!empty($action)) {
+    $ouput .= bootstrap_tag_open('form', array('class' => 'input-append btn-group pull-right', 'method' => 'get', 'action' => base_url().'admin/'.$action));
+    $ouput .= form_input('search', NULL, 'id="appendedInputButton" placeholder="Masukkan Kata Kunci"');
+    $ouput .= bootstrap_tag('button', bootstrap_tag('i', '', array('class' => 'icon-search icon-white')) . ' ' . 'Cari', array('class' => 'btn btn-primary'));
+    $ouput .= bootstrap_tag_close('form');
+  }
+  $ouput .= bootstrap_tag_close('div');
+  $ouput .= bootstrap_tag_close('div');
+  $ouput .= bootstrap_tag_close('div');
+  $ouput .= bootstrap_tag_close('div');
+  return $ouput;
 }
 
 ?>

@@ -24,3 +24,13 @@ body {
   padding-top: 2px; 
   margin-left: 10px;
 }
+
+.bg-white{
+  background-color: #FFF;
+}
+
+.text-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

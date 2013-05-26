@@ -11,17 +11,11 @@
   <li class="nav-header">
     Kelompok Data
   </li>
-  <li>
-    <a href="#">Data Umum</a>
-    <ul class="nav nav-list">
-      <li><a href="">Geografi</a></li>
-      <li><a href="">Budaya</a></li>
-      <li><a href="">Pendidikan</a></li>
-    </ul>
-  </li>
-  <li>
-    <?php echo anchor('admin/user/account', 'Data Profile'); ?>
-  </li>
+  <?php
+  foreach ($sidebar_menus as $key => $menu) {
+    echo '<li>' . anchor('admin/master_tabular/index/' . $menu->id, $menu->name, 'title="' . $menu->name . '" class="text-overflow" style="margin-left:' . (15 * $menu->ancestry_depth) . 'px;"') . '</li>';
+  }
+  ?>
   <li class="divider">
   </li>
   <li>

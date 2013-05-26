@@ -27,6 +27,7 @@ class Admin_Controller extends App_Controller {
     }
     
     $this->data['user_full_name'] = $this->get_login_active_name();
+    $this->data['sidebar_menus'] = $this->__get_sidebar_menu();
   }
   
   protected function set_before_pagination($count = NULL, $limit = NULL, $segment_pagination = NULL, $site_url = NULL){
@@ -48,6 +49,11 @@ class Admin_Controller extends App_Controller {
   protected function get_offset_from_segment($segment_pagination = NULL){
     $segment_pagination = (empty($segment_pagination)) ? self::$segment_pagination : $segment_pagination;
     return $this->uri->segment($segment_pagination);
+  }
+  
+  private function __get_sidebar_menu(){
+    $this->load->model('Master_tabular_model');
+    return $this->Master_tabular_model->get_sidebar_menu();
   }
 }
 
