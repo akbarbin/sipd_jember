@@ -7,13 +7,13 @@ if (!defined('BASEPATH'))
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
 class Unit extends Admin_Controller {
-  
+
   public function __construct() {
     parent::__construct();
     $this->load->model('Unit_model');
   }
-  
-  public function index(){
+
+  public function index() {
     $this->data['title'] = 'Data Satuan';
     $this->data['units'] = $this->Unit_model->get_all(
             $this->get_search_params(array('units.name')), FALSE, self::$limit, $this->get_offset_from_segment());
@@ -28,12 +28,12 @@ class Unit extends Admin_Controller {
 
     $this->load->view('layout/admin', $this->data);
   }
-  
+
   /**
    * @author Mahendri Winata <mahen.0112@gmail.com>
    */
   public function view() {
-    $unit = $this->Unit_model->get_unit_by_id(self::$id);
+    $unit = $this->Unit_model->get_all(array('id' => self::$id));
     $this->data['unit'] = $unit[0];
     $this->data['title'] = 'Detail Satuan ' . $unit[0]->name;
 
@@ -45,7 +45,7 @@ class Unit extends Admin_Controller {
    */
   public function add() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run()) {
+    if ($this->form_validation->run('unit')) {
       $save = $this->Unit_model->save($this->set_data_before_update($this->input->post()));
       $this->error_message('insert', $save);
       redirect('admin/unit');
@@ -62,17 +62,22 @@ class Unit extends Admin_Controller {
    */
   public function edit() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run('user/edit')) {
-      $save = $this->User_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
+    if ($this->form_validation->run('unit')) {
+      $save = $this->Unit_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
       $this->error_message('update', $save);
       redirect('admin/unit');
     } else {
-      $unit = $this->Unit_model->get_unit_by_id(self::$id);
-      $this->set_update_id($unit[0]->id);
-      $this->data['id'] = self::$id;
-      $this->data['user'] = $unit[0];
-      $this->data['title'] = 'Edit Satuan ' . $unit[0]->name;
-      $this->load->view('layout/admin', $this->data);
+      if (!empty(self::$id)) {
+        $unit = $this->Unit_model->get_all(array('id' => self::$id));
+        $this->set_update_id($unit[0]->id);
+        $this->data['id'] = self::$id;
+        $this->data['unit'] = $unit[0];
+        $this->data['title'] = 'Edit Satuan ' . $unit[0]->name;
+        $this->load->view('layout/admin', $this->data);
+      } else {
+        $this->error_message('redirect', FALSE);
+        redirect('admin/unit');
+      }
     }
   }
 
@@ -83,6 +88,8 @@ class Unit extends Admin_Controller {
     $delete = $this->Unit_model->remove(self::$id);
     $this->error_message('delete', $delete);
     redirect('admin/unit');
-  }  
+  }
+
 }
+
 ?>

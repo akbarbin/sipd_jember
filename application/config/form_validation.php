@@ -72,5 +72,16 @@ $config = array(
             'rules' => 'required|min_length[5]|matches[password]'
         ),
     ),
+    
+    /**
+     * unit validation 
+     */
+    'unit' => array(
+        array(
+            'field' => 'name',
+            'label' => 'Nama',
+            'rules' => 'required'
+        ),
+    ),
 );
 ?>

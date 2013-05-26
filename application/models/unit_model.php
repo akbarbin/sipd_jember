@@ -42,8 +42,8 @@ class Unit_model extends App_Model {
     }
   }
   
-  function remove($id = NULL){
-    return $this->db->delete($this->table, $id);
+  function remove($id = NULL, $field = 'id'){
+    return $this->db->delete($this->table, array($field => $id));
   }
 
 }

@@ -38,6 +38,10 @@ class App_Controller extends CI_Controller {
         'delete' => array(
             TRUE => 'Anda berhasil menghapus data.',
             FALSE => 'Anda gagal menghapus data.'),
+        'redirect' => array(
+            TRUE => 'Halaman yang anda akses benar.',
+            FALSE => 'Terjadi kesalahan pada halaman yang anda akses.'
+        )
     );
 
     $alert = array(
