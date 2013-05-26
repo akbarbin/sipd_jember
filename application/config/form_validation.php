@@ -73,10 +73,7 @@ $config = array(
         ),
     ),
     
-    /**
-     * unit validation 
-     */
-    'unit' => array(
+    'name_validation' => array(
         array(
             'field' => 'name',
             'label' => 'Nama',
