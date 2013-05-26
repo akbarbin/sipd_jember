@@ -27,10 +27,9 @@ class User extends Public_Controller {
       $username = $this->input->post('username');
       $password = $this->input->post('password');
 
-      $user = $this->User_model->validate($username, $password);
-      if (!empty($user)) {
-        $data = $this->__setSessionDataLogin($user[0]);
-        $this->session->set_userdata($data);
+      $user = $this->User_model->get_user_by_conditions(array('username' => $username, 'is_remove' => 0));
+      if ($this->get_validate_password($password, $user[0])) {
+        $this->session->set_userdata($this->__setSessionDataLogin($user[0]));
         $this->session->set_flashdata('message', array('alert' => 'success', 'message' => 'Anda berhasil login di SIPD Jember'));
         redirect('admin/dashboard');
       } else {

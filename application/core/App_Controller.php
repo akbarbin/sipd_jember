@@ -64,6 +64,43 @@ class App_Controller extends CI_Controller {
   protected function get_login_active_name() {
     return self::$sessionLogin[md5('name')];
   }
+  
+  protected function get_list($data = NULL){
+    $list = array();
+    foreach ($data as $value) {
+      $list[$value->id] = $value->name;
+    }
+    return $list;
+  }
+  
+  protected function set_data_before_update($data = array()){
+    if(isset($data['id'])) unset($data['id']);
+    return $data;
+  }
+
+  protected function get_password_salt(){
+    $start = rand(0, 23);
+    return substr(md5(rand(1,10000)), $start, 8);
+  }
+  
+  protected function set_password($password = NULL, $password_salt = NULL){
+    $password_salt = (empty($password_salt)) ? $this->get_password_salt() : $password_salt;
+    return md5($password_salt.md5($password));
+  }
+  
+  protected function get_validate_password($password = NULL ,$user = NULL){
+    if($this->set_password($password, $user->password_salt) == $user->password){
+      return TRUE;
+    }
+    return FALSE;
+  }
+
+  protected function set_encrype_user_data($data = array()){
+    unset($data['confirmation_password']);
+    $data['password_salt'] = $this->get_password_salt();
+    $data['password'] = $this->set_password($data['password'], $data['password_salt']);
+    return $data;
+  }
 
 }
 

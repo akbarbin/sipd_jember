@@ -25,8 +25,8 @@ class User_model extends App_Model {
    * Description :
    * This function use to validate username and password in database
    */
-  function validate($username = NULL, $password = NULL) {
-    $data = $this->db->get_where($this->table, array('username' => $username, 'password' => md5($password), 'is_remove' => 0));
+  function get_user_by_conditions($conditions = array()) {
+    $data = $this->db->get_where($this->table, $conditions);
     return $data->result();
   }
 
@@ -41,6 +41,10 @@ class User_model extends App_Model {
    */
   function register($data = array()) {
     $data['is_remove'] = 0;
+    /**
+     * @todo Still use hard code because role only admin and kecamatan
+     */
+    $data['role_id'] = 2;
     $insert = $this->setInsertData($data);
     $return = $this->db->insert($this->table, $insert);
     return $return;
@@ -67,7 +71,7 @@ class User_model extends App_Model {
             ->from($this->table)
             ->join('roles', 'roles.id = users.role_id', 'left')
             ->join('sub_districts', 'sub_districts.id = users.sub_district_id', 'left')
-            ->where(array('users.id !=' => $id, 'roles.level >' => $user_role[0]->level));
+            ->where(array('is_remove' => 0,'users.id !=' => $id, 'roles.level >' => $user_role[0]->level));
     
     if(!empty($conditions)){
       $this->db->like($conditions);
@@ -93,6 +97,10 @@ class User_model extends App_Model {
             ->join('sub_districts', 'sub_districts.id = users.sub_district_id', 'left')
             ->where('users.id', $id);
     return $this->db->get()->result();
+  }
+  
+  function set_user_is_remove($id = NULL){
+    return $this->update(array('is_remove' => 1), $id);
   }
 
 }

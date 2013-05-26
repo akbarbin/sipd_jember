@@ -13,6 +13,10 @@ class Sub_district_model extends App_Model {
   function __construct() {
     parent::__construct();
   }
+  
+  function get_all(){
+    return $this->db->get($this->table)->result();
+  }
 
 }
 

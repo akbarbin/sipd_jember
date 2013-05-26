@@ -103,7 +103,7 @@ function bootstrap_form_control_label($name = NULL, $option = array()) {
  * @return string
  */
 function bootstrap_form_error($name = NULL) {
-  return form_error($name, '<span class="label label-important">', 'Important</span>');
+  return form_error($name, '<br/><span class="label label-important">', '</span>');
 }
 
 /**
@@ -156,7 +156,7 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
    */
   $list = array();
   if (isset($option['list']) && !empty($option['list'])) {
-    $checked = $option['list'];
+    $list = $option['list'];
     unset($option['list']);
   }
 
@@ -231,6 +231,7 @@ function bootstrap_form_build($type = NULL, $name = NULL, $value = NULL, $option
   $output .= $before;
   $output .= $form_helper_output;
   $output .= $after;
+  $output .= bootstrap_form_error($name);
   $output .= bootstrap_form_after();
   return $output;
 }
@@ -558,6 +559,10 @@ function bootstrap_control_group($name = NULL, $value = NULL, $option = NULL, $b
   $output .= $before.$value.$after;
   $output .= bootstrap_form_after();
   return $output;
+}
+
+function bootstrap_text_important($string = ' *'){
+  return bootstrap_tag('span', $string, array('class' => 'text-error'));
 }
 
 ?>
