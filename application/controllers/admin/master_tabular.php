@@ -8,5 +8,9 @@ if (!defined('BASEPATH'))
  */
 class Master_tabular extends Admin_Controller {
   
+  function index(){
+    
+  }
+  
 }
 ?>

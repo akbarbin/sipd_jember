@@ -90,7 +90,7 @@ class User extends Admin_Controller {
    */
   public function delete() {
     $delete = $this->User_model->set_user_is_remove(self::$id);
-    $this->error_message('update', $delete);
+    $this->error_message('delete', $delete);
     redirect('admin/user');
   }
 
