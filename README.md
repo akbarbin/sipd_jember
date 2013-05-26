@@ -1,4 +1,3 @@
-sipd_jember
-===========
+SIPD (Sistem Informasi Pembangunan Daerah) Jember
+=================================================
 
-Sistem Informasi Pembangunan Daerah

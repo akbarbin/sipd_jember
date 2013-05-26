@@ -13,7 +13,11 @@
   </li>
   <?php
   foreach ($sidebar_menus as $key => $menu) {
-    echo '<li>' . anchor('admin/master_tabular/index/' . $menu->id, $menu->name, 'title="' . $menu->name . '" class="text-overflow" style="margin-left:' . (15 * $menu->ancestry_depth) . 'px;"') . '</li>';
+    if ($menu->ancestry_depth == 0) {
+      echo '<li>' . anchor('admin/master_tabular/index/' . $menu->id, '<i class="icon-chevron-down"></i> ' . $menu->name, 'title="' . $menu->name . '" class="text-overflow"') . '</li>';
+    } else {
+      echo '<li>' . anchor('admin/master_tabular/index/' . $menu->id, '<i class="icon-chevron-left"></i> ' . $menu->name, 'title="' . $menu->name . '" class="text-overflow" style="padding-left:30px;"') . '</li>';
+    }
   }
   ?>
   <li class="divider">
