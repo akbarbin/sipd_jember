@@ -1,5 +1,5 @@
 <?php
-echo bootstrap_table_nav($title, array('name' => 'Tambah Kecamatan', 'destination' => $controller . '/add'), $controller, $action, TRUE);
+echo bootstrap_table_nav($title, array('name' => 'Tambah Kecamatan', 'destination' => $controller . '/add'), $controller, $action);
 
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
 echo bootstrap_table_head(array('No.', 'Nama', 'Keterangan','Aksi'));
