@@ -1,138 +1,107 @@
-<div class="page-header">
-  <h1>
-    Example page header <small>Subtext for header</small>
-  </h1>
+<?php echo bootstrap_table_title($title); ?>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="index-graph">
+      <div class="chart-block">
+        <div id="chart-line" class="jqplot-target"> </div>
+      </div>
+    </div>
+  </div>
 </div>
-<form class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="inputEmail">Email</label>
-    <div class="controls">
-      <input type="text" id="inputEmail" placeholder="Email">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Password</label>
-    <div class="controls">
-      <input type="password" id="inputPassword" placeholder="Password">
-    </div>
-  </div>
-  <div class="control-group">
-    <div class="controls">
-      <button type="submit" class="btn">Cari</button>
-    </div>
-  </div>
-</form><table class="table">
-  <thead>
-    <tr>
-      <th>
-        #
-      </th>
-      <th>
-        Product
-      </th>
-      <th>
-        Payment Taken
-      </th>
-      <th>
-        Status
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        1
-      </td>
-      <td>
-        TB - Monthly
-      </td>
-      <td>
-        01/04/2012
-      </td>
-      <td>
-        Default
-      </td>
-    </tr>
-    <tr class="success">
-      <td>
-        1
-      </td>
-      <td>
-        TB - Monthly
-      </td>
-      <td>
-        01/04/2012
-      </td>
-      <td>
-        Approved
-      </td>
-    </tr>
-    <tr class="error">
-      <td>
-        2
-      </td>
-      <td>
-        TB - Monthly
-      </td>
-      <td>
-        02/04/2012
-      </td>
-      <td>
-        Declined
-      </td>
-    </tr>
-    <tr class="warning">
-      <td>
-        3
-      </td>
-      <td>
-        TB - Monthly
-      </td>
-      <td>
-        03/04/2012
-      </td>
-      <td>
-        Pending
-      </td>
-    </tr>
-    <tr class="info">
-      <td>
-        4
-      </td>
-      <td>
-        TB - Monthly
-      </td>
-      <td>
-        04/04/2012
-      </td>
-      <td>
-        Call in to confirm
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div class="pagination">
-  <ul>
-    <li>
-      <a href="#">Prev</a>
-    </li>
-    <li>
-      <a href="#">1</a>
-    </li>
-    <li>
-      <a href="#">2</a>
-    </li>
-    <li>
-      <a href="#">3</a>
-    </li>
-    <li>
-      <a href="#">4</a>
-    </li>
-    <li>
-      <a href="#">5</a>
-    </li>
-    <li>
-      <a href="#">Next</a>
-    </li>
-  </ul>
-</div>
+
+<script class="code" type="text/javascript">
+  $(document).ready(function() {
+    var s1 = [[2002, 112000], [2003, 122000], [2004, 104000], [2005, 99000], [2006, 121000],
+      [2007, 148000], [2008, 114000], [2009, 133000], [2010, 161000], [2011, 173000]];
+    var s2 = [[2002, 10200], [2003, 10800], [2004, 11200], [2005, 11800], [2006, 12400],
+      [2007, 12800], [2008, 13200], [2009, 12600], [2010, 13100]];
+
+    plot1 = $.jqplot("chart-line", [s1, s1], {
+      // Turns on animatino for all series in this plot.
+      animate: true,
+      // Will animate plot on calls to plot1.replot({resetAxes:true})
+      animateReplot: true,
+      cursor: {
+        show: true,
+        zoom: true,
+        looseZoom: true,
+        showTooltip: false
+      },
+      series: [
+        {
+          pointLabels: {
+            show: true
+          },
+          renderer: $.jqplot.BarRenderer,
+          showHighlight: false,
+          yaxis: 'y2axis',
+          rendererOptions: {
+            // Speed up the animation a little bit.
+            // This is a number of milliseconds.  
+            // Default for bar series is 3000.  
+            animation: {
+              speed: 2500
+            },
+            barWidth: 15,
+            barPadding: -15,
+            barMargin: 0,
+            highlightMouseOver: false
+          }
+        },
+        {
+          rendererOptions: {
+            // speed up the animation a little bit.
+            // This is a number of milliseconds.
+            // Default for a line series is 2500.
+            animation: {
+              speed: 2000
+            }
+          }
+        }
+      ],
+      axesDefaults: {
+        pad: 0
+      },
+      axes: {
+        // These options will set up the x axis like a category axis.
+        xaxis: {
+          tickInterval: 1,
+          drawMajorGridlines: false,
+          drawMinorGridlines: true,
+          drawMajorTickMarks: false,
+          rendererOptions: {
+            tickInset: 0.5,
+            minorTicks: 1
+          }
+        },
+        yaxis: {
+          tickOptions: {
+            formatString: "$%'d"
+          },
+          rendererOptions: {
+            forceTickAt0: true
+          }
+        },
+        y2axis: {
+          tickOptions: {
+            formatString: "$%'d"
+          },
+          rendererOptions: {
+            // align the ticks on the y2 axis with the y axis.
+            alignTicks: true,
+            forceTickAt0: true
+          }
+        }
+      },
+      highlighter: {
+        show: true,
+        showLabel: true,
+        tooltipAxes: 'y',
+        sizeAdjust: 7.5, tooltipLocation: 'ne'
+      }
+    });
+
+  });
+
+</script>

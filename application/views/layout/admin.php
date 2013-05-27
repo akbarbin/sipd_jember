@@ -13,7 +13,10 @@
         'bootstrap-responsive.min',
         'style',
         'admin',
-        'docs'
+        'docs',
+        'jquery.jqplot.min',
+        '../js/syntaxhighlighter/styles/shCoreDefault.min',
+        '../js/syntaxhighlighter/styles/shThemejqPlot.min'
     ));
     ?>
 
@@ -29,11 +32,19 @@
     echo js(array(
         'jquery.min',
         'bootstrap.min',
-        'scripts'
+        'scripts',
+        'jquery.jqplot.min',
+        'syntaxhighlighter/scripts/shCore.min',
+        'syntaxhighlighter/scripts/shBrushJScript.min',
+        'syntaxhighlighter/scripts/shBrushXml.min',
+        'chart/jqplot.barRenderer.min',
+        'chart/jqplot.highlighter.min',
+        'chart/jqplot.cursor.min',
+        'chart/jqplot.pointLabels.min',
     ));
     ?>
   </head>
-
+ 
   <body>
     <?php echo bootstrap_alert($this->session->flashdata('message'), 'right'); ?>
 
