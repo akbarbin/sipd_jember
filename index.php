@@ -18,7 +18,15 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-define('ENVIRONMENT', 'development');
+
+if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+  define('ENVIRONMENT', 'development');
+}elseif ($_SERVER['SERVER_NAME'] == 'sipd-jember.tk' || $_SERVER['SERVER_ADDR'] == '31.170.160.81') {
+  define('ENVIRONMENT', 'testing');
+} else {
+  define('ENVIRONMENT', 'production');
+}
+
 /*
  * ---------------------------------------------------------------
  * ERROR REPORTING
@@ -36,7 +44,7 @@ if (defined('ENVIRONMENT')) {
 
     case 'testing':
     case 'production':
-      error_reporting(0);
+      error_reporFting(0);
       break;
 
     default:
