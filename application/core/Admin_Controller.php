@@ -57,7 +57,7 @@ class Admin_Controller extends App_Controller {
 
   private function __get_sidebar_menu() {
     $this->load->model('Master_tabular_model');
-    return $this->Master_tabular_model->get_sidebar_menu();
+    return $this->Master_tabular_model->get_ancestry_depth(array('ancestry_depth <' => 2));
   }
   protected function get_search_params($field = array()) {
     $params = array();

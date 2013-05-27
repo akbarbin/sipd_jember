@@ -16,10 +16,10 @@
             <?php echo anchor('#', '<i class="icon-th-list icon-white"></i> Nilai Profil <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
             <ul class="dropdown-menu">
               <li>
-                <?php echo anchor('admin/tabular', '<i class="icon-hdd"></i> Data Tabular'); ?> 
+                <?php echo anchor('admin/master_tabular', '<i class="icon-hdd"></i> Data Tabular'); ?> 
               </li>
               <li>
-                <?php echo anchor('admin/sub_district_tabular', '<i class="icon-list-alt"></i> Data Tabular Kecamatan'); ?>
+                <?php echo anchor('admin/tabular', '<i class="icon-list-alt"></i> Data Tabular Kecamatan'); ?>
               </li>
             </ul>
           </li>
