@@ -23,6 +23,42 @@ class Role_model extends App_Model {
     return $role->result();
   }
 
+  function get_all($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL) {
+    $this->db->select('*')
+            ->from($this->table);
+    if (!empty($conditions)) {
+      $this->db->like($conditions);
+    }
+
+    if (!empty($limit) || !empty($offset)) {
+      $this->db->limit($limit, $offset);
+    }
+
+    if ($count) {
+      $roles = $this->db->count_all_results();
+    } else {
+      $roles = $this->db->get()->result();
+    }
+    return $roles;
+  }
+
+  function save($data = array(), $id = NULL, $primary_key = 'id') {
+    /**
+     * @todo chsnge role level when use multi level user
+     */
+    $data['level'] = 2;
+    if (empty($id)) {
+      return $this->db->insert($this->table, $data);
+    } else {
+      $this->db->where($primary_key, $id);
+      return $this->db->update($this->table, $data);
+    }
+  }
+  
+  function remove($id = NULL, $field = 'id'){
+    return $this->db->delete($this->table, array($field => $id));
+  }
+  
 }
 
 ?>

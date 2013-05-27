@@ -45,7 +45,7 @@ class Unit extends Admin_Controller {
    */
   public function add() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run('unit')) {
+    if ($this->form_validation->run('name_validation')) {
       $save = $this->Unit_model->save($this->set_data_before_update($this->input->post()));
       $this->error_message('insert', $save);
       redirect('admin/unit');
@@ -62,7 +62,7 @@ class Unit extends Admin_Controller {
    */
   public function edit() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run('unit')) {
+    if ($this->form_validation->run('name_validation')) {
       $save = $this->Unit_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
       $this->error_message('update', $save);
       redirect('admin/unit');
