@@ -15,6 +15,9 @@ foreach ($roles as $key => $role) {
   echo bootstrap_tag('td', bootstrap_table_action($controller, $role->id), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
+if(count($roles) == 0){
+  echo bootstrap_tag('tr', bootstrap_tag('td', '<b>Tidak terdapat data.</b>', array('class' => 'text-center', 'colspan' => 6)));
+}
 echo bootstrap_tag_close('tbody');
 echo bootstrap_tag_close('table');
 

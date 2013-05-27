@@ -14,6 +14,9 @@ foreach ($units as $key => $unit) {
   echo bootstrap_tag('td', bootstrap_table_action($controller, $unit->id), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
+if(count($units) == 0){
+  echo bootstrap_tag('tr', bootstrap_tag('td', '<b>Tidak terdapat data.</b>', array('class' => 'text-center', 'colspan' => 6)));
+}
 echo bootstrap_tag_close('tbody');
 echo bootstrap_tag_close('table');
 
