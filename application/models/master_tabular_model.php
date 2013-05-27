@@ -39,11 +39,11 @@ class Master_tabular_model extends App_Model {
     }
 
     if ($count) {
-      $units = $this->db->count_all_results();
+      $master_tabulars = $this->db->count_all_results();
     } else {
-      $units = $this->db->get()->result();
+      $master_tabulars = $this->db->get()->result();
     }
-    return $units;
+    return $master_tabulars;
   }
 
   function save($data = array(), $id = NULL, $primary_key = 'id') {

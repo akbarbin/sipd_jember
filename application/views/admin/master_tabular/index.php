@@ -6,7 +6,7 @@ echo bootstrap_table_head(array('Tabular','Aksi'));
 echo bootstrap_tag_open('tbody');
 foreach ($master_tabulars as $key => $master_tabular) {
   echo bootstrap_tag_open('tr');
-  echo bootstrap_tag('td', bootstrap_tag('span', $master_tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:'.($master_tabular->ancestry_depth * 20).'px;')).bootstrap_tag('span',$master_tabular->name, array('class' => 'text-overflow')));
+  echo bootstrap_tag('td', bootstrap_tag('span', $master_tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:'.($master_tabular->ancestry_depth * 30).'px;')).bootstrap_tag('span',$master_tabular->name, array('class' => 'text-overflow')));
   echo bootstrap_tag('td', bootstrap_table_action($controller, $master_tabular->id), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
