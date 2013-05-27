@@ -1,6 +1,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
+    <div class="container-fluid">
       <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
