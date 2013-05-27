@@ -18,6 +18,10 @@ class Unit_model extends App_Model {
     $this->db->select('*')
             ->from($this->table);
     if (!empty($conditions)) {
+      if (isset($conditions['id'])) {
+        $this->db->where('id', $conditions['id']);
+        unset($conditions['id']);
+      }
       $this->db->like($conditions);
     }
 
@@ -41,8 +45,8 @@ class Unit_model extends App_Model {
       return $this->db->update($this->table, $data);
     }
   }
-  
-  function remove($id = NULL, $field = 'id'){
+
+  function remove($id = NULL, $field = 'id') {
     return $this->db->delete($this->table, array($field => $id));
   }
 
