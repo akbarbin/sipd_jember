@@ -35,12 +35,18 @@
               <li>
                 <?php echo anchor('admin/sub_district', '<i class="icon-align-justify"></i> Data Kecamatan'); ?>
               </li>
+              <li>
+                <?php echo anchor('admin/data_source', '<i class="icon-folder-open"></i> Sumber Data'); ?>
+              </li>
+              <li>
+                <?php echo anchor('admin/role', '<i class="icon-share"></i> Data Role User'); ?>
+              </li>
             </ul>
           </li>
         </ul>
         <ul class="nav pull-right">
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $user_full_name;?> <strong class="caret"></strong></a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-lock icon-white"></i> <?php echo $user_full_name;?> <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
                 <?php echo anchor('admin/user/edit_account', '<i class="icon-edit"></i> Edit Kontak'); ?>
