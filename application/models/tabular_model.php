@@ -106,6 +106,23 @@ class Tabular_model extends App_Model {
     return $master_tabulars;
   }
 
+  function save_all($data = array()) {
+    $update = array();
+    foreach ($data['data'] as $key => $value) {
+      if (($value['value']['before'] != $value['value']['after']) || ($value['data_source_id']['before'] != $value['data_source_id']['after'])) {
+        $update[] = $this->setUpdateData(
+                array(
+                    'id' => $key,
+                    'value' => $value['value']['after'],
+                    'data_source_id' => $value['data_source_id']['after']));
+      }
+    }
+    if(!empty($data)){
+      return $this->db->update_batch($this->table, $update, 'id');;
+    }
+    return FALSE;
+  }
+
 }
 
 ?>
