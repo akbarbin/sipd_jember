@@ -39,7 +39,8 @@ class Unit_model extends App_Model {
 
   function save($data = array(), $id = NULL, $primary_key = 'id') {
     if (empty($id)) {
-      return $this->db->insert($this->table, $data);
+      $insert = $this->setInsertData($data);
+      $return = $this->db->insert($this->table, $insert);
     } else {
       $this->db->where($primary_key, $id);
       return $this->db->update($this->table, $data);

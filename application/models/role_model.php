@@ -52,17 +52,18 @@ class Role_model extends App_Model {
      */
     $data['level'] = 2;
     if (empty($id)) {
-      return $this->db->insert($this->table, $data);
+      $insert = $this->setInsertData($data);
+      $return = $this->db->insert($this->table, $insert);
     } else {
       $this->db->where($primary_key, $id);
       return $this->db->update($this->table, $data);
     }
   }
-  
-  function remove($id = NULL, $field = 'id'){
+
+  function remove($id = NULL, $field = 'id') {
     return $this->db->delete($this->table, array($field => $id));
   }
-  
+
 }
 
 ?>

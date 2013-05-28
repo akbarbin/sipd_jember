@@ -1,11 +1,11 @@
 <?php
+
 if (!defined('BASEPATH'))
   exit('No direct script access allowed');
 
 /**
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-
 class Data_source_model extends App_Model {
 
   public $table = 'data_sources';
@@ -41,17 +41,18 @@ class Data_source_model extends App_Model {
   function save($data = array(), $id = NULL, $primary_key = 'id') {
     if (empty($id)) {
       $data['is_default'] = 0;
-      return $this->db->insert($this->table, $data);
+      $insert = $this->setInsertData($data);
+      $return = $this->db->insert($this->table, $insert);
     } else {
       $this->db->where($primary_key, $id);
       return $this->db->update($this->table, $data);
     }
   }
-  
-  function remove($id = NULL, $field = 'id'){
+
+  function remove($id = NULL, $field = 'id') {
     return $this->db->delete($this->table, array($field => $id));
   }
-  
+
 }
 
 ?>
