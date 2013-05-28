@@ -1,6 +1,17 @@
 <?php
+echo bootstrap_table_nav_dropdown(
+        $title, 
+        $controller, 
+        array(
+            'add' => array('name' => 'Tambah', 'action' => 'add'),
+            'refresh' => array('name' => 'Refresh', 'action' => 'index'),
+            'generate' => array('name' => 'Generate Tabular Kecamatan', 'action' => 'generate'),
+            'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel'),
+//            'export-pdf' => array('name' => 'Ekspor PDF', 'action' => 'export_pdf'),
+            'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel'),
+            'search' => array('name' => 'Cari', 'action' => 'index'),
+        ));
 
-echo bootstrap_table_nav($title, array('name' => 'Tambah Tabular', 'destination' => $controller . '/add'), $controller, $action, FALSE, TRUE);
 
 echo bootstrap_tag_open('table', array('class' => 'table table-striped table-hover bg-white'));
 echo bootstrap_table_head(array('Tabular', 'Aksi'));
