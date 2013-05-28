@@ -20,11 +20,11 @@ class Master_tabular_model extends App_Model {
             ->where($coditions)
             ->order_by('ref_code');
     if ($count) {
-      $mater_tabulars = $this->db->count_all_results();
+      $master_tabulars = $this->db->count_all_results();
     } else {
-      $mater_tabulars = $this->db->get()->result();
+      $master_tabulars = $this->db->get()->result();
     }
-    return $mater_tabulars;
+    return $master_tabulars;
   }
 
   function get_all($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL) {

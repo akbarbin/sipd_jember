@@ -61,6 +61,28 @@ class Tabular_model extends App_Model {
     return $tabulars;
   }
 
+  function get_years() {
+    $this->db->select('year')
+            ->from($this->table)
+            ->group_by('year');
+    return $this->db->get()->result();
+  }
+
+  function get_ancestry_depth($coditions = array(), $count = FALSE) {
+    $this->db->select('tabulars.*, data_sources.name AS data_source_name, units.name AS unit_name')
+            ->from($this->table)
+            ->join('data_sources', 'data_sources.id = tabulars.data_source_id', 'left')
+            ->join('units', 'units.id = tabulars.unit_id', 'left')
+            ->where($coditions)
+            ->order_by('ref_code');
+    if ($count) {
+      $tabulars = $this->db->count_all_results();
+    } else {
+      $tabulars = $this->db->get()->result();
+    }
+    return $tabulars;
+  }
+
 }
 
 ?>
