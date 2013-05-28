@@ -40,10 +40,11 @@ class Sub_district_model extends App_Model {
   function save($data = array(), $id = NULL, $primary_key = 'id') {
     if (empty($id)) {
       $insert = $this->setInsertData($data);
-      $return = $this->db->insert($this->table, $insert);
+      return $this->db->insert($this->table, $insert);
     } else {
       $this->db->where($primary_key, $id);
-      return $this->db->update($this->table, $data);
+      $update = $this->setUpdateData($data);
+      return $this->db->update($this->table, $update);
     }
   }
 

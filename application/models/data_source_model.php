@@ -42,10 +42,11 @@ class Data_source_model extends App_Model {
     if (empty($id)) {
       $data['is_default'] = 0;
       $insert = $this->setInsertData($data);
-      $return = $this->db->insert($this->table, $insert);
+      return $this->db->insert($this->table, $insert);
     } else {
       $this->db->where($primary_key, $id);
-      return $this->db->update($this->table, $data);
+      $update = $this->setUpdateData($data);
+      return $this->db->update($this->table, $update);
     }
   }
 

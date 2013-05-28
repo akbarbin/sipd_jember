@@ -60,7 +60,8 @@ class User_model extends App_Model {
    */
   function update($data = array(), $id = NULL, $primaryKey = 'id'){    
     $this->db->where($primaryKey, $id);
-    return $this->db->update($this->table, $data); 
+    $update = $this->setUpdateData($data);
+    return $this->db->update($this->table, $update); 
   }
   
   function get_by_under_role_level($id = NULL, $conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL){
