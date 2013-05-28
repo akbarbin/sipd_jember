@@ -14,7 +14,7 @@ class App_Controller extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
-
+    
     self::$sessionLogin = $this->session->all_userdata();
     $this->data['controller'] = $this->router->class;
     $this->data['action'] = $this->router->method;
@@ -55,7 +55,7 @@ class App_Controller extends CI_Controller {
   }
 
   protected function get_login_status() {
-    if (self::$sessionLogin[md5('login')] != md5(TRUE)) {
+    if (self::$sessionLogin[md5('login')] == md5(TRUE)) {
       return TRUE;
     }
     return FALSE;

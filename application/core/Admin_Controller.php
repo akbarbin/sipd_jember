@@ -23,7 +23,7 @@ class Admin_Controller extends App_Controller {
      * Description :
      * Check User login status
      */
-    if ($this->get_login_status()) {
+    if (!$this->get_login_status()) {
       redirect('user/login');
     }
 
