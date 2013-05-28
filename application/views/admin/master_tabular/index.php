@@ -1,24 +1,24 @@
 <?php
+
 echo bootstrap_table_nav_dropdown(
-        $title, 
-        $controller, 
-        array(
-            'add' => array('name' => 'Tambah', 'action' => 'add'),
-            'refresh' => array('name' => 'Refresh', 'action' => 'index'),
-            'generate' => array('name' => 'Generate Tabular Kecamatan', 'action' => 'generate'),
-            'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel'),
+        $title, $controller, array(
+    'add' => array('name' => 'Tambah', 'action' => 'add'),
+    'refresh' => array('name' => 'Refresh', 'action' => 'index'),
+    'generate' => array('name' => 'Generate Tabular Kecamatan', 'action' => 'generate'),
+    'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel'),
 //            'export-pdf' => array('name' => 'Ekspor PDF', 'action' => 'export_pdf'),
-            'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel'),
-            'search' => array('name' => 'Cari', 'action' => 'index'),
-        ));
+    'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel'),
+    'search' => array('name' => 'Cari', 'action' => 'index'),
+));
 
 
-echo bootstrap_tag_open('table', array('class' => 'table table-striped table-hover bg-white'));
-echo bootstrap_table_head(array('Tabular', 'Aksi'));
+echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
+echo bootstrap_table_head(array('Tabular', 'Satuan', 'Aksi'));
 echo bootstrap_tag_open('tbody');
 foreach ($master_tabulars as $key => $master_tabular) {
   echo bootstrap_tag_open('tr');
   echo bootstrap_tag('td', bootstrap_tag('span', $master_tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . ($master_tabular->ancestry_depth * 30) . 'px;')) . bootstrap_tag('span', $master_tabular->name, array('class' => 'text-overflow')));
+  echo bootstrap_tag('td', $master_tabular->unit_name);
   echo bootstrap_tag('td', bootstrap_table_action($controller, $master_tabular->id, TRUE), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }

@@ -15,10 +15,11 @@ class Master_tabular_model extends App_Model {
   }
 
   function get_ancestry_depth($coditions = array(), $count = FALSE) {
-    $this->db->select('*')
+    $this->db->select('master_tabulars.*, units.name AS unit_name')
             ->from($this->table)
+            ->join('units', 'units.id = master_tabulars.unit_id', 'left')
             ->where($coditions)
-            ->order_by('ref_code');
+            ->order_by('master_tabulars.ref_code');
     if ($count) {
       $master_tabulars = $this->db->count_all_results();
     } else {

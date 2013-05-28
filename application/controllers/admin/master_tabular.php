@@ -15,7 +15,7 @@ class Master_tabular extends Admin_Controller {
 
   public function index() {
     $this->data['title'] = 'Data Tabular';
-    $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(array('ancestry_depth <' => 2));
+    $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(array('master_tabulars.ancestry_depth <' => 2));
     $this->load->view('layout/admin', $this->data);
   }
 
@@ -24,9 +24,13 @@ class Master_tabular extends Admin_Controller {
    */
   public function view() {
     $master_tabular = $this->Master_tabular_model->get_all(array('id' => self::$id));
-    $this->data['master_tabular'] = $master_tabular[0];
-    $this->data['title'] = 'Detail Tabular ' . $master_tabular[0]->name;
+    $this->data['ancestry_depth'] = $master_tabular[0]->ancestry_depth;
 
+    $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
+            array(
+                'master_tabulars.ref_code LIKE' => '%'.$master_tabular[0]->ref_code.'%'));
+
+    $this->data['title'] = 'Data Tabular ' . $master_tabular[0]->name;
     $this->load->view('layout/admin', $this->data);
   }
 

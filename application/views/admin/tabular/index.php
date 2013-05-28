@@ -1,4 +1,5 @@
 <?php
+
 echo bootstrap_table_title($title);
 if (!empty($tabular_years)) {
   echo form_open('admin/tabular/index', array('class' => 'form-horizontal'));
@@ -7,18 +8,17 @@ if (!empty($tabular_years)) {
   echo bootstrap_control_group(NULL, bootstrap_text_important('Catatan : Jika terdapat tanda asterisk/bintang (*) maka field harus diisi.'));
   echo bootstrap_form_submit(NULL, 'Tampilkan', array('class' => 'btn btn-primary'));
   echo form_close();
-  
+
   if (isset($tabulars)) {
-    echo bootstrap_tag_open('table', array('class' => 'table table-striped table-hover bg-white'));
-    echo bootstrap_table_head(array('Tabular', 'Nilai', 'Satuan', 'Sumber Data', 'Aksi'));
+    echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
+    echo bootstrap_table_head(array('Tabular', 'Nilai', 'Satuan', 'Sumber Data'));
     echo bootstrap_tag_open('tbody');
     foreach ($tabulars as $key => $tabular) {
       echo bootstrap_tag_open('tr');
-      echo bootstrap_tag('td', bootstrap_tag('span', $tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . ($tabular->ancestry_depth * 30) . 'px;')) . bootstrap_tag('span', $tabular->name, array('class' => 'text-overflow')));
+      echo bootstrap_tag('td', anchor('admin/tabular/view/' . $tabular->id, bootstrap_tag('span', $tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . ($tabular->ancestry_depth * 30) . 'px;')) . bootstrap_tag('span', $tabular->name, array('class' => 'text-overflow'))));
       echo bootstrap_tag('td', $tabular->value);
       echo bootstrap_tag('td', $tabular->unit_name);
       echo bootstrap_tag('td', $tabular->data_source_name);
-      echo bootstrap_tag('td', NULL);
       echo bootstrap_tag_close('tr');
     }
     if (count($tabulars) == 0) {

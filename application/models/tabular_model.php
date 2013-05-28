@@ -83,6 +83,29 @@ class Tabular_model extends App_Model {
     return $tabulars;
   }
 
+  function get_all($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL) {
+    $this->db->select('*')
+            ->from($this->table);
+    if (!empty($conditions)) {
+      if (isset($conditions['id'])) {
+        $this->db->where('id', $conditions['id']);
+        unset($conditions['id']);
+      }
+      $this->db->where($conditions);
+    }
+
+    if (!empty($limit) || !empty($offset)) {
+      $this->db->limit($limit, $offset);
+    }
+
+    if ($count) {
+      $master_tabulars = $this->db->count_all_results();
+    } else {
+      $master_tabulars = $this->db->get()->result();
+    }
+    return $master_tabulars;
+  }
+
 }
 
 ?>

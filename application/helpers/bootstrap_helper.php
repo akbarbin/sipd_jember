@@ -573,8 +573,8 @@ function bootstrap_table_nav_dropdown($title = NULL, $controller = NULL, $action
   $output .= bootstrap_tag_open('li', array('class' => 'dropdown'));
   $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-tasks icon-white')) . ' Task ' . bootstrap_tag('b', NULL, array('class' => 'caret')), array('data-toggle' => 'dropdown', 'class' => 'dropdown-toggle', 'href' => '#'));
   $output .= bootstrap_tag_open('ul', array('class' => 'dropdown-menu'));
-  foreach ($actions as $key => $value) {    
-    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => $icon_action[$key])) . ' '.$value['name'], array('href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/'.$value['action'])));
+  foreach ($actions as $key => $value) {
+    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => $icon_action[$key])) . ' ' . $value['name'], array('href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/' . $value['action'])));
   }
   $output .= bootstrap_tag_close('ul');
   $output .= bootstrap_tag_close('li');
@@ -589,13 +589,12 @@ function bootstrap_table_nav_dropdown($title = NULL, $controller = NULL, $action
 
 function bootstrap_table_action($controller = NULL, $id = NULL, $add = FALSE) {
   $output = bootstrap_tag_open('div', array('class' => 'btn-group'));
-  if ($add) {
-    $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-user icon-white')) . ' Detail', array('class' => 'btn btn-primary', 'href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/add/' . $id));
-  } else {
-    $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-user icon-white')) . ' Detail', array('class' => 'btn btn-primary', 'href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/view/' . $id));
-  }
+  $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-user icon-white')) . ' Detail', array('class' => 'btn btn-primary', 'href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/view/' . $id));
   $output .= bootstrap_tag('a', bootstrap_tag('span', '', array('class' => 'caret')), array('class' => 'btn btn-primary dropdown-toggle', 'href' => '#', 'data-toggle' => 'dropdown'));
   $output .= bootstrap_tag_open('ul', array('class' => 'dropdown-menu'));
+  if ($add) {
+    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-plus-sign')) . ' Tambah', array('href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/add/' . $id)));
+  }
   $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-pencil')) . ' Edit', array('href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/edit/' . $id)));
   $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-trash')) . ' Hapus', array('href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/delete/' . $id)));
   $output .= bootstrap_tag_close('ul');
