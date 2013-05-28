@@ -71,7 +71,7 @@ class Master_tabular_model extends App_Model {
   function remove($id = NULL, $field = 'id') {
     return $this->db->delete($this->table, array($field => $id));
   }
-  
+    
 }
 
 ?>

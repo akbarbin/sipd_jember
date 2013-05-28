@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
 class Master_tabular extends Admin_Controller {
-  
+
   public function __construct() {
     parent::__construct();
     $this->load->model('Master_tabular_model');
@@ -84,6 +84,14 @@ class Master_tabular extends Admin_Controller {
     $this->error_message('delete', $delete);
     redirect('admin/master_tabular');
   }
-  
+
+  public function generate() {
+    $this->load->model('Tabular_model');
+    $generate = $this->Tabular_model->generate();
+    $this->error_message('insert', $generate);
+    redirect('admin/master_tabular');
+  }
+
 }
+
 ?>
