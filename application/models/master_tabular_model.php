@@ -20,11 +20,11 @@ class Master_tabular_model extends App_Model {
             ->where($coditions)
             ->order_by('ref_code');
     if ($count) {
-      $menus = $this->db->count_all_results();
+      $mater_tabulars = $this->db->count_all_results();
     } else {
-      $menus = $this->db->get()->result();
+      $mater_tabulars = $this->db->get()->result();
     }
-    return $menus;
+    return $mater_tabulars;
   }
 
   function get_all($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL) {
@@ -71,7 +71,7 @@ class Master_tabular_model extends App_Model {
   function remove($id = NULL, $field = 'id') {
     return $this->db->delete($this->table, array($field => $id));
   }
-    
+      
 }
 
 ?>
