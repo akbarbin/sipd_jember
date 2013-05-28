@@ -39,13 +39,13 @@ class App_model extends CI_Model {
     return $return;
   }
   
-  protected function setUpdateData($updateDate = array()){
+  protected function setUpdateData($updateData = array()){
     $return = array();
-    foreach ($updateDate as $key => $val){
+    foreach ($updateData as $key => $val){
       if(is_array($val)){
         $return[] = array_merge($val, $this->__getDateUpdateData());
       }else{
-        $return = array_merge($insertData, $this->__getDateUpdateData());
+        $return = array_merge($updateData, $this->__getDateUpdateData());
         break;
       }
     }

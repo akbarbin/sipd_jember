@@ -71,6 +71,7 @@ class App_Controller extends CI_Controller {
 
   protected function get_list($data = NULL) {
     $list = array();
+    $list[NULL] = '- PILIHAN -';
     foreach ($data as $value) {
       $list[$value->id] = $value->name;
     }

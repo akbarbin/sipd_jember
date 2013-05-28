@@ -41,6 +41,9 @@ class Master_tabular extends Admin_Controller {
       redirect('admin/master_tabular');
     } else {
       $this->data['title'] = 'Tambah Tabular';
+      $this->data['parent_id'] = self::$id;
+      $this->load->model('Unit_model');
+      $this->data['unit_list'] = $this->get_list($this->Unit_model->get_all());
       $this->load->view('layout/admin', $this->data);
     }
   }
@@ -63,6 +66,8 @@ class Master_tabular extends Admin_Controller {
         $this->data['id'] = self::$id;
         $this->data['master_tabular'] = $master_tabular[0];
         $this->data['title'] = 'Edit Tabular ' . $master_tabular[0]->name;
+        $this->load->model('Unit_model');
+        $this->data['unit_list'] = $this->get_list($this->Unit_model->get_all());
         $this->load->view('layout/admin', $this->data);
       } else {
         $this->error_message('redirect', FALSE);

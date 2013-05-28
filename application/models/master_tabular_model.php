@@ -14,12 +14,16 @@ class Master_tabular_model extends App_Model {
     parent::__construct();
   }
 
-  function get_ancestry_depth($coditions = array()) {
+  function get_ancestry_depth($coditions = array(), $count = FALSE) {
     $this->db->select('*')
             ->from($this->table)
             ->where($coditions)
             ->order_by('ref_code');
-    $menus = $this->db->get()->result();
+    if ($count) {
+      $menus = $this->db->count_all_results();
+    } else {
+      $menus = $this->db->get()->result();
+    }
     return $menus;
   }
 
@@ -48,6 +52,15 @@ class Master_tabular_model extends App_Model {
 
   function save($data = array(), $id = NULL, $primary_key = 'id') {
     if (empty($id)) {
+      $parent = $this->get_all(array('id' => $data['parent_id']));
+      if (!empty($parent)) {
+        $data['ancestry'] = (empty($parent[0]->ancestry)) ? $parent[0]->ancestry : $parent[0]->ancestry . '/' . $parent[0]->id;
+        $data['ref_code'] = $parent[0]->ref_code.'.'.($this->get_ancestry_depth(array('parent_id' => $parent[0]->id), TRUE) + 1);
+        $data['ancestry_depth'] = $parent[0]->ancestry_depth + 1;
+      }else{
+        $data['ref_code'] = $this->get_ancestry_depth(array('parent_id' => NULL), TRUE) + 1;
+        $data['ancestry_depth'] = 0;
+      }
       return $this->db->insert($this->table, $data);
     } else {
       $this->db->where($primary_key, $id);
@@ -58,7 +71,7 @@ class Master_tabular_model extends App_Model {
   function remove($id = NULL, $field = 'id') {
     return $this->db->delete($this->table, array($field => $id));
   }
-
+  
 }
 
 ?>
