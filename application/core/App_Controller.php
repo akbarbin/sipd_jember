@@ -86,7 +86,7 @@ class App_Controller extends CI_Controller {
 
   protected function get_password_salt() {
     $start = rand(0, 23);
-    return substr(md5(rand(1, 10000)), $start, 8);
+    return md5(substr(md5(rand(1, 10000)), $start, 8));
   }
 
   protected function set_password($password = NULL, $password_salt = NULL) {

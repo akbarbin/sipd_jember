@@ -73,6 +73,24 @@ $config = array(
         ),
     ),
     
+    'user/change_password' => array(
+        array(
+            'field' => 'old_password',
+            'label' => 'Password Lama',
+            'rules' => 'required|min_length[5]'
+        ),
+        array(
+            'field' => 'password',
+            'label' => 'Password Baru',
+            'rules' => 'required|min_length[5]'
+        ),
+        array(
+            'field' => 'confirmation_password',
+            'label' => 'Konfirmasi Password',
+            'rules' => 'required|min_length[5]|matches[password]'
+        ),
+    ),
+        
     'name_validation' => array(
         array(
             'field' => 'name',
