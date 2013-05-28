@@ -86,10 +86,23 @@ class Master_tabular extends Admin_Controller {
   }
 
   public function generate() {
-    $this->load->model('Tabular_model');
-    $generate = $this->Tabular_model->generate();
-    $this->error_message('insert', $generate);
-    redirect('admin/master_tabular');
+    $post = $this->input->post();
+    if (!empty($post)) {
+      $this->load->model('Tabular_model');
+      $generate = $this->Tabular_model->generate();
+      $this->error_message('insert', $generate);
+      redirect('admin/master_tabular');
+    } else {
+      $start = date('Y') - 10;
+      $end = date('Y') + 10;
+      for ($i = $start; $i <= $end; $i++){
+        $this->data['years'][$i] = $i;
+      }
+      $this->data['year'] = array(date('Y'));
+      
+      $this->data['title'] = 'Generate Tabular Kecamatan';
+      $this->load->view('layout/admin',  $this->data);
+    }
   }
 
 }

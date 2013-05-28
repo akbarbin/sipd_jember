@@ -18,47 +18,48 @@ class Tabular_model extends App_Model {
     $year = (empty($year)) ? date('Y') : $year;
     $active_sub_districs = $this->get_sub_district($year);
     $sub_district_on_tabular = array();
-    foreach ($active_sub_districs as $active_sub_distric){
+    foreach ($active_sub_districs as $active_sub_distric) {
       $sub_district_on_tabular[] = $active_sub_distric->sub_district_id;
     }
-    
+
     $this->load->model('Sub_district_model');
     $sub_districs = $this->Sub_district_model->get_all_where_not_in($sub_district_on_tabular);
-    
+
     $this->load->model('Master_tabular_model');
     $master_tabulars = $this->Master_tabular_model->get_all();
     $data = array();
     $i = 0;
     foreach ($sub_districs as $key => $sub_distric) {
       foreach ($master_tabulars as $key => $master_tabular) {
-        $data[$i]['name'] = $master_tabular->name;
-        $data[$i]['year'] = $year;
-        $data[$i]['parent_id'] = $master_tabular->parent_id;
-        $data[$i]['ancestry'] = $master_tabular->ancestry;
-        $data[$i]['ancestry_depth'] = $master_tabular->ancestry_depth;
-        $data[$i]['unit_id'] = $master_tabular->unit_id;
-        $data[$i]['sub_district_id'] = $sub_distric->id;
-        $data[$i]['ref_code'] = $master_tabular->ref_code;
-        $data[$i]['master_tabular_id'] = $master_tabular->id;
+        $data[$i] = $this->setInsertData(array(
+            'name' => $master_tabular->name,
+            'year' => $year,
+            'parent_id' => $master_tabular->parent_id,
+            'ancestry' => $master_tabular->ancestry,
+            'ancestry_depth' => $master_tabular->ancestry_depth,
+            'unit_id' => $master_tabular->unit_id,
+            'sub_district_id' => $sub_distric->id,
+            'ref_code' => $master_tabular->ref_code,
+            'master_tabular_id' => $master_tabular->id,
+        ));
         $i++;
       }
     }
     return $this->db->insert_batch($this->table, $data);
   }
-  
-    function get_sub_district($year = NULL, $count = FALSE){
+
+  function get_sub_district($year = NULL, $count = FALSE) {
     $this->db->select('sub_district_id')
             ->from($this->table)
-            ->where('year',$year)
+            ->where('year', $year)
             ->group_by('sub_district_id');
     if ($count) {
       $tabulars = $this->db->count_all_results();
     } else {
       $tabulars = $this->db->get()->result();
     }
-    return $tabulars;  
+    return $tabulars;
   }
-
 
 }
 
