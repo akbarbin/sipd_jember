@@ -20,7 +20,7 @@ echo bootstrap_table_head(array('Tabular', 'Nilai', 'Satuan', 'Sumber Data'));
 echo bootstrap_tag_open('tbody');
 foreach ($tabulars as $key => $tabular) {
   echo bootstrap_tag_open('tr');
-  echo bootstrap_tag('td', bootstrap_tag('span', $tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . (($tabular->ancestry_depth - $ancestry_depth) * 30) . 'px;')) . bootstrap_tag('span', $tabular->name, array('class' => 'text-overflow')));
+  echo bootstrap_tag('td', bootstrap_tag('span', $tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . (($tabular->ancestry_depth - ($ancestry_depth + 1)) * 30) . 'px;')) . bootstrap_tag('span', $tabular->name, array('class' => 'text-overflow')));
   echo bootstrap_tag('td', $tabular->value);
   echo bootstrap_tag('td', $tabular->unit_name);
   echo bootstrap_tag('td', $tabular->data_source_name);

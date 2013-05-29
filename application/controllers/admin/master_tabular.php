@@ -28,7 +28,7 @@ class Master_tabular extends Admin_Controller {
 
     $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
             array(
-                'master_tabulars.ref_code LIKE' => '%'.$master_tabular[0]->ref_code.'%'));
+                'master_tabulars.ref_code LIKE' => '%'.$master_tabular[0]->ref_code.'.%'));
 
     $this->data['title'] = 'Data Tabular ' . $master_tabular[0]->name;
     $this->load->view('layout/admin', $this->data);
