@@ -16,7 +16,7 @@
             <?php echo anchor('sub_district/tabular', '<i class="icon-list-alt icon-white"></i> Data Tabular'); ?>
           </li>
           <li>
-            <?php echo anchor('sub_district/unit', '<i class="icon-tag icon-white"></i> Data Satuan'); ?>
+            <?php echo anchor('sub_district/data_source', '<i class="icon-folder-open icon-white"></i> Sumber Data'); ?>
           </li>
         </ul>
         <ul class="nav pull-right">
