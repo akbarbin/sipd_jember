@@ -117,8 +117,10 @@ class Tabular_model extends App_Model {
                     'data_source_id' => $value['data_source_id']['after']));
       }
     }
-    if(!empty($data)){
+    if(!empty($update)){
       return $this->db->update_batch($this->table, $update, 'id');;
+    }  else {
+      return TRUE;
     }
     return FALSE;
   }
