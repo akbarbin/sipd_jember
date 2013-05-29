@@ -9,6 +9,10 @@ if (!defined('BASEPATH'))
  */
 class App_Controller extends CI_Controller {
 
+  public static $segment_pagination = 4;
+  public static $limit = 10;
+  protected static $id;
+  protected static $update_id;
   public static $sessionLogin;
   public $data = array();
 
@@ -18,6 +22,9 @@ class App_Controller extends CI_Controller {
     self::$sessionLogin = $this->session->all_userdata();
     $this->data['controller'] = $this->router->class;
     $this->data['action'] = $this->router->method;
+
+    self::$id = $this->uri->segment(4);
+    self::$update_id = $this->get_update_id();
   }
 
   /**
@@ -69,6 +76,10 @@ class App_Controller extends CI_Controller {
     return self::$sessionLogin[md5('name')];
   }
 
+  protected function get_login_active_sub_district_id() {
+    return self::$sessionLogin[md5('sub_district_id')];
+  }
+  
   protected function get_list($data = NULL) {
     $list = array();
     $list[NULL] = '- PILIHAN -';
@@ -107,6 +118,14 @@ class App_Controller extends CI_Controller {
     $data['password'] = $this->set_password($data['password'], $data['password_salt']);
     return $data;
   }
+  
+  protected function set_data_session($data = array()){
+    $session = array();
+    foreach ($data as $key => $value) {
+      $session[md5($key)] = $value;
+    }
+    return $session;
+  }
 
   protected function set_tree_data($data = array(), $parent = NULL) {
     $tree = array();
@@ -121,6 +140,66 @@ class App_Controller extends CI_Controller {
     return $tree[$parent]->Children;
   }
 
+  protected function set_before_pagination($count = NULL, $suffix = NULL, $limit = NULL, $segment_pagination = NULL, $site_url = NULL) {
+    $config['base_url'] = site_url((empty($site_url) ? $this->get_site_url_pagination() : $site_url));
+    $config['total_rows'] = $count;
+    $config['per_page'] = (empty($limit)) ? self::$limit : $limit;
+    $config['uri_segment'] = (empty($segment_pagination)) ? self::$segment_pagination : $segment_pagination;
+    $config['suffix'] = $suffix;
+    return $config;
+  }
+
+  protected function set_after_pagination() {
+    return $this->pagination->create_links();
+  }
+
+  protected function get_site_url_pagination($site_url = NULL) {
+    return $this->router->directory . '/' . $this->router->class . '/' . $this->router->method;
+  }
+
+  protected function get_offset_from_segment($segment_pagination = NULL) {
+    $segment_pagination = (empty($segment_pagination)) ? self::$segment_pagination : $segment_pagination;
+    return $this->uri->segment($segment_pagination);
+  }
+  protected function get_search_params($field = array()) {
+    $params = array();
+    if (isset($_GET) && !empty($_GET)) {
+      foreach ($field as $key => $value) {
+        $params[$value] = $_GET['search'];
+      }
+    }
+    return $params;
+  }
+  
+  protected function get_suffix_params(){
+    $suffix = '';
+    $params = $this->get_search_params();
+    if (isset($_GET) && !empty($_GET)) {
+      $str = array();
+      foreach ($_GET as $key => $value) {
+        $str[] = $key.'='.$value;
+      }
+      $suffix = '?'.  implode('&', $str);
+    }
+    return $suffix;
+  }
+  
+  protected function get_encrype_site_url($url = NULL){
+    $url = (empty($url)) ? $this->get_site_url_pagination() : $url;
+    return md5($url);
+  }
+
+  protected function set_update_id($id = NULL, $url = NULL){
+    $data = array('update' => array($this->get_encrype_site_url($url) => $id));
+    $this->session->set_userdata($data);
+  }
+  
+  protected function get_update_id(){
+    $data= $this->session->userdata('update');
+    $this->session->unset_userdata('update');
+    return (isset($data[$this->get_encrype_site_url()])) ? $data[$this->get_encrype_site_url()] : NULL;
+  }
+  
 }
 
 ?>

@@ -124,6 +124,13 @@ class Tabular_model extends App_Model {
     }
     return FALSE;
   }
+  
+  function get_max_year($conditions = array()){
+    $this->db->select_max('year')
+            ->from($this->table)
+            ->where($conditions);
+    return $this->db->get()->result();
+  }
 
 }
 

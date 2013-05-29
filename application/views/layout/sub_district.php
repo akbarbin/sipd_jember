@@ -14,6 +14,9 @@
         'style',
         'admin',
         'docs',
+        'jquery.jqplot.min',
+        '../js/syntaxhighlighter/styles/shCoreDefault.min',
+        '../js/syntaxhighlighter/styles/shThemejqPlot.min'
     ));
     ?>
 
@@ -30,6 +33,14 @@
         'jquery.min',
         'bootstrap.min',
         'scripts',
+        'jquery.jqplot.min',
+        'syntaxhighlighter/scripts/shCore.min',
+        'syntaxhighlighter/scripts/shBrushJScript.min',
+        'syntaxhighlighter/scripts/shBrushXml.min',
+        'chart/jqplot.barRenderer.min',
+        'chart/jqplot.highlighter.min',
+        'chart/jqplot.cursor.min',
+        'chart/jqplot.pointLabels.min',
     ));
     ?>
   </head>
@@ -42,7 +53,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3 well">
-          <?php $this->load->view('element/admin/sidebar'); ?>
+          <?php $this->load->view('element/sub_district/sidebar'); ?>
         </div>
         <div class="span9 well">
           <?php echo bootstrap_breadcrumb($controller, $action); ?>

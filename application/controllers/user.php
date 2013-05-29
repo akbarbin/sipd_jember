@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
 class User extends Public_Controller {
-  
+
   function __construct() {
     parent::__construct();
     $this->load->model('User_model', '', TRUE);
@@ -31,7 +31,18 @@ class User extends Public_Controller {
       if ($this->get_validate_password($password, $user[0])) {
         $this->session->set_userdata($this->__setSessionDataLogin($user[0]));
         $this->session->set_flashdata('message', array('alert' => 'success', 'message' => 'Anda berhasil login di SIPD Jember'));
-        redirect('admin/dashboard');
+        switch ($user[0]->role_id) {
+          case 1 :
+            redirect('admin/dashboard');
+            break;
+          case 2:
+            redirect('sub_district/dashboard');
+            break;
+          default :
+            $this->session->set_flashdata('message', array('alert' => 'error', 'message' => 'Maaf anda tidak memiliki hak akses.'));
+            redirect('user/login');
+            break;
+        }
       } else {
         $this->session->set_flashdata('message', array('alert' => 'error', 'message' => 'Maaf, Username atau Password Anda salah'));
         $data['title'] = 'Login User SIPD Jember';
@@ -42,7 +53,7 @@ class User extends Public_Controller {
       $this->load->view('layout/blank', $data);
     }
   }
-  
+
   /**
    * @author Mahendri Winata <mahen.0112@gmail.com>
    * 
@@ -53,11 +64,13 @@ class User extends Public_Controller {
    * This function use to convert object user to array user
    */
   private function __setSessionDataLogin($data = array()) {
-    $data = array(
-        md5('id') => $data->id,
-        md5('name') => $data->name,
-        md5('login') => md5(TRUE)
-    );
+    $data = $this->set_data_session(array(
+        'id' => $data->id,
+        'name' => $data->name,
+        'login' => md5(TRUE),
+        'role_id' => md5($data->role_id),
+        'sub_district_id' => $data->sub_district_id
+    ));
     return $data;
   }
 
@@ -72,6 +85,7 @@ class User extends Public_Controller {
     $this->session->set_flashdata('message', array('alert' => 'success', 'message' => 'Anda berhasil logout dari SIPD Jember.'));
     redirect('user/login');
   }
-  
+
 }
+
 ?>
