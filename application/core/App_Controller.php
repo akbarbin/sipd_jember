@@ -55,7 +55,7 @@ class App_Controller extends CI_Controller {
   }
 
   protected function get_login_status() {
-    if (self::$sessionLogin[md5('login')] == md5(TRUE)) {
+    if (isset(self::$sessionLogin[md5('login')]) && self::$sessionLogin[md5('login')] == md5(TRUE)) {
       return TRUE;
     }
     return FALSE;
