@@ -14,9 +14,9 @@
   <?php
   foreach ($sidebar_menus as $key => $menu) {
     if ($menu->ancestry_depth == 0) {
-      echo '<li>' . anchor('admin/master_tabular/index/' . $menu->id, '<i class="icon-chevron-down"></i> ' . $menu->name, 'title="' . $menu->name . '" class="text-overflow"') . '</li>';
+      echo '<li>' . anchor('admin/master_tabular/view/' . $menu->id, '<i class="icon-chevron-down"></i> ' . $menu->name, 'title="' . $menu->name . '" class="text-overflow"') . '</li>';
     } else {
-      echo '<li>' . anchor('admin/master_tabular/index/' . $menu->id, '<i class="icon-chevron-left"></i> ' . $menu->name, 'title="' . $menu->name . '" class="text-overflow" style="padding-left:30px;"') . '</li>';
+      echo '<li>' . anchor('admin/master_tabular/view/' . $menu->id, '<i class="icon-chevron-left"></i> ' . $menu->name, 'title="' . $menu->name . '" class="text-overflow" style="padding-left:30px;"') . '</li>';
     }
   }
   ?>
