@@ -18,7 +18,7 @@ class Public_Controller extends App_Controller {
      * Description :
      * Check User login status
      */
-    if ($this->get_login_status() && ($this->router->class == 'user' && $this->router->method = 'login')) {
+    if ($this->get_login_status() && ($this->router->class == 'user' && $this->router->method == 'login')) {
       redirect('admin/dashboard');
     }
 
