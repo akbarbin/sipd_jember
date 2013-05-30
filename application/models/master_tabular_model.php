@@ -56,10 +56,10 @@ class Master_tabular_model extends App_Model {
       $parent = $this->get_all(array('id' => $data['parent_id']));
       if (!empty($parent)) {
         $data['ancestry'] = (empty($parent[0]->ancestry)) ? $parent[0]->ancestry : $parent[0]->ancestry . '/' . $parent[0]->id;
-        $data['ref_code'] = $parent[0]->ref_code . '.' . ($this->get_ancestry_depth(array('parent_id' => $parent[0]->id), TRUE) + 1);
+        $data['ref_code'] = $parent[0]->ref_code . '.' . ($this->get_ancestry_depth(array('type' => $data['type'], 'parent_id' => $parent[0]->id), TRUE) + 1);
         $data['ancestry_depth'] = $parent[0]->ancestry_depth + 1;
       } else {
-        $data['ref_code'] = $this->get_ancestry_depth(array('parent_id' => NULL), TRUE) + 1;
+        $data['ref_code'] = $this->get_ancestry_depth(array('type' => $data['type'], 'parent_id' => NULL), TRUE) + 1;
         $data['ancestry_depth'] = 0;
       }
       $insert = $this->setInsertData($data);
