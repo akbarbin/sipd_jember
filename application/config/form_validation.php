@@ -98,5 +98,18 @@ $config = array(
             'rules' => 'required'
         ),
     ),
+    
+    'agency' => array(
+        array(
+            'field' => 'code',
+            'label' => 'Kode',
+            'rules' => 'required|alpha_numeric|min_lenght[5]|is_unique[agencies.code]'
+        ),
+        array(
+            'field' => 'name',
+            'label' => 'Nama',
+            'rules' => 'required'
+        ),
+    )
 );
 ?>

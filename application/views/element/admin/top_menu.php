@@ -50,6 +50,9 @@
                 <?php echo anchor('admin/unit', '<i class="icon-tag"></i> Data Satuan'); ?>
               </li>
               <li>
+                <?php echo anchor('admin/agency', '<i class="icon-briefcase"></i> Data Instansi'); ?>
+              </li>
+              <li>
                 <?php echo anchor('admin/sub_district', '<i class="icon-align-justify"></i> Data Kecamatan'); ?>
               </li>
               <li>
