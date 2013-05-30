@@ -15,18 +15,18 @@ class Data_source extends Sub_District_Controller {
 
   public function index() {
     $this->data['title'] = 'Data Sumber Data';
+    $conditions = array_merge($this->get_search_params(array('data_sources.name')), array('data_sources.sub_district_id' => $this->get_login_active_sub_district_id()));
     $this->data['data_sources'] = $this->Data_source_model->get_all(
-            $this->get_search_params(array('data_sources.name')), FALSE, self::$limit, $this->get_offset_from_segment());
+            $conditions, FALSE, self::$limit, $this->get_offset_from_segment());
 
     $count = $this->Data_source_model->get_all(
-            $this->get_search_params(array('data_sources.name')), TRUE);
+            $conditions, TRUE);
 
     $config = $this->set_before_pagination($count, $this->get_suffix_params());
     $this->pagination->initialize($config);
     $this->data['pagination'] = $this->set_after_pagination();
     $this->data['offset'] = $this->get_offset_from_segment();
 
-    $this->data['content'] = 'admin/data_source/index';
     $this->load->view('layout/sub_district', $this->data);
   }
 
@@ -34,7 +34,7 @@ class Data_source extends Sub_District_Controller {
    * @author Mahendri Winata <mahen.0112@gmail.com>
    */
   public function view() {
-    $data_source = $this->Data_source_model->get_all(array('id' => self::$id));
+    $data_source = $this->Data_source_model->get_all(array('data_sources.id' => self::$id));
     $this->data['data_source'] = $data_source[0];
     $this->data['title'] = 'Detail Sumber Data ' . $data_source[0]->name;
 
@@ -47,14 +47,13 @@ class Data_source extends Sub_District_Controller {
   public function add() {
     $this->load->library('form_validation');
     if ($this->form_validation->run('name_validation')) {
-      $save = $this->Data_source_model->save($this->set_data_before_update($this->input->post()));
+      $conditions = array_merge($this->input->post(), array('sub_district_id' => $this->get_login_active_sub_district_id()));
+      $save = $this->Data_source_model->save($this->set_data_before_update($conditions));
       $this->error_message('insert', $save);
-      redirect('admin/data_source');
+      redirect('sub_district/data_source');
     } else {
       $this->data['title'] = 'Tambah Sumber Data';
-      $this->load->model('Sub_district_model');
-      $this->data['sub_district_list'] = $this->get_list($this->Sub_district_model->get_all());
-      $this->load->view('layout/admin', $this->data);
+      $this->load->view('layout/sub_district', $this->data);
     }
   }
 
@@ -68,7 +67,7 @@ class Data_source extends Sub_District_Controller {
     if ($this->form_validation->run('name_validation')) {
       $save = $this->Data_source_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
       $this->error_message('update', $save);
-      redirect('admin/data_source');
+      redirect('sub_district/data_source');
     } else {
       if (!empty(self::$id)) {
         $data_source = $this->Data_source_model->get_all(array('data_sources.id' => self::$id));
@@ -76,12 +75,10 @@ class Data_source extends Sub_District_Controller {
         $this->data['id'] = self::$id;
         $this->data['data_source'] = $data_source[0];
         $this->data['title'] = 'Edit Sumber Data ' . $data_source[0]->name;
-        $this->load->model('Sub_district_model');
-        $this->data['sub_district_list'] = $this->get_list($this->Sub_district_model->get_all());
-        $this->load->view('layout/admin', $this->data);
+        $this->load->view('layout/sub_district', $this->data);
       } else {
         $this->error_message('redirect', FALSE);
-        redirect('admin/data_source');
+        redirect('sub_district/data_source');
       }
     }
   }
@@ -92,7 +89,7 @@ class Data_source extends Sub_District_Controller {
   public function delete() {
     $delete = $this->Data_source_model->remove(self::$id);
     $this->error_message('delete', $delete);
-    redirect('admin/data_source');
+    redirect('sub_district/data_source');
   }
 
 }
