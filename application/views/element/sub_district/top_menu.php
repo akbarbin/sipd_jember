@@ -13,13 +13,13 @@
             <?php echo anchor('sub_district/dashboard', '<i class="icon-home icon-white"></i> Dashboard'); ?>
           </li>
           <li>
-            <?php echo anchor('sub_district/tabular_umum', '<i class="icon-hdd icon-white"></i> Data Umum'); ?>
+            <?php echo anchor('sub_district/tabular_general', '<i class="icon-hdd icon-white"></i> Data Umum'); ?>
           </li>
           <li>
             <?php echo anchor('sub_district/tabular', '<i class="icon-list-alt icon-white"></i> Profil'); ?>
           </li>
           <li>
-            <?php echo anchor('sub_district/tabular_kriteria', '<i class="icon-tasks icon-white"></i> Kriteria'); ?>
+            <?php echo anchor('sub_district/tabular_criteria', '<i class="icon-tasks icon-white"></i> Kriteria'); ?>
           </li>
           <li>
             <?php echo anchor('sub_district/data_source', '<i class="icon-folder-open icon-white"></i> Sumber Data'); ?>
