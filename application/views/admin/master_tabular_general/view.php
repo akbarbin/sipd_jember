@@ -3,7 +3,7 @@
 echo bootstrap_table_title($title);
 
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
-echo bootstrap_table_head(array('Profil', 'Satuan'));
+echo bootstrap_table_head(array('Data Umum', 'Satuan'));
 echo bootstrap_tag_open('tbody');
 foreach ($master_tabulars as $key => $master_tabular) {
   echo bootstrap_tag_open('tr');

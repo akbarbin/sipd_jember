@@ -17,7 +17,7 @@ echo bootstrap_table_nav_dropdown(
 
 
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
-echo bootstrap_table_head(array('Profil', 'Nilai', 'Satuan', 'Sumber Data'));
+echo bootstrap_table_head(array('Kriteria', 'Nilai', 'Satuan', 'Sumber Data'));
 echo bootstrap_tag_open('tbody');
 foreach ($tabulars as $key => $tabular) {
   echo bootstrap_tag_open('tr');

@@ -16,7 +16,7 @@ class Tabular extends Sub_District_Controller {
   public function index() {
     $post = $this->input->post();
     if (empty($post)) {
-      $this->data['title'] = 'Data Tabular Kecamatan';
+      $this->data['title'] = 'Data Profil Kecamatan';
     } else {
       $this->data['tabulars'] = $this->Tabular_model->get_ancestry_depth(
               array(
@@ -25,10 +25,10 @@ class Tabular extends Sub_District_Controller {
                   'tabulars.ancestry_depth <' => 2,
                   'tabulars.type' => 'profil'));
 
-      $this->data['title'] = 'Data Tabular Tahun ' . $post['year'];
+      $this->data['title'] = 'Data Profil Tahun ' . $post['year'];
     }
 
-    $tabular_years = $this->Tabular_model->get_years(array('sub_district_id' => $this->get_login_active_sub_district_id()));
+    $tabular_years = $this->Tabular_model->get_years(array('type' => 'profil', 'sub_district_id' => $this->get_login_active_sub_district_id()));
     $this->data['tabular_years'] = array();
     foreach ($tabular_years as $key => $value) {
       $this->data['tabular_years'][$value->year] = $value->year;
@@ -52,7 +52,7 @@ class Tabular extends Sub_District_Controller {
                 'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
                 'tabulars.type' => 'profil'));
 
-    $this->data['title'] = 'Data Tabular ' . $tabular[0]->name . ' Tahun ' . $tabular[0]->year;
+    $this->data['title'] = 'Data Profil ' . $tabular[0]->name . ' Tahun ' . $tabular[0]->year;
     $this->load->view('layout/sub_district', $this->data);
   }
 
@@ -72,13 +72,13 @@ class Tabular extends Sub_District_Controller {
 
       $this->load->model('Data_source_model');
       $this->data['data_sources'] = $this->get_list($this->Data_source_model->get_all(array('sub_district_id' => $this->get_login_active_sub_district_id())));
-      
-      $this->data['title'] = 'Data Tabular ' . $tabular[0]->name . ' Tahun ' . $tabular[0]->year;
+
+      $this->data['title'] = 'Data Profil ' . $tabular[0]->name . ' Tahun ' . $tabular[0]->year;
       $this->load->view('layout/sub_district', $this->data);
     } else {
       $update = $this->Tabular_model->save_all($post);
       $this->error_message('update', $update);
-      redirect('sub_district/tabular/view/'.self::$id);
+      redirect('sub_district/tabular/view/' . self::$id);
     }
   }
 
