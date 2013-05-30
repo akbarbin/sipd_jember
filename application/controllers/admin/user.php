@@ -18,7 +18,7 @@ class User extends Admin_Controller {
    */
   public function index() {
     $this->data['title'] = 'Data User';
-    $conditions = array_merge($this->get_search_params(array('users.name')), array('id' => $this->get_login_active_id()));
+    $conditions = array_merge($this->get_search_params(array('users.name')), array('users.id !=' => $this->get_login_active_id()));
     $this->data['users'] = $this->User_model->get_by_under_role_level(
             $conditions, FALSE, self::$limit, $this->get_offset_from_segment());
 

@@ -66,13 +66,13 @@ class User_model extends App_Model {
   
   function get_by_under_role_level($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL){
     $this->load->model('Role_model', '', TRUE);
-    $user_role = $this->Role_model->get_role_by_user_id($id);
+    $user_role = $this->Role_model->get_role_by_user_id($conditions['users.id !=']);
     
     $this->db->select('users.*, roles.name AS role_name, sub_districts.name AS sub_district_name')
             ->from($this->table)
             ->join('roles', 'roles.id = users.role_id', 'left')
             ->join('sub_districts', 'sub_districts.id = users.sub_district_id', 'left')
-            ->where(array('is_remove' => 0,'users.id !=' => $id, 'roles.level >' => $user_role[0]->level));
+            ->where(array('is_remove' => 0, 'roles.level >' => $user_role[0]->level));
     
     if(!empty($conditions)){
       $this->db->where($conditions);
