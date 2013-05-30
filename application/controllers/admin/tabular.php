@@ -23,7 +23,8 @@ class Tabular extends Admin_Controller {
               array(
                   'tabulars.sub_district_id' => $post['sub_district_id'],
                   'tabulars.year' => $post['year'],
-                  'tabulars.ancestry_depth <' => 2));
+                  'tabulars.ancestry_depth <' => 2,
+                  'tabulars.type' => 'profil'));
 
       $sub_district = $this->Sub_district_model->get_all(array('id' => $post['sub_district_id']));
 
@@ -53,7 +54,8 @@ class Tabular extends Admin_Controller {
             array(
                 'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
                 'tabulars.year' => $tabular[0]->year,
-                'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%'));
+                'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
+                'tabulars.type' => 'profil'));
 
     $this->load->model('Sub_district_model');
     $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
@@ -73,7 +75,8 @@ class Tabular extends Admin_Controller {
               array(
                   'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
                   'tabulars.year' => $tabular[0]->year,
-                  'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%'));
+                  'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
+                  'tabulars.type' => 'profil'));
 
       $this->load->model('Sub_district_model');
       $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));

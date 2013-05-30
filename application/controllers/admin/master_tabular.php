@@ -15,7 +15,10 @@ class Master_tabular extends Admin_Controller {
 
   public function index() {
     $this->data['title'] = 'Data Tabular';
-    $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(array('master_tabulars.ancestry_depth <' => 2));
+    $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
+            array(
+                'master_tabulars.ancestry_depth <' => 2,
+                'master_tabulars.type' => 'profil'));
     $this->load->view('layout/admin', $this->data);
   }
 
@@ -28,7 +31,8 @@ class Master_tabular extends Admin_Controller {
 
     $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
             array(
-                'master_tabulars.ref_code LIKE' => '%'.$master_tabular[0]->ref_code.'.%'));
+                'master_tabulars.ref_code LIKE' => '%'.$master_tabular[0]->ref_code.'.%',
+                'master_tabulars.type' => 'profil'));
 
     $this->data['title'] = 'Data Tabular ' . $master_tabular[0]->name;
     $this->load->view('layout/admin', $this->data);
@@ -40,7 +44,8 @@ class Master_tabular extends Admin_Controller {
   public function add() {
     $this->load->library('form_validation');
     if ($this->form_validation->run('name_validation')) {
-      $save = $this->Master_tabular_model->save($this->set_data_before_update($this->input->post()));
+      $data = array_merge($this->input->post(), array('type' => 'profil'));
+      $save = $this->Master_tabular_model->save($this->set_data_before_update($data));
       $this->error_message('insert', $save);
       redirect('admin/master_tabular');
     } else {

@@ -22,7 +22,8 @@ class Tabular extends Sub_District_Controller {
               array(
                   'tabulars.sub_district_id' => $this->get_login_active_sub_district_id(),
                   'tabulars.year' => $post['year'],
-                  'tabulars.ancestry_depth <' => 2));
+                  'tabulars.ancestry_depth <' => 2,
+                  'tabulars.type' => 'profil'));
 
       $this->data['title'] = 'Data Tabular Tahun ' . $post['year'];
     }
@@ -48,7 +49,8 @@ class Tabular extends Sub_District_Controller {
             array(
                 'tabulars.sub_district_id' => $this->get_login_active_sub_district_id(),
                 'tabulars.year' => $tabular[0]->year,
-                'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%'));
+                'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
+                'tabulars.type' => 'profil'));
 
     $this->data['title'] = 'Data Tabular ' . $tabular[0]->name . ' Tahun ' . $tabular[0]->year;
     $this->load->view('layout/sub_district', $this->data);
@@ -65,7 +67,8 @@ class Tabular extends Sub_District_Controller {
               array(
                   'tabulars.sub_district_id' => $this->get_login_active_sub_district_id(),
                   'tabulars.year' => $tabular[0]->year,
-                  'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%'));
+                  'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
+                  'tabulars.type' => 'profil'));
 
       $this->load->model('Data_source_model');
       $this->data['data_sources'] = $this->get_list($this->Data_source_model->get_all(array('sub_district_id' => $this->get_login_active_sub_district_id())));

@@ -32,7 +32,12 @@ class Sub_District_Controller extends App_Controller {
     $this->load->model('Tabular_model');
     $sub_district_id = $this->get_login_active_sub_district_id();
     $year = $this->Tabular_model->get_max_year(array('sub_district_id' => $sub_district_id));
-    return $this->Tabular_model->get_ancestry_depth(array('tabulars.ancestry_depth <' => 2, 'tabulars.year' => $year[0]->year, 'tabulars.sub_district_id' => $sub_district_id));
+    return $this->Tabular_model->get_ancestry_depth(
+            array(
+                'tabulars.ancestry_depth <' => 2, 
+                'tabulars.year' => $year[0]->year, 
+                'tabulars.sub_district_id' => $sub_district_id,
+                'tabulars.type' => 'profil'));
   }
 
   private function __get_login_role_status() {

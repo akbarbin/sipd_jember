@@ -30,7 +30,10 @@ class Admin_Controller extends App_Controller {
 
   private function __get_sidebar_menu() {
     $this->load->model('Master_tabular_model');
-    return $this->Master_tabular_model->get_ancestry_depth(array('ancestry_depth <' => 2));
+    return $this->Master_tabular_model->get_ancestry_depth(
+            array(
+                'master_tabulars.ancestry_depth <' => 2,
+                'master_tabulars.type' => 'profil'));
   }
 
   private function __get_login_role_status() {

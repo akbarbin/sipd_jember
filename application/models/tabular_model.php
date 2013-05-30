@@ -37,6 +37,7 @@ class Tabular_model extends App_Model {
             'parent_id' => $master_tabular->parent_id,
             'ancestry' => $master_tabular->ancestry,
             'ancestry_depth' => $master_tabular->ancestry_depth,
+            'type' => $master_tabular->type,
             'unit_id' => $master_tabular->unit_id,
             'sub_district_id' => $sub_distric->id,
             'ref_code' => $master_tabular->ref_code,
