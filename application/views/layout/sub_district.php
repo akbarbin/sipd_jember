@@ -65,7 +65,7 @@
       </div>
 
     </div>
-    <?php $this->load->view('element/admin/footer'); ?>
+    <?php $this->load->view('element/content/footer'); ?>
 
   </body>
 </html>
