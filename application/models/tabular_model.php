@@ -61,10 +61,13 @@ class Tabular_model extends App_Model {
     return $tabulars;
   }
 
-  function get_years() {
+  function get_years($conditions = array()) {
     $this->db->select('year')
             ->from($this->table)
             ->group_by('year');
+    if(!empty($conditions)){
+      $this->db->where($conditions);
+    }
     return $this->db->get()->result();
   }
 
