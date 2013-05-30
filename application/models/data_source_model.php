@@ -18,12 +18,9 @@ class Data_source_model extends App_Model {
     $this->db->select('data_sources.*, sub_districts.name AS sub_district_name')
             ->join('sub_districts', 'sub_districts.id = data_sources.sub_district_id', 'left')
             ->from($this->table);
+    
     if (!empty($conditions)) {
-      if (isset($conditions['data_sources.id'])) {
-        $this->db->where('data_sources.id', $conditions['data_sources.id']);
-        unset($conditions['data_sources.id']);
-      }
-      $this->db->like($conditions);
+      $this->db->where($conditions);
     }
 
     if (!empty($limit) || !empty($offset)) {

@@ -64,7 +64,7 @@ class User_model extends App_Model {
     return $this->db->update($this->table, $update); 
   }
   
-  function get_by_under_role_level($id = NULL, $conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL){
+  function get_by_under_role_level($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL){
     $this->load->model('Role_model', '', TRUE);
     $user_role = $this->Role_model->get_role_by_user_id($id);
     
@@ -75,7 +75,7 @@ class User_model extends App_Model {
             ->where(array('is_remove' => 0,'users.id !=' => $id, 'roles.level >' => $user_role[0]->level));
     
     if(!empty($conditions)){
-      $this->db->like($conditions);
+      $this->db->where($conditions);
     }
     
     if(!empty($limit) || !empty($offset)){

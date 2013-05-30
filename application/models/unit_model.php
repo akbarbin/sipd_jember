@@ -17,12 +17,9 @@ class Unit_model extends App_Model {
   function get_all($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL) {
     $this->db->select('*')
             ->from($this->table);
+    
     if (!empty($conditions)) {
-      if (isset($conditions['id'])) {
-        $this->db->where('id', $conditions['id']);
-        unset($conditions['id']);
-      }
-      $this->db->like($conditions);
+      $this->db->where($conditions);
     }
 
     if (!empty($limit) || !empty($offset)) {
