@@ -8,6 +8,6 @@ echo bootstrap_form_input('phone', NULL, array('class' => 'span6', 'placeholder'
 echo bootstrap_form_textarea('address', NULL, array('class' => 'span8', 'rows' => 6, 'label' => 'Alamat'));
 echo bootstrap_form_dropdown('sub_district_id', array(), array('class' => 'span6', 'list' => $sub_district_list, 'label' => 'Kecamatan' . bootstrap_text_important()));
 echo bootstrap_control_group(NULL,bootstrap_text_important('Catatan : Jika terdapat tanda asterisk/bintang (*) maka field harus diisi.'));
-echo bootstrap_form_submit(NULL, 'Simpan', array('class' => 'btn btn-primary', 'after' => anchor('admin/user', 'Kembali', 'class="btn btn-danger btn-link-bootstrap"')));
+echo bootstrap_form_submit(NULL, 'Simpan', array('class' => 'btn btn-primary', 'after' => anchor('admin/data_source', 'Kembali', 'class="btn btn-danger btn-link-bootstrap"')));
 echo form_close();
 ?>
