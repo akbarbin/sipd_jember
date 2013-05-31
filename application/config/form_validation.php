@@ -21,7 +21,6 @@ $config = array(
             'rules' => 'required|valid_email'
         ),
     ),
-    
     'user/add' => array(
         array(
             'field' => 'username',
@@ -49,7 +48,6 @@ $config = array(
             'rules' => 'required|min_length[5]|matches[password]'
         ),
     ),
-    
     'user/edit' => array(
         array(
             'field' => 'name',
@@ -72,7 +70,6 @@ $config = array(
             'rules' => 'required|min_length[5]|matches[password]'
         ),
     ),
-    
     'user/change_password' => array(
         array(
             'field' => 'old_password',
@@ -90,7 +87,6 @@ $config = array(
             'rules' => 'required|min_length[5]|matches[password]'
         ),
     ),
-        
     'name_validation' => array(
         array(
             'field' => 'name',
@@ -98,7 +94,6 @@ $config = array(
             'rules' => 'required'
         ),
     ),
-    
     'agency' => array(
         array(
             'field' => 'code',
@@ -108,6 +103,18 @@ $config = array(
         array(
             'field' => 'name',
             'label' => 'Nama',
+            'rules' => 'required'
+        ),
+    ),
+    'search_tabular' => array(
+        array(
+            'field' => 'sub_district_id',
+            'label' => 'Kecamatan',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'year',
+            'label' => 'Tahun',
             'rules' => 'required'
         ),
     )
