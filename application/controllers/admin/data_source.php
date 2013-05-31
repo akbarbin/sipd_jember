@@ -45,7 +45,7 @@ class Data_source extends Admin_Controller {
    */
   public function add() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run('name_validation')) {
+    if ($this->form_validation->run('name_sub_district_validation')) {
       $save = $this->Data_source_model->save($this->set_data_before_update($this->input->post()));
       $this->error_message('insert', $save);
       redirect('admin/data_source');
@@ -64,7 +64,7 @@ class Data_source extends Admin_Controller {
    */
   public function edit() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run('name_validation')) {
+    if ($this->form_validation->run('name_sub_district_validation')) {
       $save = $this->Data_source_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
       $this->error_message('update', $save);
       redirect('admin/data_source');

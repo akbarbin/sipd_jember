@@ -38,6 +38,11 @@ $config = array(
             'rules' => 'required|valid_email'
         ),
         array(
+            'field' => 'sub_district_id',
+            'label' => 'Kecamatan',
+            'rules' => 'required'
+        ),
+        array(
             'field' => 'password',
             'label' => 'Password',
             'rules' => 'required|min_length[5]'
@@ -58,6 +63,11 @@ $config = array(
             'field' => 'email',
             'label' => 'Email',
             'rules' => 'required|valid_email'
+        ),
+        array(
+            'field' => 'sub_district_id',
+            'label' => 'Kecamatan',
+            'rules' => 'required'
         ),
         array(
             'field' => 'password',
@@ -91,6 +101,18 @@ $config = array(
         array(
             'field' => 'name',
             'label' => 'Nama',
+            'rules' => 'required'
+        ),
+    ),
+    'name_sub_district_validation' => array(
+        array(
+            'field' => 'name',
+            'label' => 'Nama',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'sub_district_id',
+            'label' => 'Kecamatan',
             'rules' => 'required'
         ),
     ),
