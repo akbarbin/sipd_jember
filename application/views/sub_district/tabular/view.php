@@ -7,11 +7,8 @@ echo bootstrap_table_nav_dropdown(
         array(
             'add' => array('name' => 'Tambah/Edit Nilai', 'action' => 'edit/'.$id),
             'refresh' => array('name' => 'Refresh', 'action' => 'view/'.$id),
-//            'generate' => array('name' => 'Generate', 'action' => 'generate'),
-//            'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel'),
-//            'export-pdf' => array('name' => 'Ekspor PDF', 'action' => 'export_pdf'),
-//            'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel'),
-//            'search' => array('name' => 'Cari', 'action' => 'index'),
+            'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $id),
+            'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $id),
         ),
         'sub_district');
 
