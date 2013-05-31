@@ -15,9 +15,7 @@ class Tabular extends Sub_District_Controller {
 
   public function index() {
     $post = $this->input->post();
-    if (empty($post)) {
-      $this->data['title'] = 'Data Profil Kecamatan';
-    } else {
+    if ($this->form_validation->run('search_tabular')) {
       $this->data['tabulars'] = $this->Tabular_model->get_ancestry_depth(
               array(
                   'tabulars.sub_district_id' => $this->get_login_active_sub_district_id(),
@@ -26,6 +24,8 @@ class Tabular extends Sub_District_Controller {
                   'tabulars.type' => 'profil'));
 
       $this->data['title'] = 'Data Profil Tahun ' . $post['year'];
+    }  else {
+      $this->data['title'] = 'Data Profil Kecamatan';
     }
 
     $tabular_years = $this->Tabular_model->get_years(array('type' => 'profil', 'sub_district_id' => $this->get_login_active_sub_district_id()));
