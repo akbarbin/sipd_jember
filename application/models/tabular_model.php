@@ -28,8 +28,8 @@ class Tabular_model extends App_Model {
     $this->load->model('Master_tabular_model');
     $master_tabulars = $this->Master_tabular_model->get_all();
     $data = array();
-    $i = 0;
     foreach ($sub_districs as $key => $sub_distric) {
+      $i = 0;
       foreach ($master_tabulars as $key => $master_tabular) {
         $data[$i] = $this->setInsertData(array(
             'name' => $master_tabular->name,
@@ -45,8 +45,10 @@ class Tabular_model extends App_Model {
         ));
         $i++;
       }
+      $this->db->insert_batch($this->table, $data);
+      $data = array();
     }
-    return $this->db->insert_batch($this->table, $data);
+    return TRUE;
   }
 
   function get_sub_district($year = NULL, $count = FALSE) {
@@ -66,7 +68,7 @@ class Tabular_model extends App_Model {
     $this->db->select('year')
             ->from($this->table)
             ->group_by('year');
-    if(!empty($conditions)){
+    if (!empty($conditions)) {
       $this->db->where($conditions);
     }
     return $this->db->get()->result();
@@ -121,15 +123,16 @@ class Tabular_model extends App_Model {
                     'data_source_id' => $value['data_source_id']['after']));
       }
     }
-    if(!empty($update)){
-      return $this->db->update_batch($this->table, $update, 'id');;
-    }  else {
+    if (!empty($update)) {
+      return $this->db->update_batch($this->table, $update, 'id');
+      ;
+    } else {
       return TRUE;
     }
     return FALSE;
   }
-  
-  function get_max_year($conditions = array()){
+
+  function get_max_year($conditions = array()) {
     $this->db->select_max('year')
             ->from($this->table)
             ->where($conditions);
