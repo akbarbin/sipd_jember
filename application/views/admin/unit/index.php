@@ -19,7 +19,12 @@ foreach ($units as $key => $unit) {
   echo bootstrap_tag('td', $offset, array('width' => '30px'));
   echo bootstrap_tag('td', $unit->name);
   echo bootstrap_tag('td', $unit->description);
-  echo bootstrap_tag('td', bootstrap_table_action($controller, $unit->id), array('width' => '110px'));
+  $actions = array(
+      'view' => array('name' => 'Detail', 'action' => 'view/' . $unit->id),
+      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $unit->id),
+      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $unit->id),
+  );
+  echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
 if(count($units) == 0){

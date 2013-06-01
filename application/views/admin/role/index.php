@@ -20,7 +20,12 @@ foreach ($roles as $key => $role) {
   echo bootstrap_tag('td', $role->name);
   echo bootstrap_tag('td', $role->description);
   echo bootstrap_tag('td', $role->level);
-  echo bootstrap_tag('td', bootstrap_table_action($controller, $role->id), array('width' => '110px'));
+  $actions = array(
+      'view' => array('name' => 'Detail', 'action' => 'view/' . $role->id),
+      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $role->id),
+      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $role->id),
+  );
+  echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
 if(count($roles) == 0){

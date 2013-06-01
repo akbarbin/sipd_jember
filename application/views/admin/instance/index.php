@@ -20,7 +20,12 @@ foreach ($instances as $key => $instance) {
   echo bootstrap_tag('td', $instance->name);
   echo bootstrap_tag('td', $instance->description);
   echo bootstrap_tag('td', $instance->sub_district_name);
-  echo bootstrap_tag('td', bootstrap_table_action($controller, $instance->id), array('width' => '110px'));
+  $actions = array(
+      'view' => array('name' => 'Detail', 'action' => 'view/' . $instance->id),
+      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $instance->id),
+      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $instance->id),
+  );
+  echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
 if (count($instances) == 0) {

@@ -22,7 +22,12 @@ foreach ($data_sources as $key => $data_source) {
   echo bootstrap_tag('td', $data_source->phone);
   echo bootstrap_tag('td', $data_source->address);
   echo bootstrap_tag('td', $data_source->sub_district_name);
-  echo bootstrap_tag('td', bootstrap_table_action($controller, $data_source->id, FALSE, 'sub_district'), array('width' => '110px'));
+  $actions = array(
+      'view' => array('name' => 'Detail', 'action' => 'view/' . $data_source->id),
+      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $data_source->id),
+      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $data_source->id),
+  );
+  echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
 if(count($data_sources) == 0){

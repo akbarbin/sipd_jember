@@ -18,7 +18,13 @@ foreach ($master_tabulars as $key => $master_tabular) {
   echo bootstrap_tag_open('tr');
   echo bootstrap_tag('td', bootstrap_tag('span', $master_tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . ($master_tabular->ancestry_depth * 30) . 'px;')) . bootstrap_tag('span', $master_tabular->name, array('class' => 'text-overflow')));
   echo bootstrap_tag('td', $master_tabular->unit_name);
-  echo bootstrap_tag('td', bootstrap_table_action($controller, $master_tabular->id, TRUE), array('width' => '110px'));
+  $actions = array(
+      'view' => array('name' => 'Detail', 'action' => 'view/' . $master_tabular->id),
+      'add' => array('name' => 'Tambah', 'action' => 'add/' . $master_tabular->id),
+      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $master_tabular->id),
+      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $master_tabular->id),
+  );
+  echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
 if (count($master_tabulars) == 0) {

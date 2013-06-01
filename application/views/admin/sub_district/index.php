@@ -19,7 +19,12 @@ foreach ($sub_districts as $key => $sub_district) {
   echo bootstrap_tag('td', $offset, array('width' => '30px'));
   echo bootstrap_tag('td', $sub_district->name);
   echo bootstrap_tag('td', $sub_district->description);
-  echo bootstrap_tag('td', bootstrap_table_action($controller, $sub_district->id), array('width' => '110px'));
+  $actions = array(
+      'view' => array('name' => 'Detail', 'action' => 'view/' . $sub_district->id),
+      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $sub_district->id),
+      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $sub_district->id),
+  );
+  echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
   echo bootstrap_tag_close('tr');
 }
 if(count($sub_districts) == 0){

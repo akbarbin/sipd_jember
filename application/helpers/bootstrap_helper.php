@@ -499,46 +499,6 @@ function bootstrap_table_view($data) {
   return $output;
 }
 
-function bootstrap_table_nav($title = NULL, $link = array(), $controller = NULL, $action = NULL, $export = FALSE, $generate = FALSE) {
-  $output = bootstrap_tag_open('div', array('class' => 'navbar navbar-inverse'));
-  $output .= bootstrap_tag_open('div', array('class' => 'navbar-inner'));
-  $output .= bootstrap_tag_open('div', array('class' => 'container'));
-  $output .= bootstrap_tag_open('a', array('class' => 'btn btn-navbar', 'data-toggle' => 'collapse', 'data-target' => '.nav-collapse'));
-  $output .= bootstrap_tag('span', NULL, array('class' => 'icon-bar'));
-  $output .= bootstrap_tag('span', NULL, array('class' => 'icon-bar'));
-  $output .= bootstrap_tag('span', NULL, array('class' => 'icon-bar'));
-  $output .= bootstrap_tag_close('a');
-  $output .= bootstrap_tag('a', $title, array('class' => 'brand'));
-  $output .= bootstrap_tag_open('div', array('class' => 'nav-collapse'));
-  $output .= bootstrap_tag_open('ul', array('class' => 'nav'));
-  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-plus-sign icon-white')) . ' ' . $link['name'], array('class' => 'small-box', 'href' => base_url() . bootstrap_index_page() . 'admin/' . $link['destination'])));
-  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-refresh icon-white')) . ' Refresh', array('class' => 'small-box', 'href' => base_url() . bootstrap_index_page() . 'admin/' . $controller)));
-  if ($generate) {
-    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-circle-arrow-down icon-white')) . ' Generate', array('class' => 'small-box', 'href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/generate')));
-  }
-  if ($export) {
-    $output .= bootstrap_tag_open('li', array('class' => 'dropdown'));
-    $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-file icon-white')) . ' Ekspor ' . bootstrap_tag('b', NULL, array('class' => 'caret')), array('data-toggle' => 'dropdown', 'class' => 'dropdown-toggle', 'href' => '#'));
-    $output .= bootstrap_tag_open('ul', array('class' => 'dropdown-menu'));
-    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-file')) . ' Excel', array('href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/excel')));
-    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-file')) . ' PDF', array('href' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/pdf')));
-    $output .= bootstrap_tag_close('ul');
-    $output .= bootstrap_tag_close('li');
-  }
-  $output .= bootstrap_tag_close('ul');
-  if (!empty($action)) {
-    $output .= bootstrap_tag_open('form', array('class' => 'navbar-form pull-right', 'method' => 'get', 'action' => base_url() . bootstrap_index_page() . 'admin/' . $controller . '/' . $action));
-    $output .= form_input('search', NULL, 'placeholder="Masukkan Kata Kunci"');
-    $output .= bootstrap_tag('button', bootstrap_tag('i', '', array('class' => 'icon-search icon-white')) . ' ' . 'Cari', array('class' => 'btn btn-primary'));
-    $output .= bootstrap_tag_close('form');
-  }
-  $output .= bootstrap_tag_close('div');
-  $output .= bootstrap_tag_close('div');
-  $output .= bootstrap_tag_close('div');
-  $output .= bootstrap_tag_close('div');
-  return $output;
-}
-
 function bootstrap_table_nav_dropdown($title = NULL, $controller = NULL, $actions = array(), $dir = 'admin') {
   $icon_action = array(
       'add' => 'icon-plus-sign',
@@ -587,20 +547,31 @@ function bootstrap_table_nav_dropdown($title = NULL, $controller = NULL, $action
   return $output;
 }
 
-function bootstrap_table_action($controller = NULL, $id = NULL, $add = FALSE, $dir = 'admin') {
+function bootstrap_table_action_dropdown($controller = NULL, $actions = array(), $dir = 'admin') {
+  $icon_action = array(
+      'view' => 'icon-align-justify',
+      'add' => 'icon-plus-sign',
+      'edit' => 'icon-pencil',
+      'delete' => 'icon-trash'
+  );
   $output = bootstrap_tag_open('div', array('class' => 'btn-group'));
-  $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-user icon-white')) . ' Detail', array('class' => 'btn btn-primary', 'href' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/view/' . $id));
+  if (isset($actions['view'])) {
+    $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => $icon_action['view'] . ' icon-white')) . ' ' . $actions['view']['name'], array('class' => 'btn btn-primary', 'href' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/' . $actions['view']['action']));
+    unset($actions['view']);
+  }elseif (isset ($actions['add'])) {
+    $output .= bootstrap_tag('a', bootstrap_tag('i', '', array('class' => $icon_action['add'] . ' icon-white')) . ' ' . $actions['add']['name'], array('class' => 'btn btn-primary', 'href' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/' . $actions['add']['action']));
+    unset($actions['add']);
+  }
   $output .= bootstrap_tag('a', bootstrap_tag('span', '', array('class' => 'caret')), array('class' => 'btn btn-primary dropdown-toggle', 'href' => '#', 'data-toggle' => 'dropdown'));
   $output .= bootstrap_tag_open('ul', array('class' => 'dropdown-menu'));
-  if ($add) {
-    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-plus-sign')) . ' Tambah', array('href' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/add/' . $id)));
+  foreach ($actions as $key => $value) {
+    $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => $icon_action[$key])) . ' ' . $value['name'], array('href' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/' . $value['action'])));
   }
-  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-pencil')) . ' Edit', array('href' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/edit/' . $id)));
-  $output .= bootstrap_tag('li', bootstrap_tag('a', bootstrap_tag('i', '', array('class' => 'icon-trash')) . ' Hapus', array('href' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/delete/' . $id)));
   $output .= bootstrap_tag_close('ul');
   $output .= bootstrap_tag_close('div');
   return $output;
 }
+
 
 function bootstrap_table_title($title = NULL) {
   $output = bootstrap_tag_open('div', array('class' => 'navbar navbar-inverse'));
