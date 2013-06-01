@@ -61,6 +61,7 @@ class Master_tabular_model extends App_Model {
       } else {
         $data['ref_code'] = $this->get_ancestry_depth(array('type' => $data['type'], 'parent_id' => NULL), TRUE) + 1;
         $data['ancestry_depth'] = 0;
+        $data['parent_id'] = NULL;
       }
       $insert = $this->setInsertData($data);
       return $this->db->insert($this->table, $insert);

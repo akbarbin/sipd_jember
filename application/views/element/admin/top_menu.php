@@ -22,7 +22,7 @@
                 <?php echo anchor('admin/master_tabular', '<i class="icon-list-alt"></i> Data Profil'); ?>
               </li>
               <li>
-                <?php echo anchor('admin/master_tabular_criteria', '<i class="icon-tasks"></i> Data Kriteria'); ?>
+                <?php echo anchor('admin/master_tabular_performance', '<i class="icon-tasks"></i> Data Kinerja'); ?>
               </li>
             </ul>
           </li>
@@ -36,7 +36,7 @@
                 <?php echo anchor('admin/tabular', '<i class="icon-list-alt"></i> Data Profil Kecamatan'); ?>
               </li>
               <li>
-                <?php echo anchor('admin/tabular_criteria', '<i class="icon-tasks"></i> Data Kriteria Kecamatan'); ?>
+                <?php echo anchor('admin/tabular_performance', '<i class="icon-tasks"></i> Data Kinerja Kecamatan'); ?>
               </li>
             </ul>
           </li>

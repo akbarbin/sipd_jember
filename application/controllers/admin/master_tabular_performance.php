@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /**
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class Master_tabular_criteria extends Admin_Controller {
+class Master_tabular_performance extends Admin_Controller {
 
   public function __construct() {
     parent::__construct();
@@ -14,11 +14,11 @@ class Master_tabular_criteria extends Admin_Controller {
   }
 
   public function index() {
-    $this->data['title'] = 'Data Kriteria';
+    $this->data['title'] = 'Data Kinerja';
     $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
             array(
                 'master_tabulars.ancestry_depth <' => 2,
-                'master_tabulars.type' => 'kriteria'));
+                'master_tabulars.type' => 'kinerja'));
     $this->load->view('layout/admin', $this->data);
   }
 
@@ -32,9 +32,9 @@ class Master_tabular_criteria extends Admin_Controller {
     $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
             array(
                 'master_tabulars.ref_code LIKE' => '%'.$master_tabular[0]->ref_code.'.%',
-                'master_tabulars.type' => 'kriteria'));
+                'master_tabulars.type' => 'kinerja'));
 
-    $this->data['title'] = 'Data Kriteria ' . $master_tabular[0]->name;
+    $this->data['title'] = 'Data Kinerja ' . $master_tabular[0]->name;
     $this->load->view('layout/admin', $this->data);
   }
 
@@ -44,12 +44,12 @@ class Master_tabular_criteria extends Admin_Controller {
   public function add() {
     $this->load->library('form_validation');
     if ($this->form_validation->run('name_validation')) {
-      $data = array_merge($this->input->post(), array('type' => 'kriteria'));
+      $data = array_merge($this->input->post(), array('type' => 'kinerja'));
       $save = $this->Master_tabular_model->save($this->set_data_before_update($data));
       $this->error_message('insert', $save);
-      redirect('admin/master_tabular_criteria');
+      redirect('admin/master_tabular_performance');
     } else {
-      $this->data['title'] = 'Tambah Kriteria';
+      $this->data['title'] = 'Tambah Kinerja';
       $this->data['parent_id'] = self::$id;
       $this->load->model('Unit_model');
       $this->data['unit_list'] = $this->get_list($this->Unit_model->get_all());
@@ -67,20 +67,20 @@ class Master_tabular_criteria extends Admin_Controller {
     if ($this->form_validation->run('name_validation')) {
       $save = $this->Master_tabular_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
       $this->error_message('update', $save);
-      redirect('admin/master_tabular_criteria');
+      redirect('admin/master_tabular_performance');
     } else {
       if (!empty(self::$id)) {
         $master_tabular = $this->Master_tabular_model->get_all(array('id' => self::$id));
         $this->set_update_id($master_tabular[0]->id);
         $this->data['id'] = self::$id;
         $this->data['master_tabular'] = $master_tabular[0];
-        $this->data['title'] = 'Edit Kriteria ' . $master_tabular[0]->name;
+        $this->data['title'] = 'Edit Kinerja ' . $master_tabular[0]->name;
         $this->load->model('Unit_model');
         $this->data['unit_list'] = $this->get_list($this->Unit_model->get_all());
         $this->load->view('layout/admin', $this->data);
       } else {
         $this->error_message('redirect', FALSE);
-        redirect('admin/master_tabular_criteria');
+        redirect('admin/master_tabular_performance');
       }
     }
   }
@@ -91,7 +91,7 @@ class Master_tabular_criteria extends Admin_Controller {
   public function delete() {
     $delete = $this->Master_tabular_model->remove(self::$id);
     $this->error_message('delete', $delete);
-    redirect('admin/master_tabular_criteria');
+    redirect('admin/master_tabular_performance');
   }
 
   public function generate() {
@@ -100,7 +100,7 @@ class Master_tabular_criteria extends Admin_Controller {
       $this->load->model('Tabular_model');
       $generate = $this->Tabular_model->generate($post['year']);
       $this->error_message('insert', $generate);
-      redirect('admin/master_tabular_criteria');
+      redirect('admin/master_tabular_performance');
     } else {
       $start = date('Y') - 10;
       $end = date('Y') + 10;
@@ -109,7 +109,7 @@ class Master_tabular_criteria extends Admin_Controller {
       }
       $this->data['year'] = array(date('Y'));
       
-      $this->data['title'] = 'Generate Kriteria Kecamatan';
+      $this->data['title'] = 'Generate Kinerja Kecamatan';
       $this->load->view('layout/admin',  $this->data);
     }
   }

@@ -4,7 +4,7 @@ echo bootstrap_table_nav_dropdown(
         $title, $controller, array(
     'add' => array('name' => 'Tambah', 'action' => 'add'),
     'refresh' => array('name' => 'Refresh', 'action' => 'index'),
-    'generate' => array('name' => 'Generate Kriteria Kecamatan', 'action' => 'generate'),
+    'generate' => array('name' => 'Generate Kinerja Kecamatan', 'action' => 'generate'),
     'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel'),
     'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel'),
     'search' => array('name' => 'Cari', 'action' => 'index'),
@@ -12,7 +12,7 @@ echo bootstrap_table_nav_dropdown(
 
 
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
-echo bootstrap_table_head(array('Kriteria', 'Satuan', 'Aksi'));
+echo bootstrap_table_head(array('Kinerja', 'Satuan', 'Aksi'));
 echo bootstrap_tag_open('tbody');
 foreach ($master_tabulars as $key => $master_tabular) {
   echo bootstrap_tag_open('tr');
