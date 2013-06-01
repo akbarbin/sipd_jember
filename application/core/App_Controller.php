@@ -168,7 +168,7 @@ class App_Controller extends CI_Controller {
     $params = array();
     if (isset($_GET) && !empty($_GET)) {
       foreach ($field as $key => $value) {
-        $params[$value.' LIKE'] = $_GET['search'];
+        $params[$value.' LIKE'] = '%'.$_GET['search'].'%';
       }
     }
     return $params;

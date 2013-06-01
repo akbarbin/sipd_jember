@@ -47,7 +47,7 @@
                 <?php echo anchor('admin/user', '<i class="icon-user"></i> Data User'); ?>
               </li>
               <li>
-                <?php echo anchor('admin/unit', '<i class="icon-tag"></i> Data Satuan'); ?>
+                <?php echo anchor('admin/data_source', '<i class="icon-folder-open"></i> Sumber Data'); ?>
               </li>
               <li>
                 <?php echo anchor('admin/instance', '<i class="icon-briefcase"></i> Data Instansi'); ?>
@@ -56,10 +56,16 @@
                 <?php echo anchor('admin/sub_district', '<i class="icon-align-justify"></i> Data Kecamatan'); ?>
               </li>
               <li>
-                <?php echo anchor('admin/data_source', '<i class="icon-folder-open"></i> Sumber Data'); ?>
+                <?php echo anchor('admin/role', '<i class="icon-share"></i> Data Role User'); ?>
               </li>
               <li>
-                <?php echo anchor('admin/role', '<i class="icon-share"></i> Data Role User'); ?>
+                <?php echo anchor('admin/unit', '<i class="icon-tag"></i> Data Satuan'); ?>
+              </li>
+              <li>
+                <?php echo anchor('admin/profile', '<i class="icon-edit"></i> Data Profil Info'); ?>
+              </li>
+              <li>
+                <?php echo anchor('admin/image', '<i class="icon-picture"></i> Slide Gambar'); ?>
               </li>
             </ul>
           </li>
