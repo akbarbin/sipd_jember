@@ -512,9 +512,9 @@ function bootstrap_table_nav_dropdown($title = NULL, $controller = NULL, $action
 
   $search = '';
   if (isset($actions['search'])) {
-    $search .= bootstrap_tag_open('div', array('class' => 'navbar-form'));
+    $search .= bootstrap_tag_open('div', array('class' => 'navbar-form form-search'));
     $search .= bootstrap_tag_open('form', array('class' => 'input-append pull-right', 'method' => 'get', 'action' => base_url() . bootstrap_index_page() . $dir . '/' . $controller . '/' . $actions['search']['action']));
-    $search .= form_input('search', NULL, 'placeholder="Masukkan Kata Kunci"');
+    $search .= form_input('search', NULL, 'placeholder="Masukkan Kata Kunci" class="search-query"');
     $search .= bootstrap_tag('button', bootstrap_tag('i', '', array('class' => $icon_action['search'] . ' icon-white')) . ' ' . $actions['search']['name'], array('class' => 'btn btn-primary'));
     $search .= bootstrap_tag_close('form');
     $search .= bootstrap_tag_close('div');
