@@ -35,7 +35,7 @@
     echo js(array(
         'jquery.min',
         'bootstrap.min',
-        'scripts',
+        'jquery.cleditor.min',
         'jquery.jqplot.min',
         'syntaxhighlighter/scripts/shCore.min',
         'syntaxhighlighter/scripts/shBrushJScript.min',
@@ -44,6 +44,8 @@
         'chart/jqplot.highlighter.min',
         'chart/jqplot.cursor.min',
         'chart/jqplot.pointLabels.min',
+        'ckeditor/ckeditor',
+        'custom-script'
     ));
     ?>
   </head>

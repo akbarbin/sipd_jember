@@ -46,7 +46,9 @@ class Profile extends Admin_Controller {
   public function add() {
     $this->load->library('form_validation');
     if ($this->form_validation->run()) {
-      $save = $this->Profile_model->save($this->set_data_before_update($this->input->post()));
+      $post = $this->input->post();
+      $post['image'] = $this->upload_image();
+      $save = $this->Profile_model->save($this->set_data_before_update($post));
       $this->error_message('insert', $save);
       redirect('admin/profile');
     } else {

@@ -18,7 +18,7 @@ class App_Controller extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
-    
+
     self::$sessionLogin = $this->session->all_userdata();
     $this->data['controller'] = $this->router->class;
     $this->data['action'] = $this->router->method;
@@ -82,7 +82,7 @@ class App_Controller extends CI_Controller {
   protected function get_login_active_sub_district_id() {
     return self::$sessionLogin[md5('sub_district_id')];
   }
-  
+
   protected function get_list($data = NULL) {
     $list = array();
     $list[NULL] = '- PILIHAN -';
@@ -121,8 +121,8 @@ class App_Controller extends CI_Controller {
     $data['password'] = $this->set_password($data['password'], $data['password_salt']);
     return $data;
   }
-  
-  protected function set_data_session($data = array()){
+
+  protected function set_data_session($data = array()) {
     $session = array();
     foreach ($data as $key => $value) {
       $session[md5($key)] = $value;
@@ -164,45 +164,72 @@ class App_Controller extends CI_Controller {
     $segment_pagination = (empty($segment_pagination)) ? self::$segment_pagination : $segment_pagination;
     return $this->uri->segment($segment_pagination);
   }
+
   protected function get_search_params($field = array()) {
     $params = array();
     if (isset($_GET) && !empty($_GET)) {
       foreach ($field as $key => $value) {
-        $params[$value.' LIKE'] = '%'.$_GET['search'].'%';
+        $params[$value . ' LIKE'] = '%' . $_GET['search'] . '%';
       }
     }
     return $params;
   }
-  
-  protected function get_suffix_params(){
+
+  protected function get_suffix_params() {
     $suffix = '';
     $params = $this->get_search_params();
     if (isset($_GET) && !empty($_GET)) {
       $str = array();
       foreach ($_GET as $key => $value) {
-        $str[] = $key.'='.$value;
+        $str[] = $key . '=' . $value;
       }
-      $suffix = '?'.  implode('&', $str);
+      $suffix = '?' . implode('&', $str);
     }
     return $suffix;
   }
-  
-  protected function get_encrype_site_url($url = NULL){
+
+  protected function get_encrype_site_url($url = NULL) {
     $url = (empty($url)) ? $this->get_site_url_pagination() : $url;
     return md5($url);
   }
 
-  protected function set_update_id($id = NULL, $url = NULL){
+  protected function set_update_id($id = NULL, $url = NULL) {
     $data = array('update' => array($this->get_encrype_site_url($url) => $id));
     $this->session->set_userdata($data);
   }
-  
-  protected function get_update_id(){
-    $data= $this->session->userdata('update');
+
+  protected function get_update_id() {
+    $data = $this->session->userdata('update');
     $this->session->unset_userdata('update');
     return (isset($data[$this->get_encrype_site_url()])) ? $data[$this->get_encrype_site_url()] : NULL;
   }
-  
+
+  protected function upload_image() {
+    $dir = './webroot/images/';
+    $config['upload_path'] = $dir;
+    $config['allowed_types'] = 'gif|jpg|png';
+    $config['max_size'] = '1024000';
+
+    $this->load->library('upload', $config);
+    unset($config);
+    $this->upload->do_upload('photo');
+
+    $image = $this->upload->data();
+    $image_name = $image['file_name'];
+    
+    $config['image_library'] = 'gd2';
+    $config['source_image'] = $dir.$image_name;
+    $config['create_thumb'] = TRUE;
+    $config['maintain_ratio'] = TRUE;
+    $config['width'] = 540;
+    $config['height'] = 255;
+
+    $this->load->library('image_lib', $config);
+
+    $this->image_lib->resize();
+    return $image_name;
+  }
+
 }
 
 ?>
