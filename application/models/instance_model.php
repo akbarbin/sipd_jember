@@ -6,17 +6,17 @@ if (!defined('BASEPATH'))
 /**
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class Agency_model extends App_Model {
+class Instance_model extends App_Model {
 
-  public $table = 'agencies';
+  public $table = 'instances';
 
   function __construct() {
     parent::__construct();
   }
 
   function get_all($conditions = array(), $count = FALSE, $limit = NULL, $offset = NULL) {
-    $this->db->select('agencies.*, sub_districts.name AS sub_district_name')
-            ->join('sub_districts', 'sub_districts.id = agencies.sub_district_id', 'left')
+    $this->db->select('instances.*, sub_districts.name AS sub_district_name')
+            ->join('sub_districts', 'sub_districts.id = instances.sub_district_id', 'left')
             ->from($this->table);
     
     if (!empty($conditions)) {
@@ -28,11 +28,11 @@ class Agency_model extends App_Model {
     }
 
     if ($count) {
-      $agencies = $this->db->count_all_results();
+      $instances = $this->db->count_all_results();
     } else {
-      $agencies = $this->db->get()->result();
+      $instances = $this->db->get()->result();
     }
-    return $agencies;
+    return $instances;
   }
 
   function save($data = array(), $id = NULL, $primary_key = 'id') {

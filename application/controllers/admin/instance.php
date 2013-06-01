@@ -6,20 +6,20 @@ if (!defined('BASEPATH'))
 /**
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
-class Agency extends Admin_Controller {
+class Instance extends Admin_Controller {
 
   public function __construct() {
     parent::__construct();
-    $this->load->model('Agency_model');
+    $this->load->model('Instance_model');
   }
 
   public function index() {
-    $this->data['title'] = 'Data Institusi';
-    $this->data['agencies'] = $this->Agency_model->get_all(
-            $this->get_search_params(array('agencies.name')), FALSE, self::$limit, $this->get_offset_from_segment());
+    $this->data['title'] = 'Data Instansi';
+    $this->data['instances'] = $this->Instance_model->get_all(
+            $this->get_search_params(array('instances.name')), FALSE, self::$limit, $this->get_offset_from_segment());
 
-    $count = $this->Agency_model->get_all(
-            $this->get_search_params(array('agencies.name')), TRUE);
+    $count = $this->Instance_model->get_all(
+            $this->get_search_params(array('instances.name')), TRUE);
 
     $config = $this->set_before_pagination($count, $this->get_suffix_params());
     $this->pagination->initialize($config);
@@ -33,9 +33,9 @@ class Agency extends Admin_Controller {
    * @author Mahendri Winata <mahen.0112@gmail.com>
    */
   public function view() {
-    $agency = $this->Agency_model->get_all(array('agencies.id' => self::$id));
-    $this->data['agency'] = $agency[0];
-    $this->data['title'] = 'Detail Institusi ' . $agency[0]->name;
+    $instance = $this->Instance_model->get_all(array('instances.id' => self::$id));
+    $this->data['instance'] = $instance[0];
+    $this->data['title'] = 'Detail Instansi ' . $instance[0]->name;
 
     $this->load->view('layout/admin', $this->data);
   }
@@ -45,12 +45,12 @@ class Agency extends Admin_Controller {
    */
   public function add() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run('agency')) {
-      $save = $this->Agency_model->save($this->set_data_before_update($this->input->post()));
+    if ($this->form_validation->run('instance')) {
+      $save = $this->Instance_model->save($this->set_data_before_update($this->input->post()));
       $this->error_message('insert', $save);
-      redirect('admin/agency');
+      redirect('admin/instance');
     } else {
-      $this->data['title'] = 'Tambah Institusi';
+      $this->data['title'] = 'Tambah Instansi';
       $this->load->model('Sub_district_model');
       $this->data['sub_district_list'] = $this->get_list($this->Sub_district_model->get_all());
       $this->load->view('layout/admin', $this->data);
@@ -65,22 +65,22 @@ class Agency extends Admin_Controller {
   public function edit() {
     $this->load->library('form_validation');
     if ($this->form_validation->run('name_validation')) {
-      $save = $this->Agency_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
+      $save = $this->Instance_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
       $this->error_message('update', $save);
-      redirect('admin/agency');
+      redirect('admin/instance');
     } else {
       if (!empty(self::$id)) {
-        $agency = $this->Agency_model->get_all(array('agencies.id' => self::$id));
-        $this->set_update_id($agency[0]->id);
+        $instance = $this->Instance_model->get_all(array('instances.id' => self::$id));
+        $this->set_update_id($instance[0]->id);
         $this->data['id'] = self::$id;
-        $this->data['agency'] = $agency[0];
-        $this->data['title'] = 'Edit Institusi ' . $agency[0]->name;
+        $this->data['instance'] = $instance[0];
+        $this->data['title'] = 'Edit Instansi ' . $instance[0]->name;
         $this->load->model('Sub_district_model');
         $this->data['sub_district_list'] = $this->get_list($this->Sub_district_model->get_all());
         $this->load->view('layout/admin', $this->data);
       } else {
         $this->error_message('redirect', FALSE);
-        redirect('admin/agency');
+        redirect('admin/instance');
       }
     }
   }
@@ -89,9 +89,9 @@ class Agency extends Admin_Controller {
    * @author Mahendri Winata <mahen.0112@gmail.com>
    */
   public function delete() {
-    $delete = $this->Agency_model->remove(self::$id);
+    $delete = $this->Instance_model->remove(self::$id);
     $this->error_message('delete', $delete);
-    redirect('admin/agency');
+    redirect('admin/instance');
   }
 
 }
