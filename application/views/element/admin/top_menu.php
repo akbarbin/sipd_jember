@@ -40,12 +40,12 @@
               </li>
             </ul>
           </li>
-          <li>
-            <?php echo anchor('admin/user', '<i class="icon-user icon-white"></i> Data User'); ?>
-          </li>
           <li class="dropdown">
             <?php echo anchor('#', '<i class="icon-tasks icon-white"></i> Data Master <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
             <ul class="dropdown-menu">
+              <li>
+                <?php echo anchor('admin/user', '<i class="icon-user"></i> Data User'); ?>
+              </li>
               <li>
                 <?php echo anchor('admin/unit', '<i class="icon-tag"></i> Data Satuan'); ?>
               </li>
@@ -66,7 +66,7 @@
         </ul>
         <ul class="nav pull-right">
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-lock icon-white"></i> <?php echo $user_full_name;?> <strong class="caret"></strong></a>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-lock icon-white"></i> <?php echo $user_full_name; ?> <strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
                 <?php echo anchor('admin/user/edit_account', '<i class="icon-edit"></i> Edit Kontak'); ?>

@@ -12,14 +12,19 @@
           <li>
             <?php echo anchor('sub_district/dashboard', '<i class="icon-home icon-white"></i> Dashboard'); ?>
           </li>
-          <li>
-            <?php echo anchor('sub_district/tabular_general', '<i class="icon-hdd icon-white"></i> Data Umum'); ?>
-          </li>
-          <li>
-            <?php echo anchor('sub_district/tabular', '<i class="icon-list-alt icon-white"></i> Profil'); ?>
-          </li>
-          <li>
-            <?php echo anchor('sub_district/tabular_performance', '<i class="icon-tasks icon-white"></i> Kinerja'); ?>
+          <li class="dropdown">
+            <?php echo anchor('#', '<i class="icon-align-left icon-white"></i> Tabular <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
+            <ul class="dropdown-menu">
+              <li>
+                <?php echo anchor('sub_district/tabular_general', '<i class="icon-hdd"></i> Data Umum'); ?>
+              </li>
+              <li>
+                <?php echo anchor('sub_district/tabular', '<i class="icon-list-alt"></i> Profil'); ?>
+              </li>
+              <li>
+                <?php echo anchor('sub_district/tabular_performance', '<i class="icon-tasks"></i> Kinerja'); ?>
+              </li>
+            </ul>
           </li>
           <li>
             <?php echo anchor('sub_district/data_source', '<i class="icon-folder-open icon-white"></i> Sumber Data'); ?>
