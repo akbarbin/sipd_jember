@@ -67,7 +67,13 @@ class Profile extends Admin_Controller {
   public function edit() {
     $this->load->library('form_validation');
     if ($this->form_validation->run('profile')) {
-      $save = $this->Profile_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
+      $post = $this->input->post();
+      $post['slug'] = url_title($post['title'], 'dash', TRUE);
+      $image = $this->upload_image();
+      if(!empty($image)){
+        $post['image'] = $image;
+      }
+      $save = $this->Profile_model->save($this->set_data_before_update($post), self::$update_id);
       $this->error_message('update', $save);
       redirect('admin/profile');
     } else {
