@@ -4,4 +4,11 @@ $(document).ready(function() {
 //    height: 250, // height not including margins, borders or padding 
 //  }); /*== make code pretty ==*/
 
+$('form').submit(function(){
+  $.colorbox({
+      rel : 'loading',
+      opocity : 0.6
+  });  
+});
+
 });

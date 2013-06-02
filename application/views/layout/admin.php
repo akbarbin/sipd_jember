@@ -19,7 +19,8 @@
         'docs',
         'jquery.jqplot.min',
         '../js/syntaxhighlighter/styles/shCoreDefault.min',
-        '../js/syntaxhighlighter/styles/shThemejqPlot.min'
+        '../js/syntaxhighlighter/styles/shThemejqPlot.min',
+        'colorbox/colorbox',
     ));
     ?>
 
@@ -45,6 +46,7 @@
         'chart/jqplot.cursor.min',
         'chart/jqplot.pointLabels.min',
         'ckeditor/ckeditor',
+        'jquery.colorbox-min',
         'custom-script'
     ));
     ?>

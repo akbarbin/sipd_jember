@@ -19,7 +19,8 @@
         'docs',
         'jquery.jqplot.min',
         '../js/syntaxhighlighter/styles/shCoreDefault.min',
-        '../js/syntaxhighlighter/styles/shThemejqPlot.min'
+        '../js/syntaxhighlighter/styles/shThemejqPlot.min',
+        'colorbox/colorbox',
     ));
     ?>
 
@@ -35,7 +36,6 @@
     echo js(array(
         'jquery.min',
         'bootstrap.min',
-        'scripts',
         'jquery.jqplot.min',
         'syntaxhighlighter/scripts/shCore.min',
         'syntaxhighlighter/scripts/shBrushJScript.min',
@@ -44,6 +44,8 @@
         'chart/jqplot.highlighter.min',
         'chart/jqplot.cursor.min',
         'chart/jqplot.pointLabels.min',
+        'jquery.colorbox-min',
+        'custom-script'
     ));
     ?>
   </head>
