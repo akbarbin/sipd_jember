@@ -140,19 +140,7 @@ $config = array(
             'rules' => 'required'
         ),
     ),
-    'profile/add' => array(
-        array(
-            'field' => 'slug',
-            'label' => 'URL',
-            'rules' => 'required|alpha_dash|is_unique[profiles.slug]'
-        ),
-        array(
-            'field' => 'title',
-            'label' => 'Judul',
-            'rules' => 'required'
-        ),
-    ),
-    'profile/edit' => array(
+    'profile' => array(
         array(
             'field' => 'title',
             'label' => 'Judul',

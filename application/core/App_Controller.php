@@ -204,30 +204,53 @@ class App_Controller extends CI_Controller {
     return (isset($data[$this->get_encrype_site_url()])) ? $data[$this->get_encrype_site_url()] : NULL;
   }
 
-  protected function upload_image() {
+  protected function upload_image($field = 'image') {
     $dir = './webroot/images/';
-    $config['upload_path'] = $dir;
-    $config['allowed_types'] = 'gif|jpg|png';
-    $config['max_size'] = '1024000';
+    $image_name = strtolower(rand(1, 10000) . '_' . $_FILES[$field]['name']);
+    $upload = array(
+        'upload_path' => $dir,
+        'allowed_types' => 'gif|jpg|png',
+        'max_size' => '1024000',
+        'file_name' => $image_name);
 
-    $this->load->library('upload', $config);
-    unset($config);
-    $this->upload->do_upload('photo');
 
-    $image = $this->upload->data();
-    $image_name = $image['file_name'];
-    
-    $config['image_library'] = 'gd2';
-    $config['source_image'] = $dir.$image_name;
-    $config['create_thumb'] = TRUE;
-    $config['maintain_ratio'] = TRUE;
-    $config['width'] = 540;
-    $config['height'] = 255;
+    $this->load->library('upload', $upload);
+    if ($this->upload->do_upload($field)) {
+      $image = $this->upload->data();
 
-    $this->load->library('image_lib', $config);
+      $thumb = array(
+          'image_library' => 'GD2',
+          'source_image' => 'webroot/images/' . $image_name,
+          'new_image' => 'webroot/images/thumb_' . $image_name,
+          'quality' => 100,
+          'maintain_ratio' => FALSE,
+          'width' => 128,
+          'height' => 128);
 
-    $this->image_lib->resize();
-    return $image_name;
+      $this->load->library('image_lib');
+      $this->image_lib->initialize($thumb);
+      $this->image_lib->resize();
+      $this->image_lib->clear();
+
+      $thumb['maintain_ratio'] = TRUE;
+      $thumb['width'] = 512;
+      $thumb['height'] = 384;
+      $thumb['new_image'] = 'webroot/images/medium_' . $image_name;
+      $this->image_lib->initialize($thumb);
+      $this->image_lib->resize();
+      $this->image_lib->clear();
+
+      $thumb['width'] = 1024;
+      $thumb['height'] = 768;
+      $thumb['new_image'] = 'webroot/images/large_' . $image_name;
+      $this->image_lib->initialize($thumb);
+      $this->image_lib->resize();
+      $this->image_lib->clear();
+
+      return $image_name;
+    } else {
+      return NULL;
+    }
   }
 
 }

@@ -45,9 +45,11 @@ class Profile extends Admin_Controller {
    */
   public function add() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run()) {
+    if ($this->form_validation->run('profile')) {
       $post = $this->input->post();
+      $post['slug'] = url_title($post['title'], 'dash', TRUE);
       $post['image'] = $this->upload_image();
+      $post['user_id'] = $this->get_login_active_id();
       $save = $this->Profile_model->save($this->set_data_before_update($post));
       $this->error_message('insert', $save);
       redirect('admin/profile');
@@ -64,7 +66,7 @@ class Profile extends Admin_Controller {
    */
   public function edit() {
     $this->load->library('form_validation');
-    if ($this->form_validation->run('profile/edit')) {
+    if ($this->form_validation->run('profile')) {
       $save = $this->Profile_model->save($this->set_data_before_update($this->input->post()), self::$update_id);
       $this->error_message('update', $save);
       redirect('admin/profile');
