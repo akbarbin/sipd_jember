@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if lt IE 7 ]><html class="no-js ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <title><?php echo isset($title) ? 'SIPD Jember - ' . $title : 'SIPD Jember'; ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="SIPD (Sistem Informasi Pembangunan Daerah) Jember">
+    <meta name="author" content="Mahendri Winata (mahen.0112@gmail.com)">
 
     <?php
     echo css(array(
@@ -34,6 +34,7 @@
 
     <?php
     echo js(array(
+        'modernizr.custom',
         'jquery.min',
         'bootstrap.min',
         'jquery.cleditor.min',
@@ -45,7 +46,7 @@
         'chart/jqplot.highlighter.min',
         'chart/jqplot.cursor.min',
         'chart/jqplot.pointLabels.min',
-        'ckeditor/ckeditor',
+//        'ckeditor/ckeditor',
         'jquery.colorbox-min',
         'custom-script'
     ));
