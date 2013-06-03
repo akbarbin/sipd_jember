@@ -92,6 +92,14 @@ class App_Controller extends CI_Controller {
     return $list;
   }
 
+  protected function get_list_title($data = NULL) {
+    $list = array();
+    $list[NULL] = '- PILIHAN -';
+    foreach ($data as $value) {
+      $list[$value->id] = $value->title;
+    }
+    return $list;
+  }
   protected function set_data_before_update($data = array()) {
     if (isset($data['id']))
       unset($data['id']);
