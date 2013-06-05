@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <!--[if lt IE 7 ]><html class="no-js ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <title><?php echo isset($title) ? 'SIPD Jember - ' . $title : 'SIPD Jember'; ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="SIPD (Sistem Informasi Pembangunan Daerah) Jember">
     <meta name="author" content="Mahendri Winata (mahen.0112@gmail.com)">
 
@@ -26,7 +26,8 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <?php echo js(array('html5shiv')); ?>
+    <?php echo css(array('ie')); ?>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -35,7 +36,8 @@
     <?php
     echo js(array(
         'modernizr.custom',
-        'jquery.min',
+        'jquery-1.10.1.min',
+//        'jquery-ui-1.8.16.custom.min',
         'bootstrap.min',
         'jquery.cleditor.min',
         'jquery.jqplot.min',

@@ -13,7 +13,7 @@
             <?php echo anchor('admin/dashboard', '<i class="icon-home icon-white"></i> Dashboard'); ?>
           </li>
           <li class="dropdown">
-            <?php echo anchor('#', '<i class="icon-th-list icon-white"></i> Master Tabular <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-th-list icon-white"></i> Master Tabular <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li>
                 <?php echo anchor('admin/master_tabular_general', '<i class="icon-hdd"></i> Data Umum'); ?> 
@@ -27,7 +27,7 @@
             </ul>
           </li>
           <li class="dropdown">
-            <?php echo anchor('#', '<i class="icon-align-left icon-white"></i> Tabular <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-align-left icon-white"></i> Tabular <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li>
                 <?php echo anchor('admin/tabular_general', '<i class="icon-hdd"></i> Data Umum Kecamatan'); ?> 
@@ -41,7 +41,7 @@
             </ul>
           </li>
           <li class="dropdown">
-            <?php echo anchor('#', '<i class="icon-tasks icon-white"></i> Data Master <b class="caret"></b>', 'data-toggle="dropdown" class="dropdown-toggle"'); ?>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tasks icon-white"></i> Data Master <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li>
                 <?php echo anchor('admin/user', '<i class="icon-user"></i> Data User'); ?>

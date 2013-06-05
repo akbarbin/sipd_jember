@@ -1,0 +1,12 @@
+/* 
+    Document   : ie
+    Created on : Jun 4, 2013, 11:10:53 PM
+    Author     : Mahendri Winata <mahen.0112@gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.nav-collapse.collapse {
+  height: auto !important;
+  overflow: visible !important;
+}
