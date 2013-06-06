@@ -21,8 +21,19 @@
               <li>
                 <?php echo anchor('admin/master_tabular', '<i class="icon-list-alt"></i> Data Profil'); ?>
               </li>
-              <li>
-                <?php echo anchor('admin/master_tabular_performance', '<i class="icon-tasks"></i> Data Kinerja'); ?>
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-tasks"></i> Data Kinerja</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <?php echo anchor('admin/master_tabular_performance/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/master_tabular_performance/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/master_tabular_performance/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -35,37 +46,68 @@
               <li>
                 <?php echo anchor('admin/tabular', '<i class="icon-list-alt"></i> Data Profil Kecamatan'); ?>
               </li>
-              <li>
-                <?php echo anchor('admin/tabular_performance', '<i class="icon-tasks"></i> Data Kinerja Kecamatan'); ?>
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-tasks"></i> Data Kinerja Kecamatan</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <?php echo anchor('admin/tabular_performance/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/tabular_performance/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/tabular_performance/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tasks icon-white"></i> Data Master <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li>
-                <?php echo anchor('admin/user', '<i class="icon-user"></i> Data User'); ?>
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-briefcase"></i> Data Government</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <?php echo anchor('admin/data_source', '<i class="icon-folder-open"></i> Sumber Data'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/instance', '<i class="icon-briefcase"></i> Data Instansi'); ?>
+                  </li>
+                </ul>
               </li>
-              <li>
-                <?php echo anchor('admin/data_source', '<i class="icon-folder-open"></i> Sumber Data'); ?>
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-user"></i> Manajemen User</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <?php echo anchor('admin/user', '<i class="icon-user"></i> Data User'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/role', '<i class="icon-share"></i> Data Role User'); ?>
+                  </li>
+                </ul>
               </li>
-              <li>
-                <?php echo anchor('admin/instance', '<i class="icon-briefcase"></i> Data Instansi'); ?>
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-comment"></i> Profile SIPD</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <?php echo anchor('admin/profile', '<i class="icon-edit"></i> Data Profil Info'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/image', '<i class="icon-picture"></i> Slide Gambar'); ?>
+                  </li>
+                </ul>
               </li>
-              <li>
-                <?php echo anchor('admin/sub_district', '<i class="icon-align-justify"></i> Data Kecamatan'); ?>
-              </li>
-              <li>
-                <?php echo anchor('admin/role', '<i class="icon-share"></i> Data Role User'); ?>
-              </li>
-              <li>
-                <?php echo anchor('admin/unit', '<i class="icon-tag"></i> Data Satuan'); ?>
-              </li>
-              <li>
-                <?php echo anchor('admin/profile', '<i class="icon-edit"></i> Data Profil Info'); ?>
-              </li>
-              <li>
-                <?php echo anchor('admin/image', '<i class="icon-picture"></i> Slide Gambar'); ?>
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-wrench"></i> Settings</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <?php echo anchor('admin/sub_district', '<i class="icon-align-justify"></i> Data Kecamatan'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('admin/unit', '<i class="icon-tag"></i> Data Satuan'); ?>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
