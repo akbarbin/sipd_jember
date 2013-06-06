@@ -1,6 +1,6 @@
 <footer class="footer">
   <div class="container">
-    <p>SIPD (Sistem Informasi Pembangunan Daerah) Jember</p>
-    <p>&copy; Solongs Technology 2013</p>
+    <p>Copyright &copy; <?php echo date('Y'); ?> Sistem Informasi Profil Daerah Pemerintah Kabupaten Jember</p>
+    <p>Jl. Sudirman No. 1 tlp. (0331) 421-200</p>
   </div>
 </footer>
