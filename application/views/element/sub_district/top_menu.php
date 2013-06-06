@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <?php echo anchor('admin/dashboard', 'SIPD Jember', array('class' => 'brand')); ?>
+      <?php echo anchor('admin/dashboard', 'SIPD Kab. Jember', array('class' => 'brand')); ?>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li>
@@ -21,8 +21,19 @@
               <li>
                 <?php echo anchor('sub_district/tabular', '<i class="icon-list-alt"></i> Profil'); ?>
               </li>
-              <li>
-                <?php echo anchor('sub_district/tabular_performance', '<i class="icon-tasks"></i> Kinerja'); ?>
+              <li class="dropdown-submenu">
+                <a href="#"><i class="icon-tasks"></i> Kinerja</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <?php echo anchor('sub_district/tabular_performance/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('sub_district/tabular_performance/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
+                  </li>
+                  <li>
+                    <?php echo anchor('sub_district/tabular_performance/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>

@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <?php echo anchor('admin/dashboard', 'SIPD Jember', array('class' => 'brand')); ?>
+      <?php echo anchor('admin/dashboard', 'SIPD Kab. Jember', array('class' => 'brand')); ?>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li>

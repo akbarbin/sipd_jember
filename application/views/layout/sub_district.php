@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if lt IE 7 ]><html class="no-js ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title><?php echo isset($title) ? 'SIPD Jember - ' . $title : 'SIPD Jember'; ?></title>
+    <title><?php echo isset($title) ? 'SIPD Kab. Jember - ' . $title : 'SIPD Kab. Jember'; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -26,7 +26,8 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <?php echo js(array('html5shiv')); ?>
+    <?php echo css(array('ie')); ?>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -34,7 +35,8 @@
 
     <?php
     echo js(array(
-        'jquery.min',
+        'modernizr.custom',
+        'jquery-1.10.1.min',
         'bootstrap.min',
         'jquery.jqplot.min',
         'syntaxhighlighter/scripts/shCore.min',
