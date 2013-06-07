@@ -4,7 +4,7 @@ echo bootstrap_table_title($title);
 $data = array(
     array('Kode', $instance->code),
     array('Nama', $instance->name),
-    array('Kecamatan', $instance->sub_district_name),
+//    array('Kecamatan', $instance->sub_district_name),
     array('Keterangan', $instance->description));
 echo bootstrap_table_view($data);
 

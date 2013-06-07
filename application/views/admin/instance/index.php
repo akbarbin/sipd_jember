@@ -19,7 +19,7 @@ foreach ($instances as $key => $instance) {
   echo bootstrap_tag('td', $instance->code);
   echo bootstrap_tag('td', $instance->name);
   echo bootstrap_tag('td', $instance->description);
-  echo bootstrap_tag('td', $instance->sub_district_name);
+//  echo bootstrap_tag('td', $instance->sub_district_name);
   $actions = array(
       'view' => array('name' => 'Detail', 'action' => 'view/' . $instance->id),
       'edit' => array('name' => 'Edit', 'action' => 'edit/' . $instance->id),
