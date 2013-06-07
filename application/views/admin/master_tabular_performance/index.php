@@ -2,12 +2,12 @@
 
 echo bootstrap_table_nav_dropdown(
         $title, $controller, array(
-    'add' => array('name' => 'Tambah', 'action' => 'add'),
-    'refresh' => array('name' => 'Refresh', 'action' => 'index'),
-    'generate' => array('name' => 'Generate Kinerja Kecamatan', 'action' => 'generate'),
-    'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel'),
-    'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel'),
-    'search' => array('name' => 'Cari', 'action' => 'index'),
+    'add' => array('name' => 'Tambah', 'action' => 'add/' . $type),
+    'refresh' => array('name' => 'Refresh', 'action' => 'index/' . $type),
+    'generate' => array('name' => 'Generate Kinerja Kecamatan', 'action' => 'generate/' . $type),
+    'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $type),
+    'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $type),
+//    'search' => array('name' => 'Cari', 'action' => 'index' . $type),
 ));
 
 
@@ -19,10 +19,10 @@ foreach ($master_tabulars as $key => $master_tabular) {
   echo bootstrap_tag('td', bootstrap_tag('span', $master_tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . ($master_tabular->ancestry_depth * 30) . 'px;')) . bootstrap_tag('span', $master_tabular->name, array('class' => 'text-overflow')));
   echo bootstrap_tag('td', $master_tabular->unit_name);
   $actions = array(
-      'view' => array('name' => 'Detail', 'action' => 'view/' . $master_tabular->id),
-      'add' => array('name' => 'Tambah', 'action' => 'add/' . $master_tabular->id),
-      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $master_tabular->id),
-      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $master_tabular->id),
+      'view' => array('name' => 'Detail', 'action' => 'view/' . $type . '/' . $master_tabular->id),
+      'add' => array('name' => 'Tambah', 'action' => 'add/' . $type . '/' . $master_tabular->id),
+      'edit' => array('name' => 'Edit', 'action' => 'edit/' . $type . '/' . $master_tabular->id),
+      'delete' => array('name' => 'Delete', 'action' => 'delete/' . $type . '/' . $master_tabular->id),
   );
   echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
   echo bootstrap_tag_close('tr');

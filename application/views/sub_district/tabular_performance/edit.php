@@ -2,7 +2,7 @@
 
 echo bootstrap_table_title($title);
 
-echo form_open('admin/tabular_criteria/edit/' . $id);
+echo form_open('sub_district/tabular_criteria/edit/' . $type . '/' . $id);
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
 echo bootstrap_table_head(array('Kriteria', 'Nilai', 'Satuan', 'Sumber Data'));
 echo bootstrap_tag_open('tbody');

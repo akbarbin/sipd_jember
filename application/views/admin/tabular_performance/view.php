@@ -2,15 +2,12 @@
 
 //echo bootstrap_table_title($title);
 echo bootstrap_table_nav_dropdown(
-        $title, 
-        $controller, 
-        array(
-            'add' => array('name' => 'Tambah/Edit Nilai', 'action' => 'edit/'.$id),
-            'refresh' => array('name' => 'Refresh', 'action' => 'view/'.$id),
-            'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $id),
-            'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $id),
-        ),
-        'sub_district');
+        $title, $controller, array(
+    'add' => array('name' => 'Tambah/Edit Nilai', 'action' => 'edit/' . $type . '/' . $id),
+    'refresh' => array('name' => 'Refresh', 'action' => 'view/' . $type . '/' . $id),
+    'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $type . '/' . $id),
+    'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $type . '/' . $id),
+));
 
 
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));

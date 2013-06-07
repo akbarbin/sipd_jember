@@ -7,7 +7,7 @@ echo bootstrap_table_nav_dropdown(
     'generate' => array('name' => 'Generate Data Umum Kecamatan', 'action' => 'generate'),
     'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel'),
     'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel'),
-    'search' => array('name' => 'Cari', 'action' => 'index'),
+//    'search' => array('name' => 'Cari', 'action' => 'index'),
 ));
 
 

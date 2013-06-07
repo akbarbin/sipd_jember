@@ -14,7 +14,7 @@ class Tabular_model extends App_Model {
     parent::__construct();
   }
 
-  function generate($year = NULL) {
+  function generate($year = NULL, $conditions = array()) {
     $year = (empty($year)) ? date('Y') : $year;
     $active_sub_districs = $this->get_sub_district($year);
     $sub_district_on_tabular = array();
@@ -26,7 +26,7 @@ class Tabular_model extends App_Model {
     $sub_districs = $this->Sub_district_model->get_all_where_not_in($sub_district_on_tabular);
 
     $this->load->model('Master_tabular_model');
-    $master_tabulars = $this->Master_tabular_model->get_all();
+    $master_tabulars = $this->Master_tabular_model->get_all($conditions);
     $data = array();
     foreach ($sub_districs as $key => $sub_distric) {
       $i = 0;
@@ -43,6 +43,9 @@ class Tabular_model extends App_Model {
             'ref_code' => $master_tabular->ref_code,
             'master_tabular_id' => $master_tabular->id,
         ));
+        if(isset($conditions['type'])){
+          $data[$i]['type'] = $conditions['type'];
+        }
         $i++;
       }
       $this->db->insert_batch($this->table, $data);

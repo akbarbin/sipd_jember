@@ -25,13 +25,13 @@
                 <a href="#"><i class="icon-tasks"></i> Kinerja</a>
                 <ul class="dropdown-menu">
                   <li>
-                    <?php echo anchor('sub_district/tabular_performance/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
+                    <?php echo anchor('sub_district/tabular_performance/index/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
                   </li>
                   <li>
-                    <?php echo anchor('sub_district/tabular_performance/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
+                    <?php echo anchor('sub_district/tabular_performance/index/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
                   </li>
                   <li>
-                    <?php echo anchor('sub_district/tabular_performance/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
+                    <?php echo anchor('sub_district/tabular_performance/index/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
                   </li>
                 </ul>
               </li>

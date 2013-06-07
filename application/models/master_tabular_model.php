@@ -32,10 +32,6 @@ class Master_tabular_model extends App_Model {
     $this->db->select('*')
             ->from($this->table);
     if (!empty($conditions)) {
-      if (isset($conditions['id'])) {
-        $this->db->where('id', $conditions['id']);
-        unset($conditions['id']);
-      }
       $this->db->where($conditions);
     }
 

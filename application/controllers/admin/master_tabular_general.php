@@ -98,7 +98,7 @@ class Master_tabular_general extends Admin_Controller {
     $post = $this->input->post();
     if (!empty($post)) {
       $this->load->model('Tabular_model');
-      $generate = $this->Tabular_model->generate($post['year']);
+      $generate = $this->Tabular_model->generate($post['year'], array('type' => 'umum'));
       $this->error_message('insert', $generate);
       redirect('admin/master_tabular_general');
     } else {

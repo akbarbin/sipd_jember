@@ -25,13 +25,13 @@
                 <a href="#"><i class="icon-tasks"></i> Data Kinerja</a>
                 <ul class="dropdown-menu">
                   <li>
-                    <?php echo anchor('admin/master_tabular_performance/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
+                    <?php echo anchor('admin/master_tabular_performance/index/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
                   </li>
                   <li>
-                    <?php echo anchor('admin/master_tabular_performance/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
+                    <?php echo anchor('admin/master_tabular_performance/index/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
                   </li>
                   <li>
-                    <?php echo anchor('admin/master_tabular_performance/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
+                    <?php echo anchor('admin/master_tabular_performance/index/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
                   </li>
                 </ul>
               </li>
@@ -50,13 +50,13 @@
                 <a href="#"><i class="icon-tasks"></i> Data Kinerja Kecamatan</a>
                 <ul class="dropdown-menu">
                   <li>
-                    <?php echo anchor('admin/tabular_performance/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
+                    <?php echo anchor('admin/tabular_performance/index/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>
                   </li>
                   <li>
-                    <?php echo anchor('admin/tabular_performance/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
+                    <?php echo anchor('admin/tabular_performance/index/pelayanan-umum', '<i class="icon-magnet"></i> Aspek Pelayanan Umum'); ?>
                   </li>
                   <li>
-                    <?php echo anchor('admin/tabular_performance/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
+                    <?php echo anchor('admin/tabular_performance/index/daya-saing', '<i class="icon-share"></i> Aspek Daya Saing'); ?>
                   </li>
                 </ul>
               </li>
