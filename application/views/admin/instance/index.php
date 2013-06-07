@@ -9,7 +9,7 @@ echo bootstrap_table_nav_dropdown(
 
 
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
-echo bootstrap_table_head(array('No.', 'Kode', 'Nama', 'Keterangan', 'Kecamatan', 'Aksi'));
+echo bootstrap_table_head(array('No.', 'Kode', 'Nama', 'Keterangan', 'Aksi'));
 echo bootstrap_tag_open('tbody');
 $offset = (empty($offset)) ? 0 : $offset;
 foreach ($instances as $key => $instance) {
