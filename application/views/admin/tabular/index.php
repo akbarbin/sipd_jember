@@ -11,14 +11,19 @@ if (!empty($tabular_years)) {
 
   if (isset($tabulars)) {
     echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
-    echo bootstrap_table_head(array('Profil', 'Nilai', 'Satuan', 'Sumber Data'));
+    echo bootstrap_table_head(array('Profil', 'Nilai', 'Satuan', 'Sumber Data', 'Aksi'));
     echo bootstrap_tag_open('tbody');
     foreach ($tabulars as $key => $tabular) {
       echo bootstrap_tag_open('tr');
-      echo bootstrap_tag('td', anchor('admin/tabular/view/' . $tabular->id, bootstrap_tag('span', $tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . ($tabular->ancestry_depth * 30) . 'px;')) . bootstrap_tag('span', $tabular->name, array('class' => 'text-overflow'))));
+      echo bootstrap_tag('td', bootstrap_tag('span', $tabular->ref_code, array('class' => 'tree-span', 'style' => 'padding-left:' . ($tabular->ancestry_depth * 30) . 'px;')) . bootstrap_tag('span', $tabular->name, array('class' => 'text-overflow')));
       echo bootstrap_tag('td', $tabular->value);
       echo bootstrap_tag('td', $tabular->unit_name);
       echo bootstrap_tag('td', $tabular->data_source_name);
+      $actions = array(
+          'view' => array('name' => 'Detail', 'action' => 'view/' . $tabular->id),
+          'edit' => array('name' => 'Edit', 'action' => 'edit/' . $tabular->id),
+      );
+      echo bootstrap_tag('td', bootstrap_table_action_dropdown($controller, $actions), array('width' => '110px'));
       echo bootstrap_tag_close('tr');
     }
     if (count($tabulars) == 0) {
