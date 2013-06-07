@@ -45,7 +45,7 @@ class Master_tabular_performance extends Admin_Controller {
 
     $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
             array(
-                'master_tabulars.ref_code LIKE' => '%' . $master_tabular[0]->ref_code . '.%',
+                'master_tabulars.ref_code LIKE' => $master_tabular[0]->ref_code . '.%',
                 'master_tabulars.type' => 'kinerja-' . self::$id));
 
     $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . ' ' . $master_tabular[0]->name;

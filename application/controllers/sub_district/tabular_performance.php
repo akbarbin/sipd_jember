@@ -64,7 +64,7 @@ class Tabular_performance extends Sub_District_Controller {
             array(
                 'tabulars.sub_district_id' => $this->get_login_active_sub_district_id(),
                 'tabulars.year' => $tabular[0]->year,
-                'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
+                'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
                 'tabulars.type' => 'kinerja-' . self::$id));
 
     $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . ' ' . $tabular[0]->name . ' Tahun ' . $tabular[0]->year;
@@ -83,7 +83,7 @@ class Tabular_performance extends Sub_District_Controller {
               array(
                   'tabulars.sub_district_id' => $this->get_login_active_sub_district_id(),
                   'tabulars.year' => $tabular[0]->year,
-                  'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
+                  'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
                   'tabulars.type' => 'kinerja-' . self::$id));
 
       $this->load->model('Data_source_model');

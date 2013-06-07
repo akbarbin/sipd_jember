@@ -31,7 +31,7 @@ class Master_tabular_general extends Admin_Controller {
 
     $this->data['master_tabulars'] = $this->Master_tabular_model->get_ancestry_depth(
             array(
-                'master_tabulars.ref_code LIKE' => '%'.$master_tabular[0]->ref_code.'.%',
+                'master_tabulars.ref_code LIKE' => $master_tabular[0]->ref_code . '.%',
                 'master_tabulars.type' => 'umum'));
 
     $this->data['title'] = 'Data Umum ' . $master_tabular[0]->name;
@@ -104,13 +104,13 @@ class Master_tabular_general extends Admin_Controller {
     } else {
       $start = date('Y') - 10;
       $end = date('Y') + 10;
-      for ($i = $start; $i <= $end; $i++){
+      for ($i = $start; $i <= $end; $i++) {
         $this->data['years'][$i] = $i;
       }
       $this->data['year'] = array(date('Y'));
-      
+
       $this->data['title'] = 'Generate Data Umum Kecamatan';
-      $this->load->view('layout/admin',  $this->data);
+      $this->load->view('layout/admin', $this->data);
     }
   }
 
