@@ -5,8 +5,8 @@ echo bootstrap_table_nav_dropdown(
     'add' => array('name' => 'Tambah', 'action' => 'add/' . $type),
     'refresh' => array('name' => 'Refresh', 'action' => 'index/' . $type),
     'generate' => array('name' => 'Generate Kinerja Kecamatan', 'action' => 'generate/' . $type),
-    'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $type),
-    'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $type),
+//    'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $type),
+//    'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $type),
 //    'search' => array('name' => 'Cari', 'action' => 'index' . $type),
 ));
 
