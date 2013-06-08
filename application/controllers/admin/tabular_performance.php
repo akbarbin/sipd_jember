@@ -87,12 +87,12 @@ class Tabular_performance extends Admin_Controller {
       $this->data['id'] = $this->uid;
       $this->data['type'] = self::$id;
 
-      $this->data['tabulars'] = $this->Tabular_model->get_ancestry_depth(
+      $this->data['tabulars'] = $this->set_data_with_parent($this->Tabular_model->get_ancestry_depth(
               array(
                   'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
                   'tabulars.year' => $tabular[0]->year,
                   'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
-                  'tabulars.type' => 'kinerja-' . self::$id));
+                  'tabulars.type' => 'kinerja-' . self::$id)));
 
       $this->load->model('Sub_district_model');
       $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));

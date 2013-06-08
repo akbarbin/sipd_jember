@@ -260,6 +260,22 @@ class App_Controller extends CI_Controller {
       return NULL;
     }
   }
+  
+  protected function get_is_parent_status($parent_id = NULL, $data = array()){
+    foreach ($data as $key => $value) {
+      if($value->parent_id == $parent_id){
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+  
+  protected function set_data_with_parent($data = array()){
+    foreach ($data as $key => $value) {
+        $data[$key]->is_parent = $this->get_is_parent_status($value->master_tabular_id, $data);
+    }
+    return $data;
+  }
 
 }
 

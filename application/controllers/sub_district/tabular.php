@@ -63,12 +63,12 @@ class Tabular extends Sub_District_Controller {
       $this->data['ancestry_depth'] = $tabular[0]->ancestry_depth;
       $this->data['id'] = self::$id;
 
-      $this->data['tabulars'] = $this->Tabular_model->get_ancestry_depth(
+      $this->data['tabulars'] = $this->set_data_with_parent($this->Tabular_model->get_ancestry_depth(
               array(
                   'tabulars.sub_district_id' => $this->get_login_active_sub_district_id(),
                   'tabulars.year' => $tabular[0]->year,
                   'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
-                  'tabulars.type' => 'profil'));
+                  'tabulars.type' => 'profil')));
 
       $this->load->model('Data_source_model');
       $this->data['data_sources'] = $this->get_list($this->Data_source_model->get_all(array('sub_district_id' => $this->get_login_active_sub_district_id())));
