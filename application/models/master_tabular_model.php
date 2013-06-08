@@ -19,7 +19,7 @@ class Master_tabular_model extends App_Model {
             ->from($this->table)
             ->join('units', 'units.id = master_tabulars.unit_id', 'left')
             ->where($coditions)
-            ->order_by('master_tabulars.ref_code');
+            ->order_by('master_tabulars.id');
     if ($count) {
       $master_tabulars = $this->db->count_all_results();
     } else {

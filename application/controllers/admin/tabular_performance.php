@@ -88,11 +88,11 @@ class Tabular_performance extends Admin_Controller {
       $this->data['type'] = self::$id;
 
       $this->data['tabulars'] = $this->set_data_with_parent($this->Tabular_model->get_ancestry_depth(
-              array(
-                  'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
-                  'tabulars.year' => $tabular[0]->year,
-                  'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
-                  'tabulars.type' => 'kinerja-' . self::$id)));
+                      array(
+                          'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
+                          'tabulars.year' => $tabular[0]->year,
+                          'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
+                          'tabulars.type' => 'kinerja-' . self::$id)));
 
       $this->load->model('Sub_district_model');
       $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
@@ -107,6 +107,106 @@ class Tabular_performance extends Admin_Controller {
       $this->error_message('update', $update);
       redirect('admin/tabular_performance/view/' . self::$id);
     }
+  }
+
+  public function export_excel() {
+    $this->load->library('php_excel/PHPExcel');
+    $phpExcel = new PHPExcel();
+
+    $tabular = $this->Tabular_model->get_all(array('id' => $this->uid));
+    $this->load->model('Sub_district_model');
+    $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
+    $title = 'Data Kinerja ' . $tabular[0]->name . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
+    $phpExcel->getProperties()->setCreator('SIPD Kab. Jember')
+            ->setTitle($title)
+            ->setDescription($title);
+
+    $phpExcel->setActiveSheetIndex(0)
+            ->setCellValue('A' . 1, 'Kecamatan  : ' . $sub_district[0]->name)
+            ->setCellValue('A' . 2, 'Jenis Data    : ' . $tabular[0]->name)
+            ->setCellValue('A' . 3, 'Tahun            : ' . $tabular[0]->year);
+
+    $start_row = $row = 5;
+
+    $phpExcel->setActiveSheetIndex(0)
+            ->setCellValue('A' . $row, 'Profil')
+            ->setCellValue('B' . $row, 'Nilai')
+            ->setCellValue('C' . $row, 'Satuan')
+            ->setCellValue('D' . $row, 'Sumber Data');
+    $row++;
+
+    $datas = $this->Tabular_model->get_ancestry_depth(
+            array(
+                'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
+                'tabulars.year' => $tabular[0]->year,
+                'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
+                'tabulars.type' => 'kinerja-' . self::$id));
+    foreach ($datas as $data) {
+      $padding = ($data->ancestry_depth - ($tabular[0]->ancestry_depth + 1)) * 5;
+      $name = str_repeat(' ', $padding) . $data->ref_code . str_repeat(' ', 5) . $data->name;
+      $phpExcel->setActiveSheetIndex(0)
+              ->setCellValue('A' . $row, $name)
+              ->setCellValue('B' . $row, $data->value)
+              ->setCellValue('C' . $row, $data->unit_name)
+              ->setCellValue('D' . $row, $data->data_source_name);
+      $row++;
+    }
+
+    $body = array(
+        'borders' => array(
+            'allborders' => array(
+                'style' => PHPExcel_Style_Border::BORDER_THIN,
+                'color' => array('argb' => '000000'),
+            ),
+        ),
+        'font' => array(
+            'size' => 12
+        ),
+        'alignment' => array(
+            'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+        ),
+    );
+
+    $head = array(
+        'borders' => array(
+            'allborders' => array(
+                'style' => PHPExcel_Style_Border::BORDER_THIN,
+                'color' => array('argb' => '000000'),
+            ),
+        ),
+        'font' => array(
+            'size' => 12,
+            'bold' => true,
+            'color' => array('argb' => 'FFFFFF'),
+        ),
+        'alignment' => array(
+            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+        ),
+        'fill' => array(
+            'type' => PHPExcel_Style_Fill::FILL_SOLID,
+            'color' => array('argb' => '000000'),
+        ),
+    );
+
+    $phpExcel->getActiveSheet()->getStyle('A' . $start_row . ':D' . $start_row)->applyFromArray($head);
+    $phpExcel->getActiveSheet()->getStyle('A' . ($start_row + 1) . ':D' . ($row - 1))->applyFromArray($body);
+    $phpExcel->getActiveSheet()->setTitle('Data Profil');
+    foreach (array('A', 'B', 'C', 'D') as $value) {
+      $phpExcel->getActiveSheet()->getColumnDimension($value)->setAutoSize(true);
+    }
+    for ($i = 1; $i < $row; $i++) {
+      $phpExcel->getActiveSheet()->getRowDimension($i)->setRowHeight(20);
+    }
+    $phpExcel->setActiveSheetIndex(0);
+
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $title . '.xlsx"');
+    header('Cache-Control: max-age=0');
+
+    $phpExcelWriter = PHPExcel_IOFactory::createWriter($phpExcel, 'Excel2007');
+    $phpExcelWriter->save('php://output');
+    exit;
   }
 
 }

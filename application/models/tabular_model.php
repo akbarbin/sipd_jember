@@ -83,7 +83,7 @@ class Tabular_model extends App_Model {
             ->join('data_sources', 'data_sources.id = tabulars.data_source_id', 'left')
             ->join('units', 'units.id = tabulars.unit_id', 'left')
             ->where($coditions)
-            ->order_by('ref_code');
+            ->order_by('tabulars.master_tabular_id');
     if ($count) {
       $tabulars = $this->db->count_all_results();
     } else {

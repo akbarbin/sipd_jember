@@ -26,7 +26,6 @@ class Tabular extends Admin_Controller {
       $sub_district = $this->Sub_district_model->get_all(array('id' => $post['sub_district_id']));
 
       $this->data['title'] = 'Data Tabular Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $post['year'];
-      
     } else {
       $this->data['title'] = 'Data Profil Kecamatan';
     }
@@ -72,11 +71,11 @@ class Tabular extends Admin_Controller {
       $this->data['id'] = self::$id;
 
       $this->data['tabulars'] = $this->set_data_with_parent($this->Tabular_model->get_ancestry_depth(
-              array(
-                  'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
-                  'tabulars.year' => $tabular[0]->year,
-                  'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
-                  'tabulars.type' => 'profil')));
+                      array(
+                          'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
+                          'tabulars.year' => $tabular[0]->year,
+                          'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
+                          'tabulars.type' => 'profil')));
 
       $this->load->model('Sub_district_model');
       $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
@@ -94,26 +93,105 @@ class Tabular extends Admin_Controller {
   }
 
   public function export_excel() {
-    $tabular = $this->Tabular_model->get_all(array('id' => self::$id));
-    $this->data['ancestry_depth'] = $tabular[0]->ancestry_depth;
-    $this->data['id'] = self::$id;
+    $this->load->library('php_excel/PHPExcel');
+    $phpExcel = new PHPExcel();
 
-    $this->data['tabulars'] = $this->Tabular_model->get_ancestry_depth(
+    $tabular = $this->Tabular_model->get_all(array('id' => self::$id));
+    $this->load->model('Sub_district_model');
+    $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
+    $title = 'Data Profil ' . $tabular[0]->name . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
+    $phpExcel->getProperties()->setCreator('SIPD Kab. Jember')
+            ->setTitle($title)
+            ->setDescription($title);
+
+    $phpExcel->setActiveSheetIndex(0)
+            ->setCellValue('A' . 1, 'Kecamatan  : ' . $sub_district[0]->name)
+            ->setCellValue('A' . 2, 'Jenis Data    : ' . $tabular[0]->name)
+            ->setCellValue('A' . 3, 'Tahun            : ' . $tabular[0]->year);
+
+    $start_row = $row = 5;
+
+    $phpExcel->setActiveSheetIndex(0)
+            ->setCellValue('A' . $row, 'Profil')
+            ->setCellValue('B' . $row, 'Nilai')
+            ->setCellValue('C' . $row, 'Satuan')
+            ->setCellValue('D' . $row, 'Sumber Data');
+    $row++;
+
+    $datas = $this->Tabular_model->get_ancestry_depth(
             array(
                 'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
                 'tabulars.year' => $tabular[0]->year,
-                'tabulars.ref_code LIKE' => '%' . $tabular[0]->ref_code . '.%',
+                'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
                 'tabulars.type' => 'profil'));
+    foreach ($datas as $data) {
+      $padding = ($data->ancestry_depth - ($tabular[0]->ancestry_depth + 1)) * 5;
+      $name = str_repeat(' ', $padding) . $data->ref_code . str_repeat(' ', 5) . $data->name;
+      $phpExcel->setActiveSheetIndex(0)
+              ->setCellValue('A' . $row, $name)
+              ->setCellValue('B' . $row, $data->value)
+              ->setCellValue('C' . $row, $data->unit_name)
+              ->setCellValue('D' . $row, $data->data_source_name);
+      $row++;
+    }
 
-    $this->load->model('Sub_district_model');
-    $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
+    $body = array(
+        'borders' => array(
+            'allborders' => array(
+                'style' => PHPExcel_Style_Border::BORDER_THIN,
+                'color' => array('argb' => '000000'),
+            ),
+        ),
+        'font' => array(
+            'size' => 12
+        ),
+        'alignment' => array(
+            'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+        ),
+    );
 
-    $this->data['title'] = 'Data Profil ' . $tabular[0]->name . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
+    $head = array(
+        'borders' => array(
+            'allborders' => array(
+                'style' => PHPExcel_Style_Border::BORDER_THIN,
+                'color' => array('argb' => '000000'),
+            ),
+        ),
+        'font' => array(
+            'size' => 12,
+            'bold' => true,
+            'color' => array('argb' => 'FFFFFF'),
+        ),
+        'alignment' => array(
+            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+            'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+        ),
+        'fill' => array(
+            'type' => PHPExcel_Style_Fill::FILL_SOLID,
+            'color' => array('argb' => '000000'),
+        ),
+    );
 
-    $this->load->library('excel_writer/Writer');
+    $phpExcel->getActiveSheet()->getStyle('A' . $start_row . ':D' . $start_row)->applyFromArray($head);
+    $phpExcel->getActiveSheet()->getStyle('A' . ($start_row + 1) . ':D' . ($row - 1))->applyFromArray($body);
+    $phpExcel->getActiveSheet()->setTitle('Data Profil');
+    foreach (array('A', 'B', 'C', 'D') as $value) {
+      $phpExcel->getActiveSheet()->getColumnDimension($value)->setAutoSize(true);
+    }
+    for ($i = 1; $i < $row; $i++) {
+      $phpExcel->getActiveSheet()->getRowDimension($i)->setRowHeight(20);
+    }
+    $phpExcel->setActiveSheetIndex(0);
 
-//    $this->Spreadsheet_Excel_Writer->send('text.xls');
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="' . $title . '.xlsx"');
+    header('Cache-Control: max-age=0');
+
+    $phpExcelWriter = PHPExcel_IOFactory::createWriter($phpExcel, 'Excel2007');
+    $phpExcelWriter->save('php://output');
+    exit;
   }
 
 }
+
 ?>
