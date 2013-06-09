@@ -7,6 +7,11 @@ if (!defined('BASEPATH'))
  * @author Mahendri Winata <mahen.0112@gmail.com>
  */
 class Content extends Public_Controller {
-  
+
+  public function index() {
+    $this->load->view('layout/default');
+  }
+
 }
+
 ?>

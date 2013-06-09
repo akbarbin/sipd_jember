@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* ---------------------------------------------------------------------- */
+/* Style Switcher
+/* ---------------------------------------------------------------------- */
+
+#style-switcher {
+	font-size: 12px;
+	color: #222;
+	background-color: #f5f5f5;
+	width: 195px;
+	position: fixed;
+	left: 0;
+	top: 50px;
+	z-index: 600;
+	display: block !important; /* mobile devices */
+}
+
+#style-switcher h2 {
+	font-size: 16px;
+	color: #fff;
+	background-color: #222;
+	padding: 9px 10px;
+	margin: 0;
+	text-shadow: 0 -1px rgba(0, 0, 0, 0.8);
+}
+
+#style-switcher h3 {
+	font-size: 13px;
+	margin-bottom: 0;
+}
+
+#options {
+	padding: 15px 10px;
+	border-right: 1px solid #e0e0e0;
+}
+
+#reset {
+	padding: 0 10px 15px;
+	border-right: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+#style-switcher h2 a {
+	display: block;
+	background: #222 url(style-switcher.png) no-repeat center center;
+	width: 39px;
+	height: 39px;
+	position: absolute;
+	top: 0;
+	right: -39px;
+	text-indent: -9999px;
+}
+
+.thumbs { 
+	list-style: none; 
+	margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.thumbs, #layout-switcher {
+	border-bottom: 1px solid #e0e0e0; 
+	padding-bottom: 15px; 
+}
+
+.thumbs:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;	
+}
+
+.thumbs li { 
+	float: left; 
+	margin: 0 5px 5px 0; 
+}
+
+.thumbs li a { 
+	display: block; 
+	width: 15px; 
+	height: 15px; 
+	cursor: pointer; 
+	box-shadow: 0 0 0 1px #222 inset; 
+}
+
+.thumbs.mobile li a {
+	width: 30px;
+	height: 30px;
+}
+
+.thumbs li a.active { 
+	box-shadow: 0 0 0 2px #222 inset; 
+}
+
+#layout-switcher {
+    margin-top: 10px;
+}
+
+#layout-switcher a {
+	background-color: #fff;
+	border: 2px solid #ccc;
+	padding: 5px 13px;
+	color: #222 !important;
+	margin-bottom: 0;
+	border-radius: 0;
+	text-shadow: none;
+	background-image: none;
+}
+
+#layout-switcher a:hover, #layout-switcher a.active {
+	border-color: #222;
+}
+
+#reset a { 
+	margin: 0;
+}
+
+/* Predefined Colors */
+
+.blue { background-color: #4d70b1; }
+.blue2 { background-color: #2A8FBD; }
+.green { background-color: #7FAF1B; }
+.orange { background-color: #F78E0C; }
+.pink { background-color: #BD2346; }
+.purple { background-color: #723F8E; }
+.red { background-color: #E64141; }
+.retro-green { background-color: #6D8D5B; }
+.teal { background-color: #4FA29A; }
+.yellow { background-color: #FBB829; }
+
+/* Background Patterns */
+
+.bg-patterns li a {
+	background-color: #fff;		
+}
+
+.boxed-bg-1 { background-image: url(../images/background-patterns/boxed/wild_oliva.png); }
+.boxed-bg-2 { background-image: url(../images/background-patterns/boxed/first_aid_kit.png); }
+.boxed-bg-3 { background-image: url(../images/background-patterns/boxed/graphy.png); }
+.boxed-bg-4 { background-image: url(../images/background-patterns/boxed/bedge_grunge.png); }
+.boxed-bg-5 { background-image: url(../images/background-patterns/boxed/norwegian_rose.png); }
+.boxed-bg-6 { background-image: url(../images/background-patterns/boxed/cubes.png); }
+.boxed-bg-7 { background-image: url(../images/background-patterns/boxed/debut_dark.png); }
+.boxed-bg-8 { background-image: url(../images/background-patterns/boxed/diagonal-noise.png); }
+.boxed-bg-9 { background-image: url(../images/background-patterns/boxed/lghtmesh.png); }
+.boxed-bg-10 { background-image: url(../images/background-patterns/boxed/light_alu.png); }
+.boxed-bg-11 { background-image: url(../images/background-patterns/boxed/noisy_grid.png); }
+.boxed-bg-12 { background-image: url(../images/background-patterns/boxed/farmer.png); }
+.boxed-bg-13 { background-image: url(../images/background-patterns/boxed/rough_diagonal.png); }
+.boxed-bg-14 { background-image: url(../images/background-patterns/boxed/mirrored_squares.png); }
+.boxed-bg-15 { background-image: url(../images/background-patterns/boxed/nasty_fabric.png); }
+.boxed-bg-16 { background-image: url(../images/background-patterns/boxed/otis_redding.png); }
+.boxed-bg-17 { background-image: url(../images/background-patterns/boxed/ravenna.png); }
+.boxed-bg-18 { background-image: url(../images/background-patterns/boxed/soft_wallpaper.png); }
+.boxed-bg-19 { background-image: url(../images/background-patterns/boxed/shattered.png); }
+.boxed-bg-20 { background-image: url(../images/background-patterns/boxed/wavecut.png); }
+.boxed-bg-21 { background-image: url(../images/background-patterns/boxed/grid.png); }
+
+.wide-pt-1, .boxed-pt-1 { background-image: url(../images/page-title-bg/grey.png); }
+.wide-pt-2, .boxed-pt-2 { background-image: url(../images/page-title-bg/bright-squares.png); }
+.wide-pt-3, .boxed-pt-3 { background-image: url(../images/page-title-bg/gplaypattern.png); }
+.wide-pt-4, .boxed-pt-4 { background-image: url(../images/page-title-bg/light-wool.png); }
+.wide-pt-5, .boxed-pt-5 { background-image: url(../images/page-title-bg/noise-pattern-with-crosslines.png); }
+.wide-pt-6, .boxed-pt-6 { background-image: url(../images/page-title-bg/strange-bullseyes.png); }
+.wide-pt-7, .boxed-pt-7 { background-image: url(../images/page-title-bg/subtle-freckles.png); }
+
+@media only screen and (max-width: 1029px) {#style-switcher {display: none;}}
