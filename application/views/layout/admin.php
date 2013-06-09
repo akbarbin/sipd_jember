@@ -50,7 +50,8 @@
         'chart/jqplot.pointLabels.min',
 //        'ckeditor/ckeditor',
         'jquery.colorbox-min',
-        'custom-script'
+        'uniform.jquery',
+        'custom-script',
     ));
     ?>
   </head>

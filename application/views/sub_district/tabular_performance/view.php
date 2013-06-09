@@ -2,16 +2,16 @@
 
 //echo bootstrap_table_title($title);
 echo bootstrap_table_nav_dropdown(
-        $title, 
-        $controller, 
-        array(
-            'add' => array('name' => 'Tambah/Edit Nilai', 'action' => 'edit/'.$type.'/' . $id),
-            'refresh' => array('name' => 'Refresh', 'action' => 'view/'.$type.'/' . $id),
-            'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $type.'/'. $id),
-            'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $type.'/'. $id),
-        ),
-        'sub_district');
+        $title, $controller, array(
+    'add' => array('name' => 'Tambah/Edit Nilai', 'action' => 'edit/' . $type . '/' . $id),
+    'refresh' => array('name' => 'Refresh', 'action' => 'view/' . $type . '/' . $id),
+    'export-excel' => array('name' => 'Ekspor Excel', 'action' => 'export_excel/' . $type . '/' . $id),
+//            'import-excel' => array('name' => 'Import Excel', 'action' => 'import_excel/' . $type.'/'. $id),
+        ), 'sub_district');
 
+echo form_open_multipart('sub_district/tabular/import_excel/' . $type . '/' . $id, array('class' => 'form-horizontal'));
+echo bootstrap_form_upload('file', NULL, array('placeholder' => 'Import Excel', 'label' => 'Import Excel', 'after' => form_submit(NULL, 'Simpan', 'class="btn btn-primary"')));
+echo form_close();
 
 echo bootstrap_tag_open('table', array('class' => 'table table-bordered table-striped table-hover bg-white'));
 echo bootstrap_table_head(array('Kriteria', 'Nilai', 'Satuan', 'Sumber Data'));

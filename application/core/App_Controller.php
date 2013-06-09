@@ -100,6 +100,7 @@ class App_Controller extends CI_Controller {
     }
     return $list;
   }
+
   protected function set_data_before_update($data = array()) {
     if (isset($data['id']))
       unset($data['id']);
@@ -260,19 +261,32 @@ class App_Controller extends CI_Controller {
       return NULL;
     }
   }
-  
-  protected function get_is_parent_status($parent_id = NULL, $data = array()){
+
+  protected function upload_excel($field = 'file') {
+    $dir = './webroot/excel/';
+    $file_name = strtolower(rand(1, 10000) . '_' . str_replace(' ', '_', $_FILES[$field]['name']));
+    $upload = array(
+        'upload_path' => $dir,
+        'allowed_types' => 'xls|xlsx',
+        'file_name' => $file_name);
+
+    $this->load->library('upload', $upload);
+    $this->upload->do_upload($field);
+    return $file_name;
+  }
+
+  protected function get_is_parent_status($parent_id = NULL, $data = array()) {
     foreach ($data as $key => $value) {
-      if($value->parent_id == $parent_id){
+      if ($value->parent_id == $parent_id) {
         return TRUE;
       }
     }
     return FALSE;
   }
-  
-  protected function set_data_with_parent($data = array()){
+
+  protected function set_data_with_parent($data = array()) {
     foreach ($data as $key => $value) {
-        $data[$key]->is_parent = $this->get_is_parent_status($value->master_tabular_id, $data);
+      $data[$key]->is_parent = $this->get_is_parent_status($value->master_tabular_id, $data);
     }
     return $data;
   }

@@ -43,7 +43,7 @@ class Tabular_model extends App_Model {
             'ref_code' => $master_tabular->ref_code,
             'master_tabular_id' => $master_tabular->id,
         ));
-        if(isset($conditions['type'])){
+        if (isset($conditions['type'])) {
           $data[$i]['type'] = $conditions['type'];
         }
         $i++;
@@ -128,7 +128,6 @@ class Tabular_model extends App_Model {
     }
     if (!empty($update)) {
       return $this->db->update_batch($this->table, $update, 'id');
-      ;
     } else {
       return TRUE;
     }
@@ -140,6 +139,25 @@ class Tabular_model extends App_Model {
             ->from($this->table)
             ->where($conditions);
     return $this->db->get()->result();
+  }
+
+  function save_all_import($data = array(), $primary_key = 'id') {
+    $before_save = array();
+    foreach ($data as $value) {
+      $before_save[] = $this->setUpdateData($value);
+    }
+    return $this->db->update_batch($this->table, $before_save, $primary_key);
+  }
+
+  function save($data = array(), $id = NULL, $primary_key = 'id') {
+    if (empty($id)) {
+      $insert = $this->setInsertData($data);
+      return $this->db->insert($this->table, $insert);
+    } else {
+      $this->db->where($primary_key, $id);
+      $update = $this->setUpdateData($data);
+      return $this->db->update($this->table, $update);
+    }
   }
 
 }

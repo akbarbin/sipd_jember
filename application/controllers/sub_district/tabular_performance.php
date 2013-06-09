@@ -197,6 +197,46 @@ class Tabular_performance extends Sub_District_Controller {
     $phpExcelWriter->save('php://output');
     exit;
   }
+  public function import_excel() {
+    $file_name = $this->upload_excel();
+    $this->load->model('Excel_upload_model');
+    $tabular = $this->Tabular_model->get_all(array('id' => $this->uid));
+    $data = array(
+        'name' => $file_name,
+        'sub_district_id' => $tabular[0]->sub_district_id,
+        'year' => $tabular[0]->year,
+        'master_tabular_id' => $tabular[0]->master_tabular_id,
+        'type' => $tabular[0]->type);
+    $update = $this->Excel_upload_model->save($data);
+    if ($update) {
+      $this->load->library('php_excel/PHPExcel');
+      $phpExcel = PHPExcel_IOFactory::load('webroot/excel/' . $file_name);
+      $sheetData = $phpExcel->getActiveSheet()->toArray(null, true, true, true);
+      $start_row = 5;
+      $save = array();
+      $tabulars = $this->set_data_with_parent($this->Tabular_model->get_ancestry_depth(array(
+                  'tabulars.sub_district_id' => $tabular[0]->sub_district_id,
+                  'tabulars.year' => $tabular[0]->year,
+                  'tabulars.ref_code LIKE' => $tabular[0]->ref_code . '.%',
+                  'tabulars.type' => 'kinerja-' . self::$id)));
+      foreach ($sheetData as $key => $value) {
+        if ($key > $start_row) {
+          if (!$tabulars[($key - $start_row - 1)]->is_parent && !empty($value['B'])) {
+//            $save[] = array(
+//                'id' => $tabulars[($key - $start_row - 1)]->id,
+//                'value' => $value['B']
+//            );
+            $this->Tabular_model->save(array('value' => $value['B']), $tabulars[($key - $start_row - 1)]->id);
+          }
+        }
+      }
+//      $save = $this->Tabular_model->save_all_import($save);
+      $this->error_message('update', TRUE);
+      redirect('sub_district/tabular_performance/view/' . self::$id . '/' . $this->uid);
+    }
+    $this->error_message('update', FALSE);
+    redirect('sub_district/tabular_performance/view/' . self::$id . '/' . $this->uid);
+  }
   
 }
 

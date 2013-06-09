@@ -47,6 +47,7 @@
         'chart/jqplot.cursor.min',
         'chart/jqplot.pointLabels.min',
         'jquery.colorbox-min',
+        'uniform.jquery',
         'custom-script'
     ));
     ?>
