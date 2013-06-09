@@ -214,7 +214,7 @@ class App_Controller extends CI_Controller {
   }
 
   protected function upload_image($field = 'image') {
-    $dir = './webroot/images/';
+    $dir = './webroot/content/images/';
     $image_name = strtolower(rand(1, 10000) . '_' . $_FILES[$field]['name']);
     $upload = array(
         'upload_path' => $dir,
@@ -229,8 +229,8 @@ class App_Controller extends CI_Controller {
 
       $thumb = array(
           'image_library' => 'GD2',
-          'source_image' => 'webroot/images/' . $image_name,
-          'new_image' => 'webroot/images/thumb_' . $image_name,
+          'source_image' => 'webroot/content/images/' . $image_name,
+          'new_image' => 'webroot/content/images/thumb_' . $image_name,
           'quality' => 100,
           'maintain_ratio' => FALSE,
           'width' => 128,
@@ -244,14 +244,14 @@ class App_Controller extends CI_Controller {
       $thumb['maintain_ratio'] = TRUE;
       $thumb['width'] = 512;
       $thumb['height'] = 384;
-      $thumb['new_image'] = 'webroot/images/medium_' . $image_name;
+      $thumb['new_image'] = 'webroot/content/images/medium_' . $image_name;
       $this->image_lib->initialize($thumb);
       $this->image_lib->resize();
       $this->image_lib->clear();
 
       $thumb['width'] = 1024;
       $thumb['height'] = 768;
-      $thumb['new_image'] = 'webroot/images/large_' . $image_name;
+      $thumb['new_image'] = 'webroot/content/images/large_' . $image_name;
       $this->image_lib->initialize($thumb);
       $this->image_lib->resize();
       $this->image_lib->clear();
@@ -263,7 +263,7 @@ class App_Controller extends CI_Controller {
   }
 
   protected function upload_excel($field = 'file') {
-    $dir = './webroot/excel/';
+    $dir = './webroot/content/excel/';
     $file_name = strtolower(rand(1, 10000) . '_' . str_replace(' ', '_', $_FILES[$field]['name']));
     $upload = array(
         'upload_path' => $dir,
