@@ -7,7 +7,7 @@
           <li><a href="index-3.html">Home 2 &ndash; Revolution Slider + Layout Variation</a></li>
         </ul>
       </li>
-      <li class="current"><a href="#" rel="submenu2">Templates</a>
+      <li><a href="#" rel="submenu2">Templates</a>
         <ul id="submenu2" class="ddsubmenustyle">
           <li><a href="about-us.html">About Us</a></li>
           <li><a href="services.html">Services</a></li>

@@ -65,8 +65,6 @@
   <body class="boxed">
     <div id="wrap">
       <header id="header" class="container clearfix">
-        <h1 id="logo"><a href="/"><img src="<?php echo base_url(); ?>webroot/images/logo.png" alt="Exquiso"></a></h1>
-
         <?php $this->load->view('element/default/top_menu'); ?>
       </header>
 

@@ -140,7 +140,7 @@ ul {
   margin: 0 auto;
   box-shadow: 0 0 8px rgba(0,0,0,0.11);
   overflow: hidden;
-  background-color: #fff;
+  background: url(../images/header.png) no-repeat #FFF;
 }
 
 .container {
@@ -289,6 +289,10 @@ mark {
 /* Header
 /* ---------------------------------------------------------------------- */
 
+#header{
+  padding-top: 75px;
+  height: 75px;
+}
 /* Logo */
 
 #logo {
@@ -312,7 +316,8 @@ mark {
 /* Navigation
 /* ---------------------------------------------------------------------- */
 #nav {
-  float: right;
+  float: left;
+  left: 82px;
   position: relative;
 }
 
@@ -332,8 +337,9 @@ ul#navlist li a {
   color: #333;
   text-transform: uppercase;
   border-top: 3px solid transparent;	
-  height: 88px;
-  line-height: 88px; /* vertically aligns text */
+  height: 62px;
+  line-height: 72px; /* vertically aligns text */
+  margin-top: 10px;
 }
 
 /* Drop-Down Menus */
