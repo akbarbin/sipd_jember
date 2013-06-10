@@ -3,9 +3,8 @@
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    <meta name="description" content="SIPD (Sistem Informasi Profil Daerah) Jember">
+    <meta name="author" content="Mahendri Winata (mahen.0112@gmail.com)">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <?php
@@ -21,7 +20,7 @@
     <?php echo css(array('ie')); ?>
     <![endif]-->
 
-    <link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <?php echo link_tag(base_url() . 'webroot/img/favicon.png', 'shortcut icon', 'image/ico'); ?>
 
     <?php
     echo js(array(
