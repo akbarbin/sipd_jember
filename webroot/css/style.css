@@ -1927,3 +1927,12 @@ p.footer {
 .one-inner{
   width: 97% !important;
 }
+
+.text-justify{
+  text-align: justify;
+}
+
+.tab-address{
+  width: 100px;
+  display: inline-block;
+}

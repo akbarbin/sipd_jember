@@ -27,7 +27,7 @@
               <span class="iconbox-icon"></span>
               <?php echo $profile['pendahuluan']['title'] ?>
             </h3>
-            <p>
+            <p class="text-justify">
               <?php echo $profile['pendahuluan']['content'] ?>
             </p>
           </a>
@@ -41,7 +41,7 @@
               <span class="iconbox-icon"></span>
               <?php echo $profile['visi-misi']['title'] ?>
             </h3>
-            <p>
+            <p class="text-justify">
               <?php echo $profile['visi-misi']['content'] ?>
             </p>
           </a>
@@ -59,7 +59,7 @@
               <span class="iconbox-icon"></span>
               <?php echo $profile['tentang-sipd']['title'] ?>
             </h3>
-            <p>
+            <p class="text-justify">
               <?php echo $profile['tentang-sipd']['content'] ?>
             </p>
           </a>

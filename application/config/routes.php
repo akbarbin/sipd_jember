@@ -44,6 +44,7 @@ if (!defined('BASEPATH'))
 $route['default_controller'] = "profile";
 $route['404_override'] = '';
 $route['login'] = 'user/login';
+$route['contact'] = 'profile/contact';
 
 
 /* End of file routes.php */
