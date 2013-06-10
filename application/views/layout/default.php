@@ -12,7 +12,7 @@
         'style',
         'responsive',
         'colors/blue',
-        '../style-switcher/style-switcher'
+//        '../style-switcher/style-switcher'
     ));
     ?>
 
@@ -28,7 +28,7 @@
         'ie',
         'jquery.easing.1.3',
         'modernizr.custom',
-        '../style-switcher/style-switcher',
+//        '../style-switcher/style-switcher',
         'ddlevelsmenu',
         'tinynav.min',
         'jquery.validate.min',
