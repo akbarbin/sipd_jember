@@ -106,7 +106,9 @@
           </li>
         </ul>
       </li>
-      <li><a href="#">Kontak</a></li>
+      <li>
+        <?php echo anchor('contact', 'Kontak');?>
+      </li>
       <li>
         <?php echo anchor('login', 'Login');?>
       </li>
