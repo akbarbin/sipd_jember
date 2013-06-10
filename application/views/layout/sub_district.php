@@ -14,7 +14,6 @@
     echo css(array(
         'bootstrap.min',
         'bootstrap-responsive.min',
-        'style',
         'admin',
         'docs',
         'jquery.jqplot.min',

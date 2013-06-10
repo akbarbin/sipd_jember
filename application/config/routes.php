@@ -41,7 +41,7 @@ if (!defined('BASEPATH'))
   |
  */
 
-$route['default_controller'] = "content";
+$route['default_controller'] = "profile";
 $route['404_override'] = '';
 $route['login'] = 'user/login';
 

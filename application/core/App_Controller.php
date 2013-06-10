@@ -242,15 +242,15 @@ class App_Controller extends CI_Controller {
       $this->image_lib->clear();
 
       $thumb['maintain_ratio'] = TRUE;
-      $thumb['width'] = 512;
-      $thumb['height'] = 384;
+      $thumb['width'] = 350;
+      $thumb['height'] = 149;
       $thumb['new_image'] = 'webroot/content/images/medium_' . $image_name;
       $this->image_lib->initialize($thumb);
       $this->image_lib->resize();
       $this->image_lib->clear();
 
-      $thumb['width'] = 1024;
-      $thumb['height'] = 768;
+      $thumb['width'] = 700;
+      $thumb['height'] = 298;
       $thumb['new_image'] = 'webroot/content/images/large_' . $image_name;
       $this->image_lib->initialize($thumb);
       $this->image_lib->resize();

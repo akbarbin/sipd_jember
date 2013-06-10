@@ -1918,3 +1918,12 @@ p.footer {
   text-align: center;
   font-size: 13px;
 }
+
+.half-inner {
+  width: 47% !important;
+  margin-right: 3% !important;
+}
+
+.one-inner{
+  width: 97% !important;
+}

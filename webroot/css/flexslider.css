@@ -84,13 +84,13 @@ html[xmlns] .slides {display: block;}
 	max-height: 300px;
 	position: absolute;
 	left: 40px;
-	bottom: 132px;
+	top: 20px;
 	color: #fff;
-	text-shadow: 0 -1px rgba(0, 0, 0, 0.75);
+	text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
 }
 
 .flex-caption h2, .flex-caption > div {
-	background: rgba(0,0,0,0.75);
+	background: rgba(0,0,0,0.5);
 	border-radius: 2px;
 }
 
