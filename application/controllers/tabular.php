@@ -94,11 +94,11 @@ class Tabular extends Public_Controller {
           units.name AS unit_name
         FROM master_tabulars
           LEFT JOIN units ON units.id = master_tabulars.unit_id
-        WHERE master_tabulars.type = "profil"
+        WHERE master_tabulars.type = "' . $this->uid . '"
           AND master_tabulars.ref_code LIKE CONCAT(
             (SELECT ref_code 
             FROM master_tabulars 
-            WHERE id = ' . $this->uid . '),".%")')->result();
+            WHERE id = ' . self::$id . '),".%")')->result();
 
     $this->data['years'] = $years = $this->Tabular_model->get_years();
 
@@ -106,12 +106,12 @@ class Tabular extends Public_Controller {
       $tabular_years[$year->year] = $this->db->query('SELECT master_tabular_id, 
           SUM(value) AS total
           FROM tabulars
-          WHERE type="profil"
+          WHERE type="' . $this->uid . '"
             AND year = "' . $year->year . '"
             AND ref_code LIKE CONCAT(
               (SELECT ref_code 
               FROM master_tabulars 
-              WHERE id = ' . $this->uid . '),".%")
+              WHERE id = ' . self::$id . '),".%")
           GROUP BY master_tabular_id')->result();
     }
 

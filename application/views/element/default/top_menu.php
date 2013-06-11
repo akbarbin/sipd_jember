@@ -11,11 +11,11 @@
             <?php foreach ($top_menus['umum'] as $key => $value) { ?>
               <li>
                 <?php
-                echo anchor('tabular/view/' . $value->id, $value->name);
+                echo anchor('tabular/view/' . $value->type . '/' . $value->id, $value->name);
                 if (!empty($value->Children) && strtolower($value->name) != 'kemiskinan') {
                   echo '<ul>';
                   foreach ($value->Children as $key2 => $value2) {
-                    echo '<li>' . anchor('tabular/view/' . $value2->id, $value2->name) . '</li>';
+                    echo '<li>' . anchor('tabular/view/' . $value2->type . '/' . $value2->id, $value2->name) . '</li>';
                   }
                   echo '</ul>';
                 }
@@ -43,18 +43,12 @@
             <?php foreach ($top_menus['profil'] as $key => $value) { ?>
               <li>
                 <?php
-                echo anchor('tabular/view/' . $value->id, $value->name);
+                echo anchor('tabular/view/' . $value->type . '/' . $value->id, $value->name);
                 if (!empty($value->Children)) {
                   echo '<ul>';
                   foreach ($value->Children as $key2 => $value2) {
                     echo '<li>';
-                    echo anchor('tabular/view/' . $value2->id, $value2->name);
-                    if (!empty($value2->Children)) {
-                      echo '<ul>';
-                      foreach ($value2->Children as $key3 => $value3) {
-                        echo '<li>' . anchor('tabular/view/' . $value3->id, $value3->name) . '</li>';
-                      }
-                    }
+                    echo anchor('tabular/view/' . $value2->type . '/' . $value2->id, $value2->name);
                     echo '</li>';
                   }
                   echo '</ul>';
@@ -75,11 +69,17 @@
             <?php foreach ($top_menus['kinerja'] as $key => $value) { ?>
               <li>
                 <?php
-                echo anchor('tabular/view/' . $value->id, $value->name);
+                echo anchor('tabular/view/' . $value->type . '/' . $value->id, $value->name);
                 if (!empty($value->Children)) {
                   echo '<ul>';
                   foreach ($value->Children as $key2 => $value2) {
-                    echo '<li>' . anchor('tabular/view/' . $value2->id, $value2->name) . '</li>';
+                    echo '<li>' . anchor('tabular/view/' . $value2->type . '/' . $value2->id, $value2->name) . '</li>';
+                    if (!empty($value2->Children)) {
+                      echo '<ul>';
+                      foreach ($value2->Children as $key3 => $value3) {
+                        echo '<li>' . anchor('tabular/view/' . $value3->type . '/' . $value3->id, $value3->name) . '</li>';
+                      }
+                    }
                   }
                   echo '</ul>';
                 }
