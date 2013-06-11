@@ -140,7 +140,8 @@ ul {
   margin: 0 auto;
   box-shadow: 0 0 8px rgba(0,0,0,0.11);
   overflow: hidden;
-  background: url(../images/header.png) no-repeat #FFF;
+  background: url(../images/page-title-bg/grey.png) repeat-x #FFF;
+  position: relative;
 }
 
 .container {
@@ -295,12 +296,30 @@ mark {
 }
 /* Logo */
 
-#logo {
+#logo, .header-title,.header-sub-title{
   font: 3em/1em 'TitilliumText25L400wt', sans-serif; /* 36px */
   float: left;
+  position: absolute;
+}
+
+#logo{
+  top: 10px;
+  left: 30px;
+}
+
+.header-title{
   text-transform: uppercase;
-  margin-top: 30px;
-  margin-bottom: 0;
+  left: 160px;
+  top: 16px;
+  font-weight:bold;
+  font-size: 33px;
+}
+
+.header-sub-title{
+  left: 160px;
+  top: 52px;
+  font-weight:bold !important;
+  font-size: 18px !important;
 }
 
 #logo a {
@@ -1935,4 +1954,81 @@ p.footer {
 .tab-address{
   width: 100px;
   display: inline-block;
+}
+
+@media (max-width: 1024px){
+  .one-half{
+    width: 45% !important;
+  }
+  .one{
+    width: 93% !important;
+  }
+}
+@media (max-width: 600px){
+  #nav{
+    margin-left: -10px;
+  }
+  .one-half{
+    width: 97% !important;
+  }
+}
+@media (max-width: 800px){
+  #nav{
+    margin-left: 50px;
+  }
+}
+@media (max-width: 768px){
+  #nav{
+    margin-left: 68px;
+  }
+}
+@media (max-width: 480px){
+  #nav, .tinynav{
+    width: 100% !important;
+  }
+  #nav{
+    left: 0;
+  }
+
+  #logo, .header-title,.header-sub-title{
+    font: 3em/1em 'TitilliumText25L400wt', sans-serif; /* 36px */
+    margin: 0 auto;
+  }
+}
+
+@media (max-width:360px){
+  #header{
+    padding-top: 156px;
+  }
+  #logo{
+    width: 120px;
+    margin: 0 auto;
+    position: relative;
+    top: -147px;
+    display: block;
+    left: 0;
+  }
+
+  .header-title{
+    text-transform: uppercase;
+    left: 0;
+    top: -139px;
+    font-weight: bold;
+    font-size: 33px;
+    display: block;
+    position: relative;
+    width: 96%;
+    margin: 0 2%;
+    text-align: center;
+  }
+
+  .header-sub-title{
+    left: 0;
+    top: 200px;
+    font-weight: bold !important;
+    font-size: 18px !important;
+    width: 90%;
+    margin: 0 5%;
+    text-align: center;
+  }
 }

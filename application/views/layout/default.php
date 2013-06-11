@@ -64,6 +64,13 @@
   <body class="boxed">
     <div id="wrap">
       <header id="header" class="container clearfix">
+        <span id="logo">
+          <a href="<?php echo base_url(); ?>">
+            <img src="<?php echo base_url(); ?>webroot/img/logo.png" alt="SIPD Kab. Jember">
+          </a>
+        </span>
+        <span class="header-title">SIPD Kab. Jember</span>
+        <span class="header-sub-title">Sistem Informasi Profil Daerah Kab. Jember</span>
         <?php $this->load->view('element/default/top_menu'); ?>
       </header>
 
