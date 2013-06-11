@@ -57,7 +57,6 @@ class App_Controller extends CI_Controller {
     );
 
     $message = (empty($message)) ? $actions[$action][$callback_action] : $message;
-
     $this->session->set_flashdata('message', array('alert' => $alert[$callback_action], 'message' => $message));
   }
 
@@ -226,6 +225,7 @@ class App_Controller extends CI_Controller {
     $this->load->library('upload', $upload);
     if ($this->upload->do_upload($field)) {
       $image = $this->upload->data();
+      chmod($image['full_path'],0777);
 
       $thumb = array(
           'image_library' => 'GD2',
@@ -271,8 +271,13 @@ class App_Controller extends CI_Controller {
         'file_name' => $file_name);
 
     $this->load->library('upload', $upload);
-    $this->upload->do_upload($field);
-    return $file_name;
+    if($this->upload->do_upload($field)){
+      $upload_data = $this->upload->data();
+      chmod($upload_data['full_path'],0777);
+      return $file_name;
+    }else{
+      return FALSE;
+    }
   }
 
   protected function get_is_parent_status($parent_id = NULL, $data = array()) {

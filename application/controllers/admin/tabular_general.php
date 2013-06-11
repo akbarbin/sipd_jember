@@ -194,6 +194,10 @@ class Tabular_general extends Admin_Controller {
   }
   public function import_excel() {
     $file_name = $this->upload_excel();
+    if(!$file_name){
+      $this->error_message('insert', FALSE, $this->upload->display_errors());
+      redirect('admin/tabular_general/view/' . self::$id);
+    }
     $this->load->model('Excel_upload_model');
     $tabular = $this->Tabular_model->get_all(array('id' => self::$id));
     $data = array(
@@ -205,7 +209,7 @@ class Tabular_general extends Admin_Controller {
     $update = $this->Excel_upload_model->save($data);
     if ($update) {
       $this->load->library('php_excel/PHPExcel');
-      $phpExcel = PHPExcel_IOFactory::load('webroot/excel/' . $file_name);
+      $phpExcel = PHPExcel_IOFactory::load('webroot/content/excel/' . $file_name);
       $sheetData = $phpExcel->getActiveSheet()->toArray(null, true, true, true);
       $start_row = 5;
       $save = array();
