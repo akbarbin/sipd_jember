@@ -41,13 +41,13 @@
             <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-align-left icon-white"></i> Tabular <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li>
-                <?php echo anchor('admin/tabular_general', '<i class="icon-hdd"></i> Data Umum Kecamatan'); ?> 
+                <?php echo anchor('admin/tabular_general', '<i class="icon-hdd"></i> Data Umum Instansi'); ?> 
               </li>
               <li>
-                <?php echo anchor('admin/tabular', '<i class="icon-list-alt"></i> Data Profil Kecamatan'); ?>
+                <?php echo anchor('admin/tabular', '<i class="icon-list-alt"></i> Data Profil Instansi'); ?>
               </li>
               <li class="dropdown-submenu">
-                <a href="#"><i class="icon-tasks"></i> Data Kinerja Kecamatan</a>
+                <a href="#"><i class="icon-tasks"></i> Data Kinerja Instansi</a>
                 <ul class="dropdown-menu">
                   <li>
                     <?php echo anchor('admin/tabular_performance/index/kesejahteraan-masyarakat', '<i class="icon-retweet"></i> Aspek Kesejahteraan Masyarakat'); ?>

@@ -39,9 +39,9 @@ class Tabular_performance extends Admin_Controller {
 
       $sub_district = $this->Sub_district_model->get_all(array('id' => $post['sub_district_id']));
 
-      $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $post['year'];
+      $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . ' Instansi ' . $sub_district[0]->name . ' Tahun ' . $post['year'];
     } else {
-      $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . ' Kecamatan';
+      $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . ' Instansi';
     }
 
     $this->data['type'] = self::$id;
@@ -75,7 +75,7 @@ class Tabular_performance extends Admin_Controller {
     $this->load->model('Sub_district_model');
     $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
 
-    $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . $tabular[0]->name . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
+    $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . $tabular[0]->name . ' Instansi ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
     $this->load->view('layout/admin', $this->data);
   }
 
@@ -100,7 +100,7 @@ class Tabular_performance extends Admin_Controller {
       $this->load->model('Data_source_model');
       $this->data['data_sources'] = $this->get_list($this->Data_source_model->get_all(array('sub_district_id' => $tabular[0]->sub_district_id)));
 
-      $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . $tabular[0]->name . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
+      $this->data['title'] = 'Data Kinerja ' . $this->type[self::$id] . $tabular[0]->name . ' Instansi ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
       $this->load->view('layout/admin', $this->data);
     } else {
       $update = $this->Tabular_model->save_all($post);
@@ -116,7 +116,7 @@ class Tabular_performance extends Admin_Controller {
     $tabular = $this->Tabular_model->get_all(array('id' => $this->uid));
     $this->load->model('Sub_district_model');
     $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
-    $title = 'Data Kinerja ' . $tabular[0]->name . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
+    $title = 'Data Kinerja ' . $tabular[0]->name . ' Instansi ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
     $phpExcel->getProperties()->setCreator('SIPD Kab. Jember')
             ->setTitle($title)
             ->setDescription($title);

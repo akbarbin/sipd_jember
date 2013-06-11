@@ -25,7 +25,7 @@ class Tabular_general extends Sub_District_Controller {
 
       $this->data['title'] = 'Data Umum Tahun ' . $post['year'];
     } else {
-      $this->data['title'] = 'Data Umum Kecamatan';
+      $this->data['title'] = 'Data Umum Instansi';
     }
 
     $tabular_years = $this->Tabular_model->get_years(array('type' => 'umum', 'sub_district_id' => $this->get_login_active_sub_district_id()));
@@ -89,7 +89,7 @@ class Tabular_general extends Sub_District_Controller {
     $tabular = $this->Tabular_model->get_all(array('id' => self::$id));
     $this->load->model('Sub_district_model');
     $sub_district = $this->Sub_district_model->get_all(array('id' => $tabular[0]->sub_district_id));
-    $title = 'Data Umum ' . $tabular[0]->name . ' Kecamatan ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
+    $title = 'Data Umum ' . $tabular[0]->name . ' Instansi ' . $sub_district[0]->name . ' Tahun ' . $tabular[0]->year;
     $phpExcel->getProperties()->setCreator('SIPD Kab. Jember')
             ->setTitle($title)
             ->setDescription($title);
